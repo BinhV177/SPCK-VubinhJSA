@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chic Boutique - Thời Trang Cao Cấp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="navbar">
+          <div class="brand">
+              <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
+              <span class="brand-name">Chic Boutique</span>
+          </div>
+  
+          <!-- Desktop Navigation -->
+          <ul class="nav-links">
+              <li><a href="#" class="active">Trang chủ</a></li>
+              <li class="has-submenu">
+                  <a href="#">Nữ <i class="fas fa-chevron-down"></i></a>
+                  <ul class="submenu">
+                      <li><a href="#">Áo</a></li>
+                      <li><a href="#">Quần</a></li>
+                      <li><a href="#">Váy</a></li>
+                      <li><a href="#">Phụ kiện</a></li>
+                  </ul>
+              </li>
+              <li class="has-submenu">
+                  <a href="#">Nam <i class="fas fa-chevron-down"></i></a>
+                  <ul class="submenu">
+                      <li><a href="#">Áo</a></li>
+                      <li><a href="#">Quần</a></li>
+                      <li><a href="#">Phụ kiện</a></li>
+                  </ul>
+              </li>
+              <li><a href="#">Bộ sưu tập</a></li>
+              <li><a href="#">Sale</a></li>
+          </ul>
+  
+          <div class="nav-actions">
+              <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+              <a href="#" class="cart-btn">
+                  <i class="fas fa-shopping-bag"></i>
+                  <span class="cart-count">0</span>
+              </a>
+              <a href="#" class="account-btn"><i class="fas fa-user"></i></a>
+              
+              <!-- Hamburger Menu Button -->
+              <div class="hamburger-menu">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+              </div>
+          </div>
+      </nav>
+  
+      <!-- Mobile Navigation -->
+      <div class="mobile-menu">
+          <ul class="mobile-nav-links">
+              <li><a href="#" class="active">Trang chủ</a></li>
+              <li class="has-submenu">
+                  <a href="#">Nữ <i class="fas fa-chevron-down"></i></a>
+                  <ul class="submenu">
+                      <li><a href="#">Áo</a></li>
+                      <li><a href="#">Quần</a></li>
+                      <li><a href="#">Váy</a></li>
+                      <li><a href="#">Phụ kiện</a></li>
+                  </ul>
+              </li>
+              <li class="has-submenu">
+                  <a href="#">Nam <i class="fas fa-chevron-down"></i></a>
+                  <ul class="submenu">
+                      <li><a href="#">Áo</a></li>
+                      <li><a href="#">Quần</a></li>
+                      <li><a href="#">Phụ kiện</a></li>
+                  </ul>
+              </li>
+              <li><a href="#">Bộ sưu tập</a></li>
+              <li><a href="#">Sale</a></li>
+          </ul>
+      </div>
+      
+  </header>
+  <!-- Đặt ngay sau thẻ đóng </header> -->
+<div class="search-container">
+  <div class="search-box">
+      <input type="text" placeholder="Tìm kiếm sản phẩm...">
+      <button class="search-close"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="search-suggestions">
+      <div class="suggestion-group">
+          <h4>Xu hướng tìm kiếm</h4>
+          <ul>
+              <li><a href="#">Áo sơ mi nữ</a></li>
+              <li><a href="#">Quần jean nam</a></li>
+              <li><a href="#">Váy đầm dự tiệc</a></li>
+              <li><a href="#">Áo khoác bomber</a></li>
+          </ul>
+      </div>
+      <div class="suggestion-group">
+          <h4>Danh mục phổ biến</h4>
+          <ul>
+              <li><a href="#">Thời trang nữ</a></li>
+              <li><a href="#">Thời trang nam</a></li>
+              <li><a href="#">Phụ kiện</a></li>
+              <li><a href="#">Sale</a></li>
+          </ul>
+      </div>
+  </div>
+</div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Phong Cách Mới<br>Diện Mạo Mới</h1>
+            <p>Khám phá bộ sưu tập xuân hè 2025 với những thiết kế độc đáo</p>
+            <div class="hero-buttons">
+                <a href="#" class="primary-btn">Mua sắm ngay</a>
+                <a href="#" class="secondary-btn">Xem bộ sưu tập</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="featured-categories">
+        <h2>Danh Mục Nổi Bật</h2>
+        <div class="category-container">
+            <div class="category-card">
+                <img src="./assets/thoitrangnu.jpg" alt="Thời trang nữ">
+                <div class="category-content">
+                    <h3>Thời Trang Nữ</h3>
+                    <a href="#" class="category-btn">Khám phá ngay</a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="./assets/thoitrangnam.jpg" alt="Thời trang nam">
+                <div class="category-content">
+                    <h3>Thời Trang Nam</h3>
+                    <a href="#" class="category-btn">Khám phá ngay</a>
+                </div>
+            </div>
+            <div class="category-card">
+                <img src="./assets/phukien.jpg" alt="Phụ kiện">
+                <div class="category-content">
+                    <h3>Phụ Kiện</h3>
+                    <a href="#" class="category-btn">Khám phá ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="new-arrivals">
+        <div class="section-header">
+            <h2>Sản Phẩm Mới</h2>
+            <p>Khám phá những xu hướng mới nhất</p>
+        </div>
+        <div class="product-grid">
+            <!-- Product cards will be populated by JavaScript -->
+        </div>
+        <div class="section-footer">
+            <a href="#" class="view-all-btn">Xem tất cả <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+    <!-- Thêm phần này vào sau thẻ nav-links trong navbar -->
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="brand">
+                    <img src="./assets/logo.png" alt="Chic Boutique Logo" class="footer-logo">
+                    <h3>Chic Boutique</h3>
+                </div>
+                <p>Thời trang cao cấp cho phong cách sống hiện đại</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Thông Tin</h4>
+                <ul>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Cửa hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Chính Sách</h4>
+                <ul>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin về ưu đãi và bộ sưu tập mới</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email của bạn">
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Chic Boutique. Tất cả quyền được bảo lưu.
+        </div>
+    </footer>
+    <script src="./scripts/main.js"></script>
+    <!-- Thêm type="module" vào script tags -->
+    <script type="module" src="./scripts/api.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>

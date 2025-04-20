@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký - Chic Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/auth.css" />
+  </head>
+  <body>
+    <!-- Header với logo -->
+    <header class="auth-header">
+      <a href="index.html">
+        <img src="./assets/logo.png" alt="Chic Boutique Logo">
+        <span>Chic Boutique</span>
+      </a>
+    </header>
+
+    <!-- Animated background -->
+    <ul class="bg-animation">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <div class="form-wrapper">
+      <h2>Đăng ký</h2>
+      <form action="#" id="registerForm">
+        <div class="form-control">
+          <input id="username" type="text" required/>
+          <label><i class="fas fa-user"></i> Tên đăng nhập</label>
+        </div>
+        <div class="form-control">
+          <input id="email" type="email" required />
+          <label><i class="fas fa-envelope"></i> Email của bạn</label>
+        </div>
+        <div class="form-control">
+          <input id="password" type="password" required />
+          <label><i class="fas fa-lock"></i> Mật khẩu</label>
+        </div>
+        <button type="submit">
+          <i class="fas fa-user-plus"></i> Đăng ký
+        </button>
+        <div class="form-help">
+          <div class="remember-me">
+            <input type="checkbox" id="terms" required />
+            <label for="terms">Tôi đồng ý với điều khoản sử dụng</label>
+          </div>
+          <a href="#"><i class="fas fa-question-circle"></i> Cần trợ giúp?</a>
+        </div>
+      </form>
+      <p>Đã có tài khoản? <a href="./login.html">Đăng nhập ngay <i class="fas fa-arrow-right"></i></a></p>
+    </div>
+
+    <script src="./scripts/register.js"></script>
+  </body>
+</html>
