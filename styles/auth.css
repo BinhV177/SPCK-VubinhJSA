@@ -84,6 +84,7 @@ nav a img {
     position: relative;
     z-index: 2;
     backdrop-filter: blur(10px);
+    animation: slideUp 0.5s ease;
 }
 
 .form-wrapper::before {
@@ -348,6 +349,91 @@ button[type="submit"] i {
     from {
         opacity: 0;
         transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message {
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.message.error {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    border: 1px solid #ffcccc;
+}
+
+.message.success {
+    background-color: #e6ffe6;
+    color: #006600;
+    border: 1px solid #ccffcc;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 10px;
+    display: none;
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+}
+
+.user-dropdown span {
+    display: block;
+    padding: 5px 10px;
+    color: #333;
+}
+
+.user-dropdown button {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background: #dc2626;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.user-dropdown button:hover {
+    background: #b91c1c;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
     to {
         opacity: 1;

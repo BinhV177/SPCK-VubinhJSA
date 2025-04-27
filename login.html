@@ -50,6 +50,9 @@
       <p>Chưa có tài khoản? <a href="./register.html">Đăng ký ngay <i class="fas fa-arrow-right"></i></a></p>
     </div>
 
-    <script src="./scripts/login.js"></script>
+    <script type="module" src="./scripts/login.js"></script>
+    <script>
+      console.log(JSON.parse(localStorage.getItem('users')));
+    </script>
   </body>
 </html>

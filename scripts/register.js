@@ -1,0 +1,91 @@
+import { initializeData, addUser, isEmailExists } from './data.js';
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Khởi tạo dữ liệu
+    initializeData();
+
+    // Lấy form đăng ký
+    const registerForm = document.getElementById('registerForm');
+
+    // Tạo phần tử hiển thị thông báo
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message';
+    registerForm.appendChild(messageDiv);
+
+    // Xử lý sự kiện khi form được submit
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Ngăn chặn form submit mặc định
+
+        // Lấy giá trị từ form
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const terms = document.getElementById('terms').checked;
+
+        console.log('Đang xử lý đăng ký với:', { username, email, password, terms });
+
+        // Kiểm tra điều kiện
+        if (!username || !email || !password) {
+            showMessage('Vui lòng điền đầy đủ thông tin', 'error');
+            return;
+        }
+
+        if (!terms) {
+            showMessage('Vui lòng đồng ý với điều khoản sử dụng', 'error');
+            return;
+        }
+
+        if (username.length < 3) {
+            showMessage('Tên người dùng phải có ít nhất 3 ký tự', 'error');
+            return;
+        }
+
+        if (password.length < 6) {
+            showMessage('Mật khẩu phải có ít nhất 6 ký tự', 'error');
+            return;
+        }
+
+        try {
+            // Kiểm tra email tồn tại
+            if (isEmailExists(email)) {
+                showMessage('Email này đã được sử dụng', 'error');
+                return;
+            }
+
+            // Tạo user mới
+            const newUser = {
+                id: Date.now().toString(),
+                username: username,
+                email: email,
+                password: password,
+                createdAt: new Date().toISOString()
+            };
+
+            // Thêm user mới
+            addUser(newUser);
+            console.log('Đã thêm user mới:', newUser);
+
+            // Lưu email để điền sẵn ở trang login
+            sessionStorage.setItem('registeredEmail', email);
+
+            showMessage('Đăng ký thành công! Đang chuyển hướng...', 'success');
+
+            // Chuyển hướng sau 1.5 giây
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1500);
+
+        } catch (error) {
+            console.error('Lỗi khi đăng ký:', error);
+            showMessage('Có lỗi xảy ra: ' + error.message, 'error');
+        }
+    });
+
+    // Hàm hiển thị thông báo
+    function showMessage(text, type) {
+        console.log('Hiển thị thông báo:', { text, type });
+        messageDiv.textContent = text;
+        messageDiv.className = `message ${type}`;
+        messageDiv.style.display = 'block';
+    }
+}); 

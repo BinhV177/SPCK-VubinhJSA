@@ -41,7 +41,11 @@
           </ul>
   
           <div class="nav-actions">
-              <a href="#" class="search-btn"><i class="fas fa-search"></i></a>
+              <a href="#" class="search-btn" id="searchIcon"><i class="fas fa-search"></i></a>
+              <form class="navbar-search" id="navbarSearchForm">
+                  <input type="text" placeholder="Tìm kiếm sản phẩm..." id="navbarSearchInput">
+                  <button type="submit"><i class="fas fa-arrow-right"></i></button>
+              </form>
               <a href="#" class="cart-btn">
                   <i class="fas fa-shopping-bag"></i>
                   <span class="cart-count">0</span>
@@ -218,5 +222,73 @@
     <!-- Thêm type="module" vào script tags -->
     <script type="module" src="./scripts/api.js"></script>
     <script type="module" src="./scripts/main.js"></script>
+    <script>
+      const searchIcon = document.getElementById('searchIcon');
+      const navbarSearchForm = document.getElementById('navbarSearchForm');
+      const navbarSearchInput = document.getElementById('navbarSearchInput');
+
+      searchIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        navbarSearchForm.classList.toggle('active');
+        if (navbarSearchForm.classList.contains('active')) {
+          navbarSearchInput.focus();
+        }
+      });
+
+      // Ẩn thanh search khi click ra ngoài
+      document.addEventListener('click', function(e) {
+        if (!navbarSearchForm.contains(e.target) && !searchIcon.contains(e.target)) {
+          navbarSearchForm.classList.remove('active');
+        }
+      });
+
+      // Ngăn reload trang khi submit
+      navbarSearchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Xử lý tìm kiếm tại đây
+        alert('Tìm kiếm: ' + navbarSearchInput.value);
+      });
+    </script>
+    <script type="module" src="./scripts/login.js"></script>
+    <script type="module" src="./scripts/register.js"></script>
+    <script>
+      import { auth } from './firebase-config.js';
+      import { signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      // Kiểm tra trạng thái đăng nhập
+      auth.onAuthStateChanged((user) => {
+          const accountBtn = document.querySelector('.account-btn');
+          
+          if (user) {
+              // Đã đăng nhập
+              accountBtn.innerHTML = `
+                  <div class="user-menu">
+                      <i class="fas fa-user"></i>
+                      <div class="user-dropdown">
+                          <span>${user.email}</span>
+                          <button id="logoutBtn">Đăng xuất</button>
+                      </div>
+                  </div>
+              `;
+          } else {
+              // Chưa đăng nhập
+              accountBtn.innerHTML = `<a href="login.html"><i class="fas fa-user"></i></a>`;
+          }
+      });
+
+      // Xử lý đăng xuất
+      document.addEventListener('click', async (e) => {
+          if (e.target.id === 'logoutBtn') {
+              try {
+                  await signOut(auth);
+                  localStorage.removeItem('rememberMe');
+                  localStorage.removeItem('userEmail');
+                  window.location.href = 'login.html';
+              } catch (error) {
+                  console.error('Lỗi đăng xuất:', error);
+              }
+          }
+      });
+    </script>
 </body>
 </html>

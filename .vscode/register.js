@@ -3,9 +3,9 @@ import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebase
 import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const registerForm = document.getElementById('registerForm');
-const errorMessage = document.createElement('div');
-errorMessage.className = 'error-message';
-registerForm.appendChild(errorMessage);
+const messageDiv = document.createElement('div');
+messageDiv.className = 'message';
+registerForm.appendChild(messageDiv);
 
 registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -15,15 +15,18 @@ registerForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
     const terms = document.getElementById('terms').checked;
 
-    // Kiểm tra điều khoản sử dụng
+    // Reset message
+    messageDiv.textContent = '';
+    messageDiv.className = 'message';
+
+    // Validate
     if (!terms) {
         showError('Vui lòng đồng ý với điều khoản sử dụng');
         return;
     }
 
-    // Validate dữ liệu
     if (username.length < 3) {
-        showError('Tên đăng nhập phải có ít nhất 3 ký tự');
+        showError('Tên người dùng phải có ít nhất 3 ký tự');
         return;
     }
 
@@ -33,7 +36,7 @@ registerForm.addEventListener('submit', async (e) => {
     }
 
     try {
-        // Tạo tài khoản mới
+        // Tạo tài khoản
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
@@ -41,20 +44,18 @@ registerForm.addEventListener('submit', async (e) => {
         await setDoc(doc(db, "users", user.uid), {
             username: username,
             email: email,
-            createdAt: new Date().toISOString(),
-            role: 'user'
+            createdAt: new Date().toISOString()
         });
 
         // Hiển thị thông báo thành công
         showSuccess('Đăng ký thành công! Đang chuyển hướng...');
         
-        // Chuyển hướng sau 2 giây
+        // Chuyển đến trang đăng nhập sau 2 giây
         setTimeout(() => {
             window.location.href = 'login.html';
         }, 2000);
 
     } catch (error) {
-        // Xử lý các lỗi
         switch (error.code) {
             case 'auth/email-already-in-use':
                 showError('Email này đã được sử dụng');
@@ -63,7 +64,7 @@ registerForm.addEventListener('submit', async (e) => {
                 showError('Email không hợp lệ');
                 break;
             case 'auth/operation-not-allowed':
-                showError('Chức năng đăng ký đang bị vô hiệu hóa');
+                showError('Tài khoản email/mật khẩu chưa được kích hoạt');
                 break;
             case 'auth/weak-password':
                 showError('Mật khẩu quá yếu');
@@ -76,13 +77,11 @@ registerForm.addEventListener('submit', async (e) => {
 });
 
 function showError(message) {
-    errorMessage.textContent = message;
-    errorMessage.style.color = '#e74c3c';
-    errorMessage.style.display = 'block';
+    messageDiv.textContent = message;
+    messageDiv.className = 'message error';
 }
 
 function showSuccess(message) {
-    errorMessage.textContent = message;
-    errorMessage.style.color = '#2ecc71';
-    errorMessage.style.display = 'block';
-} 
+    messageDiv.textContent = message;
+    messageDiv.className = 'message success';
+}

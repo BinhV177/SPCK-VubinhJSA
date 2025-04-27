@@ -2,17 +2,9 @@ import { auth } from './firebase-config.js';
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 const loginForm = document.getElementById('loginForm');
-const errorMessage = document.createElement('div');
-errorMessage.className = 'error-message';
-loginForm.appendChild(errorMessage);
-
-// Kiểm tra trạng thái đăng nhập
-auth.onAuthStateChanged((user) => {
-    if (user) {
-        // Nếu đã đăng nhập, lưu thông tin vào localStorage
-        localStorage.setItem('userEmail', user.email);
-    }
-});
+const messageDiv = document.createElement('div');
+messageDiv.className = 'message';
+loginForm.appendChild(messageDiv);
 
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -21,23 +13,26 @@ loginForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
     const rememberMe = document.getElementById('remember-me').checked;
 
+    // Reset message
+    messageDiv.textContent = '';
+    messageDiv.className = 'message';
+
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         
-        // Lưu trạng thái "Ghi nhớ đăng nhập"
+        // Lưu trạng thái đăng nhập nếu chọn "Ghi nhớ đăng nhập"
         if (rememberMe) {
             localStorage.setItem('rememberMe', 'true');
-        } else {
-            localStorage.removeItem('rememberMe');
+            localStorage.setItem('userEmail', email);
         }
 
         // Hiển thị thông báo thành công
         showSuccess('Đăng nhập thành công! Đang chuyển hướng...');
         
-        // Chuyển hướng về trang chủ
+        // Chuyển đến trang chủ sau 1 giây
         setTimeout(() => {
             window.location.href = 'index.html';
-        }, 2000);
+        }, 1000);
 
     } catch (error) {
         switch (error.code) {
@@ -61,13 +56,11 @@ loginForm.addEventListener('submit', async (e) => {
 });
 
 function showError(message) {
-    errorMessage.textContent = message;
-    errorMessage.style.color = '#e74c3c';
-    errorMessage.style.display = 'block';
+    messageDiv.textContent = message;
+    messageDiv.className = 'message error';
 }
 
 function showSuccess(message) {
-    errorMessage.textContent = message;
-    errorMessage.style.color = '#2ecc71';
-    errorMessage.style.display = 'block';
+    messageDiv.textContent = message;
+    messageDiv.className = 'message success';
 } 

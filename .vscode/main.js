@@ -105,3 +105,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Lỗi khởi tạo trang:', error);
     }
 }); 
+import { auth } from './firebase-config.js';
+import { signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+// Kiểm tra trạng thái đăng nhập
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        // Người dùng đã đăng nhập
+        console.log('Đã đăng nhập:', user.email);
+        // Hiển thị menu user, ẩn nút đăng nhập
+        document.querySelector('.account-btn').innerHTML = `
+            <div class="user-menu">
+                <span>${user.email}</span>
+                <button id="logoutBtn">Đăng xuất</button>
+            </div>
+        `;
+    } else {
+        // Chưa đăng nhập, chuyển về trang login
+        if (!window.location.pathname.includes('login.html') && 
+            !window.location.pathname.includes('register.html')) {
+            window.location.href = 'login.html';
+        }
+    }
+});
+
+// Xử lý đăng xuất
+document.addEventListener('click', async (e) => {
+    if (e.target.id === 'logoutBtn') {
+        try {
+            await signOut(auth);
+            localStorage.removeItem('rememberMe');
+            localStorage.removeItem('userEmail');
+            window.location.href = 'login.html';
+        } catch (error) {
+            console.error('Lỗi đăng xuất:', error);
+        }
+    }
+});
