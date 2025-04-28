@@ -9,7 +9,7 @@ const products = [
         price: 1590000,
         salePrice: null,
         description: "Áo blazer nữ phong cách công sở thanh lịch",
-        images: ["./assets/thoitrangnu.jpg"],
+        images: ["./assets/blazernucongso.jpg"],
         sizes: ["S", "M", "L", "XL"],
         colors: ["Đen", "Be", "Xám"],
         inStock: true,

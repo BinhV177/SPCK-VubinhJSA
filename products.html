@@ -52,9 +52,8 @@
       <div class="product-filter">
         <select id="filterType">
           <option value="">Tất cả loại</option>
-          <option value="nu">Thời trang nữ</option>
-          <option value="nam">Thời trang nam</option>
-          <option value="phukien">Phụ kiện</option>
+          <option value="women">Thời trang nữ</option>
+          <option value="men">Thời trang nam</option>
         </select>
         <select id="filterColor">
           <option value="">Tất cả màu</option>
@@ -124,18 +123,9 @@
     </footer>
 
     <!-- Script chức năng lọc, tìm kiếm, render sản phẩm -->
-    <script>
-      // Dữ liệu sản phẩm mẫu
-      const products = [
-        {id: 1, name: 'Đầm trắng nữ', price: 650000, type: 'nu', color: 'trang', img: './assets/nu1.jpg'},
-        {id: 2, name: 'Áo sơ mi nam đen', price: 420000, type: 'nam', color: 'den', img: './assets/nam1.jpg'},
-        {id: 3, name: 'Túi xách đỏ', price: 320000, type: 'phukien', color: 'do', img: './assets/phukien1.jpg'},
-        {id: 4, name: 'Váy xanh nữ', price: 700000, type: 'nu', color: 'xanh', img: './assets/nu2.jpg'},
-        {id: 5, name: 'Quần jean nam', price: 480000, type: 'nam', color: 'xanh', img: './assets/nam2.jpg'},
-        {id: 6, name: 'Kính râm đen', price: 150000, type: 'phukien', color: 'den', img: './assets/phukien2.jpg'},
-      ];
+    <script type="module">
+      import FashionAPI from './scripts/api.js';
 
-      // Hàm render sản phẩm
       function renderProducts(list) {
         const productList = document.getElementById('productList');
         productList.innerHTML = '';
@@ -146,9 +136,9 @@
         list.forEach(p => {
           productList.innerHTML += `
             <div class="product-card">
-              <img src="${p.img}" alt="${p.name}">
+              <img src="${p.images[0]}" alt="${p.name}">
               <h3>${p.name}</h3>
-              <div class="price">${p.price.toLocaleString()}đ</div>
+              <div class="price">${(p.salePrice || p.price).toLocaleString()}đ</div>
               <div class="product-actions">
                 <a href="product-detail.html?id=${p.id}">Xem chi tiết</a>
                 <button onclick="addToCart(${p.id})">Thêm vào giỏ</button>
@@ -158,49 +148,56 @@
         });
       }
 
-      // Lọc và tìm kiếm sản phẩm
-      function filterProducts() {
+      function filterProducts(products) {
         let type = document.getElementById('filterType').value;
         let color = document.getElementById('filterColor').value;
         let sort = document.getElementById('sortPrice').value;
         let search = document.getElementById('searchProduct').value.toLowerCase();
 
         let filtered = products.filter(p => 
-          (type === '' || p.type === type) &&
-          (color === '' || p.color === color) &&
+          (type === '' || p.category === type) &&
+          (color === '' || p.colors.includes(color)) &&
           (search === '' || p.name.toLowerCase().includes(search))
         );
 
-        if (sort === 'asc') filtered.sort((a,b) => a.price - b.price);
-        if (sort === 'desc') filtered.sort((a,b) => b.price - a.price);
+        if (sort === 'asc') filtered.sort((a,b) => (a.salePrice || a.price) - (b.salePrice || b.price));
+        if (sort === 'desc') filtered.sort((a,b) => (b.salePrice || b.price) - (a.salePrice || a.price));
 
         renderProducts(filtered);
       }
 
-      // Thêm vào giỏ hàng (lưu vào localStorage)
-      function addToCart(id) {
-        let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        let product = products.find(p => p.id === id);
-        let found = cart.find(item => item.id === id);
-        if (found) {
-          found.qty += 1;
-        } else {
-          cart.push({...product, qty: 1});
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert('Đã thêm vào giỏ hàng!');
+      window.addToCart = function(id) {
+        FashionAPI.getProductById(id).then(product => {
+          let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+          let found = cart.find(item => item.id === id);
+          if (found) {
+            found.qty += 1;
+          } else {
+            cart.push({...product, qty: 1});
+          }
+          localStorage.setItem('cart', JSON.stringify(cart));
+          alert('Đã thêm vào giỏ hàng!');
+        });
       }
 
-      // Sự kiện cho bộ lọc
-      document.getElementById('filterType').onchange = filterProducts;
-      document.getElementById('filterColor').onchange = filterProducts;
-      document.getElementById('sortPrice').onchange = filterProducts;
-      document.getElementById('searchProduct').oninput = filterProducts;
+      let allProducts = [];
+      FashionAPI.getAllProducts().then(products => {
+        allProducts = products;
+        renderProducts(products);
 
-      // Render sản phẩm ban đầu
-      renderProducts(products);
+        document.getElementById('filterType').onchange = () => filterProducts(allProducts);
+        document.getElementById('filterColor').onchange = () => filterProducts(allProducts);
+        document.getElementById('sortPrice').onchange = () => filterProducts(allProducts);
+        document.getElementById('searchProduct').oninput = () => filterProducts(allProducts);
 
-      // Tìm kiếm trên header
+        const urlParams = new URLSearchParams(window.location.search);
+        const typeParam = urlParams.get('type');
+        if (typeParam) {
+          document.getElementById('filterType').value = typeParam;
+          filterProducts(allProducts);
+        }
+      });
+
       document.getElementById('searchIcon').onclick = function(e) {
         e.preventDefault();
         document.getElementById('headerSearchForm').classList.toggle('active');
@@ -209,7 +206,7 @@
       document.getElementById('headerSearchForm').onsubmit = function(e) {
         e.preventDefault();
         document.getElementById('searchProduct').value = document.getElementById('headerSearchInput').value;
-        filterProducts();
+        filterProducts(allProducts);
         this.classList.remove('active');
       };
       document.addEventListener('mousedown', function(e) {
@@ -218,13 +215,6 @@
           form.classList.remove('active');
         }
       });
-
-      // Lấy tham số lọc từ URL (nếu có)
-      const urlParams = new URLSearchParams(window.location.search);
-      const typeParam = urlParams.get('type');
-      if (typeParam) {
-        document.getElementById('filterType').value = typeParam;
-      }
     </script>
 </body>
 </html>
