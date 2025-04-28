@@ -6,6 +6,71 @@
     <title>Chic Boutique - Thời Trang Cao Cấp</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./styles/main.css">
+    <style>
+      .header-icons {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        z-index: 10;
+      }
+
+      .icon-btn {
+        position: relative;
+        color: #2d3a4a;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: color 0.2s;
+        text-decoration: none;
+      }
+
+      .icon-btn:hover {
+        color: #e67e22;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: #e74c3c;
+        color: #fff;
+        font-size: 0.8rem;
+        padding: 2px 6px;
+        border-radius: 50%;
+        font-weight: bold;
+        border: 2px solid #fff;
+      }
+
+      .username {
+        font-weight: 600;
+        color: #2d3a4a;
+        margin-left: 6px;
+        margin-right: 8px;
+        font-size: 1.1rem;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .logout-btn {
+        background: #e74c3c;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 4px 12px;
+        margin-left: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .logout-btn:hover {
+        background: #c0392b;
+      }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -18,40 +83,27 @@
   
           <!-- Desktop Navigation -->
           <ul class="nav-links">
-              <li><a href="#" class="active">Trang chủ</a></li>
-              <li class="has-submenu">
-                  <a href="#">Nữ <i class="fas fa-chevron-down"></i></a>
-                  <ul class="submenu">
-                      <li><a href="#">Áo</a></li>
-                      <li><a href="#">Quần</a></li>
-                      <li><a href="#">Váy</a></li>
-                      <li><a href="#">Phụ kiện</a></li>
-                  </ul>
-              </li>
-              <li class="has-submenu">
-                  <a href="#">Nam <i class="fas fa-chevron-down"></i></a>
-                  <ul class="submenu">
-                      <li><a href="#">Áo</a></li>
-                      <li><a href="#">Quần</a></li>
-                      <li><a href="#">Phụ kiện</a></li>
-                  </ul>
-              </li>
-              <li><a href="#">Bộ sưu tập</a></li>
-              <li><a href="#">Sale</a></li>
+              <li><a href="index.html">Trang chủ</a></li>
+              <li><a href="products.html?type=nu">Nữ</a></li>
+              <li><a href="products.html?type=nam">Nam</a></li>
+              <li><a href="products.html?type=bosuutap">Bộ sưu tập</a></li>
+              <li><a href="products.html?type=sale">Sale</a></li>
           </ul>
   
           <div class="nav-actions">
-              <a href="#" class="search-btn" id="searchIcon"><i class="fas fa-search"></i></a>
-              <form class="navbar-search" id="navbarSearchForm">
-                  <input type="text" placeholder="Tìm kiếm sản phẩm..." id="navbarSearchInput">
-                  <button type="submit"><i class="fas fa-arrow-right"></i></button>
-              </form>
-              <a href="#" class="cart-btn">
+              <div class="header-icons">
+                <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+                <form class="header-search-form" id="headerSearchForm">
+                  <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <a href="#" class="icon-btn" title="Giỏ hàng">
                   <i class="fas fa-shopping-bag"></i>
-                  <span class="cart-count">0</span>
-              </a>
-              <a href="#" class="account-btn"><i class="fas fa-user"></i></a>
-              
+                  <span class="cart-badge">0</span>
+                </a>
+                <a href="#" class="icon-btn" title="Tài khoản"><i class="fas fa-user"></i></a>
+                <button class="logout-btn">Đăng xuất</button>
+              </div>
               <!-- Hamburger Menu Button -->
               <div class="hamburger-menu">
                   <div class="bar"></div>
@@ -88,33 +140,6 @@
       </div>
       
   </header>
-  <!-- Đặt ngay sau thẻ đóng </header> -->
-<div class="search-container">
-  <div class="search-box">
-      <input type="text" placeholder="Tìm kiếm sản phẩm...">
-      <button class="search-close"><i class="fas fa-times"></i></button>
-  </div>
-  <div class="search-suggestions">
-      <div class="suggestion-group">
-          <h4>Xu hướng tìm kiếm</h4>
-          <ul>
-              <li><a href="#">Áo sơ mi nữ</a></li>
-              <li><a href="#">Quần jean nam</a></li>
-              <li><a href="#">Váy đầm dự tiệc</a></li>
-              <li><a href="#">Áo khoác bomber</a></li>
-          </ul>
-      </div>
-      <div class="suggestion-group">
-          <h4>Danh mục phổ biến</h4>
-          <ul>
-              <li><a href="#">Thời trang nữ</a></li>
-              <li><a href="#">Thời trang nam</a></li>
-              <li><a href="#">Phụ kiện</a></li>
-              <li><a href="#">Sale</a></li>
-          </ul>
-      </div>
-  </div>
-</div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -136,21 +161,21 @@
                 <img src="./assets/thoitrangnu.jpg" alt="Thời trang nữ">
                 <div class="category-content">
                     <h3>Thời Trang Nữ</h3>
-                    <a href="#" class="category-btn">Khám phá ngay</a>
+                    <a href="products.html?type=nu" class="category-btn">Khám phá ngay</a>
                 </div>
             </div>
             <div class="category-card">
                 <img src="./assets/thoitrangnam.jpg" alt="Thời trang nam">
                 <div class="category-content">
                     <h3>Thời Trang Nam</h3>
-                    <a href="#" class="category-btn">Khám phá ngay</a>
+                    <a href="products.html?type=nam" class="category-btn">Khám phá ngay</a>
                 </div>
             </div>
             <div class="category-card">
                 <img src="./assets/phukien.jpg" alt="Phụ kiện">
                 <div class="category-content">
                     <h3>Phụ Kiện</h3>
-                    <a href="#" class="category-btn">Khám phá ngay</a>
+                    <a href="products.html?type=bosuutap" class="category-btn">Khám phá ngay</a>
                 </div>
             </div>
         </div>
@@ -169,8 +194,6 @@
             <a href="#" class="view-all-btn">Xem tất cả <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
-    <!-- Thêm phần này vào sau thẻ nav-links trong navbar -->
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -219,75 +242,54 @@
         </div>
     </footer>
     <script src="./scripts/main.js"></script>
-    <!-- Thêm type="module" vào script tags -->
     <script type="module" src="./scripts/api.js"></script>
     <script type="module" src="./scripts/main.js"></script>
     <script>
-      const searchIcon = document.getElementById('searchIcon');
-      const navbarSearchForm = document.getElementById('navbarSearchForm');
-      const navbarSearchInput = document.getElementById('navbarSearchInput');
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchIcon = document.getElementById('searchIcon');
+        const searchForm = document.getElementById('headerSearchForm');
+        const searchInput = document.getElementById('headerSearchInput');
 
-      searchIcon.addEventListener('click', function(e) {
-        e.preventDefault();
-        navbarSearchForm.classList.toggle('active');
-        if (navbarSearchForm.classList.contains('active')) {
-          navbarSearchInput.focus();
+        if (searchIcon && searchForm) {
+          searchIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchForm.classList.toggle('active');
+            if (searchForm.classList.contains('active')) {
+              searchInput.focus();
+            }
+          });
         }
-      });
 
-      // Ẩn thanh search khi click ra ngoài
-      document.addEventListener('click', function(e) {
-        if (!navbarSearchForm.contains(e.target) && !searchIcon.contains(e.target)) {
-          navbarSearchForm.classList.remove('active');
-        }
-      });
+        // Ẩn search khi bấm ra ngoài
+        document.addEventListener('mousedown', function(e) {
+          if (searchForm && searchForm.classList.contains('active')) {
+            if (!searchForm.contains(e.target) && e.target !== searchIcon) {
+              searchForm.classList.remove('active');
+            }
+          }
+        });
 
-      // Ngăn reload trang khi submit
-      navbarSearchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Xử lý tìm kiếm tại đây
-        alert('Tìm kiếm: ' + navbarSearchInput.value);
+        // Ngăn reload trang khi submit
+        searchForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          alert('Tìm kiếm: ' + searchInput.value);
+          searchForm.classList.remove('active');
+        });
       });
     </script>
     <script type="module" src="./scripts/login.js"></script>
     <script type="module" src="./scripts/register.js"></script>
     <script>
-      import { auth } from './firebase-config.js';
-      import { signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-      // Kiểm tra trạng thái đăng nhập
-      auth.onAuthStateChanged((user) => {
-          const accountBtn = document.querySelector('.account-btn');
-          
-          if (user) {
-              // Đã đăng nhập
-              accountBtn.innerHTML = `
-                  <div class="user-menu">
-                      <i class="fas fa-user"></i>
-                      <div class="user-dropdown">
-                          <span>${user.email}</span>
-                          <button id="logoutBtn">Đăng xuất</button>
-                      </div>
-                  </div>
-              `;
-          } else {
-              // Chưa đăng nhập
-              accountBtn.innerHTML = `<a href="login.html"><i class="fas fa-user"></i></a>`;
+      // Kiểm tra trạng thái đăng nhập bằng localStorage/sessionStorage
+      document.addEventListener('DOMContentLoaded', function() {
+        const logoutBtn = document.querySelector('.logout-btn');
+        if (logoutBtn) {
+          logoutBtn.onclick = function() {
+            localStorage.removeItem('currentUser');
+            sessionStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
           }
-      });
-
-      // Xử lý đăng xuất
-      document.addEventListener('click', async (e) => {
-          if (e.target.id === 'logoutBtn') {
-              try {
-                  await signOut(auth);
-                  localStorage.removeItem('rememberMe');
-                  localStorage.removeItem('userEmail');
-                  window.location.href = 'login.html';
-              } catch (error) {
-                  console.error('Lỗi đăng xuất:', error);
-              }
-          }
+        }
       });
     </script>
 </body>

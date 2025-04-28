@@ -1,6 +1,3 @@
-import { auth } from './firebase-config.js';
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const messageDiv = document.createElement('div');
@@ -29,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Lấy danh sách users
         const users = JSON.parse(localStorage.getItem('users') || '[]');
+        console.log('Danh sách users:', users);
 
         // Tìm user
         const user = users.find(u => u.email === email && u.password === password);
