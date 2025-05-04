@@ -36,7 +36,9 @@
                   <i class="fas fa-shopping-bag"></i>
                   <span class="cart-badge">0</span>
                 </a>
-                <a href="#" class="icon-btn" title="Tài khoản"><i class="fas fa-user"></i></a>
+                <a href="profile.html" class="icon-btn" title="Tài khoản" id="profileBtn">
+                  <i class="fas fa-user"></i>
+                </a>
                 <button class="logout-btn">Đăng xuất</button>
               </div>
               <!-- Hamburger Menu Button -->
@@ -215,15 +217,25 @@
     <script type="module" src="./scripts/login.js"></script>
     <script type="module" src="./scripts/register.js"></script>
     <script>
-      // Kiểm tra trạng thái đăng nhập bằng localStorage/sessionStorage
+      // Kiểm tra đăng nhập
       document.addEventListener('DOMContentLoaded', function() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser')) || 
+                          JSON.parse(sessionStorage.getItem('currentUser'));
+
+        // Chỉ chuyển hướng nếu đang ở trang chính (index.html) và chưa đăng nhập
+        if (!currentUser && window.location.pathname.endsWith('index.html')) {
+          // Nếu chưa đăng nhập, chuyển về trang login
+          window.location.href = 'login.html';
+        }
+
+        // Xử lý đăng xuất
         const logoutBtn = document.querySelector('.logout-btn');
         if (logoutBtn) {
-          logoutBtn.onclick = function() {
+          logoutBtn.addEventListener('click', function() {
             localStorage.removeItem('currentUser');
             sessionStorage.removeItem('currentUser');
             window.location.href = 'login.html';
-          }
+          });
         }
       });
     </script>

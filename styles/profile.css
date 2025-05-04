@@ -1,0 +1,4801 @@
+/* Base styles and resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* Header styles */
+.header {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+}
+
+.logo-img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4a6baf;
+}
+
+.nav-actions .back-btn {
+    display: flex;
+    align-items: center;
+    color: #4a6baf;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-actions .back-btn i {
+    margin-right: 5px;
+}
+
+.nav-actions .back-btn:hover {
+    color: #38598b;
+}
+
+/* Profile container styles */
+.profile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar styles */
+.profile-sidebar {
+    width: 280px;
+    background-color: #f8fafd;
+    padding: 2rem 0;
+    border-right: 1px solid #edf0f5;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.5rem 1.5rem;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.profile-avatar {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.profile-avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.change-avatar-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #4a6baf;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+}
+
+.change-avatar-btn:hover {
+    background-color: #38598b;
+}
+
+.profile-name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: #333;
+}
+
+.profile-email {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.profile-nav {
+    padding: 1.5rem 0;
+    flex: 1;
+}
+
+.profile-nav a {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.profile-nav a i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+    width: 24px;
+    text-align: center;
+}
+
+.profile-nav a:hover {
+    background-color: #edf0f5;
+    color: #4a6baf;
+}
+
+.profile-nav a.active {
+    background-color: #e6ecf7;
+    color: #4a6baf;
+    border-left: 3px solid #4a6baf;
+}
+
+.logout-container {
+    padding: 0 1.5rem;
+    margin-top: auto;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: #666;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.logout-btn i {
+    margin-right: 8px;
+}
+
+.logout-btn:hover {
+    background-color: #ff6b6b;
+    color: white;
+}
+
+/* Content styles */
+.profile-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+.account-info {
+    background-color: #f8fafd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.account-info h4 {
+    margin-bottom: 1rem;
+    color: #4a6baf;
+    font-size: 1.1rem;
+}
+
+.account-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.account-details p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.account-details strong {
+    color: #555;
+}
+
+.profile-section {
+    display: none;
+}
+
+.profile-section.active {
+    display: block;
+}
+
+.profile-section h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #edf0f5;
+}
+
+/* Form styles */
+.profile-form {
+    max-width: 700px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+    background-color: white;
+}
+
+/* Thêm vào file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Thêm vào cuối file profile.css */
+
+/* Birthday inputs styles */
+.birthday-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.birthday-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.birthday-input-group label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.birthday-input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: white;
+}
+
+.birthday-input-group input:focus {
+  outline: none;
+  border-color: #4a6baf;
+  box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
+}
+
+/* Điều chỉnh input number để bỏ mũi tên lên xuống */
+.birthday-input-group input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.birthday-input-group input[type="number"]::-webkit-outer-spin-button,
+.birthday-input-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;

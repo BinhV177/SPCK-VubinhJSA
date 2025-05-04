@@ -1,13 +1,21 @@
 import Auth from './auth.js';
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Kiểm tra đăng nhập
-    Auth.checkAuth();
+    // Sửa đoạn này - chỉ kiểm tra đăng nhập ở trang index.html
+    if (window.location.pathname.endsWith('index.html')) {
+        // Kiểm tra đăng nhập
+        Auth.checkAuth();
+    }
+    
+    // Không chạy checkAuthPages() ở đây nếu đang ở trang register
+    if (!window.location.pathname.includes('register.html')) {
+        Auth.checkAuthPages();
+    }
 
     const currentUser = Auth.getCurrentUser();
     const accountBtn = document.querySelector('.account-btn');
 
-    if (currentUser) {
+    if (currentUser && accountBtn) {
         // Cập nhật giao diện khi đã đăng nhập
         accountBtn.innerHTML = `
             <div class="user-menu">
@@ -20,8 +28,24 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
 
         // Xử lý đăng xuất
-        document.getElementById('logoutBtn').addEventListener('click', () => {
-            Auth.logout();
-        });
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                Auth.logout();
+            });
+        }
+    }
+});
+
+// Xử lý nút tài khoản
+document.querySelector('.icon-btn[title="Tài khoản"]').addEventListener('click', function(e) {
+    e.preventDefault();
+    const user = Auth.getCurrentUser();
+    if (user) {
+        // Nếu đã đăng nhập, chuyển đến trang profile
+        window.location.href = 'profile.html';
+    } else {
+        // Nếu chưa đăng nhập, chuyển đến trang login
+        window.location.href = 'login.html';
     }
 }); 

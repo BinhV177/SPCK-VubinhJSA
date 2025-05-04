@@ -20,6 +20,7 @@ class Auth {
     }
 
     static checkAuthPages() {
+        // Sửa đoạn này - đây có thể là nguyên nhân
         if (this.isLoggedIn()) {
             if (window.location.pathname.includes('login.html') || 
                 window.location.pathname.includes('register.html')) {
