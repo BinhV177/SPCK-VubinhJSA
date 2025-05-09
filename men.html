@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thời Trang Nam - Chic Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/men.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="brand">
+                <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
+                <span class="brand-name">Chic Boutique</span>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="women.html">Nữ</a></li>
+                <li><a href="men.html" class="active">Nam</a></li>
+                <li><a href="accessories.html">Phụ kiện</a></li>
+                <li><a href="products.html?type=sale">Sale</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="header-icons">
+                    <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+                    <form class="header-search-form" id="headerSearchForm">
+                        <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                    <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                    <a href="profile.html" class="icon-btn" title="Tài khoản" id="profileBtn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button class="logout-btn">Đăng xuất</button>
+                </div>
+                <!-- Hamburger Menu Button -->
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li class="has-submenu">
+                    <a href="women.html">Nữ <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="women.html?category=ao">Áo</a></li>
+                        <li><a href="women.html?category=quan">Quần</a></li>
+                        <li><a href="women.html?category=vay">Váy</a></li>
+                        <li><a href="women.html?category=dam">Đầm</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="men.html" class="active">Nam <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="men.html?category=ao">Áo</a></li>
+                        <li><a href="men.html?category=quan">Quần</a></li>
+                        <li><a href="men.html?category=vest">Vest</a></li>
+                    </ul>
+                </li>
+                <li><a href="accessories.html">Phụ kiện</a></li>
+                <li><a href="products.html?type=sale">Sale</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="category-banner men-banner">
+        <div class="banner-content">
+            <h1>Thời Trang Nam</h1>
+            <p>Phong cách lịch lãm và hiện đại cho quý ông thời thượng</p>
+        </div>
+    </section>
+
+    <!-- Danh mục sản phẩm -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">Sản Phẩm Thời Trang Nam</h2>
+            
+            <!-- Bộ lọc và sắp xếp -->
+            <div class="filter-container">
+                <div class="filter-group">
+                    <select id="sortFilter" class="filter-select">
+                        <option value="newest">Mới nhất</option>
+                        <option value="price-asc">Giá: Thấp đến cao</option>
+                        <option value="price-desc">Giá: Cao đến thấp</option>
+                        <option value="bestseller">Bán chạy nhất</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Danh mục sản phẩm -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">Tất cả</button>
+                <button class="filter-btn" data-category="shirt">Áo sơ mi</button>
+                <button class="filter-btn" data-category="tshirt">Áo thun</button>
+                <button class="filter-btn" data-category="polo">Áo polo</button>
+                <button class="filter-btn" data-category="pants">Quần</button>
+                <button class="filter-btn" data-category="suit">Vest & Blazer</button>
+                <button class="filter-btn" data-category="jacket">Áo khoác</button>
+                <button class="filter-btn" data-category="sale">Sale</button>
+                <button class="filter-btn" data-category="new">Mới</button>
+            </div>
+            
+            <!-- Lưới sản phẩm -->
+            <div class="product-grid" id="productGrid">
+                <!-- Sản phẩm 1 -->
+                <div class="product-card" data-id="101" data-price="1890000" data-category="suit">
+                    <div class="product-image">
+                        <img src="./assets/vest-nam-1.jpg" alt="Bộ Vest Nam Công Sở">
+                        <span class="new-badge">Mới</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Bộ Vest Nam Công Sở</h3>
+                        <div class="product-price">
+                            <span class="current-price">1.890.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 2 -->
+                <div class="product-card" data-id="102" data-price="1290000" data-category="jacket">
+                    <div class="product-image">
+                        <img src="./assets/aokhoacnamdangdai.jpeg" alt="Áo Khoác Nam Dáng Dài">
+                        <span class="sale-badge">-15%</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Áo Khoác Nam Dáng Dài</h3>
+                        <div class="product-price">
+                            <span class="current-price">1.290.000₫</span>
+                            <span class="original-price">1.520.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 3 -->
+                <div class="product-card" data-id="103" data-price="650000" data-category="shirt">
+                    <div class="product-image">
+                        <img src="./assets/ao-so-mi-nam-1.jpg" alt="Áo Sơ Mi Nam Công Sở">
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Áo Sơ Mi Nam Công Sở</h3>
+                        <div class="product-price">
+                            <span class="current-price">650.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 4 -->
+                <div class="product-card" data-id="104" data-price="950000" data-category="pants">
+                    <div class="product-image">
+                        <img src="./assets/quan-au-nam-1.jpg" alt="Quần Âu Nam Công Sở">
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Quần Âu Nam Công Sở</h3>
+                        <div class="product-price">
+                            <span class="current-price">950.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 5 (mới) -->
+                <div class="product-card" data-id="105" data-price="450000" data-category="polo">
+                    <div class="product-image">
+                        <img src="./assets/ao-polo-1.jpg" alt="Áo Polo Nam Basic">
+                        <span class="sale-badge">-10%</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Áo Polo Nam Basic</h3>
+                        <div class="product-price">
+                            <span class="original-price">500.000₫</span>
+                            <span class="current-price">450.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 6 (mới) -->
+                <div class="product-card" data-id="106" data-price="850000" data-category="pants">
+                    <div class="product-image">
+                        <img src="./assets/quan-jean-nam-1.jpeg" alt="Quần Jean Nam Slim Fit">
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Quần Jean Nam Slim Fit</h3>
+                        <div class="product-price">
+                            <span class="current-price">850.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 7 (mới) -->
+                <div class="product-card" data-id="107" data-price="1950000" data-category="suit">
+                    <div class="product-image">
+                        <img src="./assets/vest-nam-2.jpg" alt="Áo Blazer Nam Kẻ Sọc">
+                        <span class="new-badge">Mới</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Áo Blazer Nam Kẻ Sọc</h3>
+                        <div class="product-price">
+                            <span class="current-price">1.950.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 8 (mới) -->
+                <div class="product-card" data-id="108" data-price="550000" data-category="shirt">
+                    <div class="product-image">
+                        <img src="./assets/ao-so-mi-nam-2.jpg" alt="Áo Sơ Mi Nam Kẻ Caro">
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Áo Sơ Mi Nam Kẻ Caro</h3>
+                        <div class="product-price">
+                            <span class="current-price">550.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(3.5)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 9 (mới) -->
+                <div class="product-card" data-id="109" data-price="1490000" data-category="jacket">
+                    <div class="product-image">
+                        <img src="./assets/ao-khoac-nam-2.jpg" alt="Áo Khoác Bomber Nam">
+                        <span class="sale-badge">-20%</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Áo Khoác Bomber Nam</h3>
+                        <div class="product-price">
+                            <span class="original-price">1.850.000₫</span>
+                            <span class="current-price">1.490.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.7)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sản phẩm 10 (mới) -->
+                <div class="product-card" data-id="110" data-price="490000" data-category="polo">
+                    <div class="product-image">
+                        <img src="./assets/ao-polo-2.jpg" alt="Áo Polo Nam Phối Viền">
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Áo Polo Nam Phối Viền</h3>
+                        <div class="product-price">
+                            <span class="current-price">490.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Đăng Ký Nhận Thông Tin</h2>
+                <p>Nhận thông báo về các bộ sưu tập mới và ưu đãi đặc biệt</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Email của bạn" required>
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="brand">
+                    <img src="./assets/logo.png" alt="Chic Boutique Logo" class="footer-logo">
+                    <h3>Chic Boutique</h3>
+                </div>
+                <p>Thời trang cao cấp cho phong cách sống hiện đại</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Thông Tin</h4>
+                <ul>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Cửa hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Chính Sách</h4>
+                <ul>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin về ưu đãi và bộ sưu tập mới</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email của bạn">
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Chic Boutique. Tất cả quyền được bảo lưu.
+        </div>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/category.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

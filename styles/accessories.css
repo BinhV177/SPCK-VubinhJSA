@@ -1,0 +1,136 @@
+/* Styles cho trang phụ kiện */
+
+/* Banner */
+.category-banner {
+    background-image: linear-gradient(135deg, rgba(255, 152, 0, 0.7), rgba(255, 87, 34, 0.7)), url('../assets/accessories-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.category-banner h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Màu sắc riêng cho trang phụ kiện */
+.category-menu li a.active,
+.category-menu li a:hover {
+    color: #ff9800; /* Màu cam cho trang phụ kiện */
+}
+
+/* Màu sắc riêng cho nút lọc trang phụ kiện */
+.filter-btn:hover {
+  background-color: #ff9800;
+  color: white;
+  border-color: #ff9800;
+}
+
+.filter-btn.active {
+  background-color: #f57c00;
+  color: white;
+  border-color: #f57c00;
+}
+
+/* Thêm CSS cho filter-container */
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.filter-select {
+  padding: 8px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #ff9800;
+}
+
+.btn-view {
+    background-color: #ff9800;
+}
+
+.btn-view:hover {
+    background-color: #f57c00;
+}
+
+.current-price {
+    color: #ff9800;
+}
+
+.sale-badge {
+    background-color: #ff5722;
+}
+
+.new-badge {
+    background-color: #ff9800;
+}
+
+.page-number.active,
+.page-number:hover {
+    background-color: #ff9800;
+    border-color: #ff9800;
+}
+
+.newsletter-form button {
+    background-color: #ff9800;
+}
+
+.newsletter-form button:hover {
+    background-color: #f57c00;
+}
+
+/* Hiệu ứng hover cho sản phẩm phụ kiện */
+.product-card:hover {
+    border-color: #ff9800;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-overlay button:hover {
+    color: #ff9800;
+}
+
+/* Responsive cho trang phụ kiện */
+@media (max-width: 768px) {
+    .category-banner {
+        height: 200px;
+    }
+    
+    .category-banner h1 {
+        font-size: 2rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .category-banner {
+        height: 150px;
+    }
+    
+    .category-banner h1 {
+        font-size: 1.5rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

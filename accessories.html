@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phụ Kiện - Chic Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/accessories.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="brand">
+                <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
+                <span class="brand-name">Chic Boutique</span>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="women.html">Nữ</a></li>
+                <li><a href="men.html">Nam</a></li>
+                <li><a href="accessories.html" class="active">Phụ kiện</a></li>
+                <li><a href="products.html?type=sale">Sale</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="header-icons">
+                    <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+                    <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                    <a href="profile.html" class="icon-btn" title="Tài khoản">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button class="logout-btn">Đăng xuất</button>
+                </div>
+                <!-- Hamburger Menu Button -->
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li class="has-submenu">
+                    <a href="women.html">Nữ <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="women.html?category=ao">Áo</a></li>
+                        <li><a href="women.html?category=quan">Quần</a></li>
+                        <li><a href="women.html?category=vay">Váy</a></li>
+                        <li><a href="women.html?category=dam">Đầm</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="men.html">Nam <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="men.html?category=ao">Áo</a></li>
+                        <li><a href="men.html?category=quan">Quần</a></li>
+                        <li><a href="men.html?category=vest">Vest</a></li>
+                    </ul>
+                </li>
+                <li><a href="accessories.html" class="active">Phụ kiện</a></li>
+                <li><a href="products.html?type=sale">Sale</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="category-banner accessories-banner">
+        <div class="banner-content">
+            <h1>Phụ Kiện Thời Trang</h1>
+            <p>Hoàn thiện phong cách của bạn với những phụ kiện đẳng cấp</p>
+        </div>
+    </section>
+
+    <!-- Danh mục sản phẩm -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">Sản Phẩm Phụ Kiện</h2>
+            
+            <!-- Bộ lọc và sắp xếp -->
+            <div class="filter-container">
+                <div class="filter-group">
+                    <select id="sortFilter" class="filter-select">
+                        <option value="newest">Mới nhất</option>
+                        <option value="price-asc">Giá: Thấp đến cao</option>
+                        <option value="price-desc">Giá: Cao đến thấp</option>
+                        <option value="bestseller">Bán chạy nhất</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Danh mục sản phẩm -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">Tất cả</button>
+                <button class="filter-btn" data-category="bag">Túi xách</button>
+                <button class="filter-btn" data-category="shoes">Giày dép</button>
+                <button class="filter-btn" data-category="jewelry">Trang sức</button>
+                <button class="filter-btn" data-category="watch">Đồng hồ</button>
+                <button class="filter-btn" data-category="glasses">Kính mắt</button>
+            </div>
+            
+            <!-- Lưới sản phẩm -->
+            <div class="product-grid" id="productGrid">
+                <!-- Sản phẩm 1 -->
+                <div class="product-card" data-id="201" data-price="1290000" data-category="bag">
+                    <div class="product-image">
+                        <img src="./assets/accessories/tui-xach-1.jpg" alt="Túi Xách Nữ Thời Trang">
+                        <span class="new-badge">Mới</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Túi Xách Nữ Thời Trang</h3>
+                        <div class="product-price">
+                            <span class="current-price">1.290.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 2 -->
+                <div class="product-card" data-id="202" data-price="890000" data-category="bag">
+                    <div class="product-image">
+                        <img src="./assets/accessories/tui-xach-2.jpg" alt="Túi Đeo Chéo Mini">
+                        <span class="sale-badge">-15%</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Túi Đeo Chéo Mini</h3>
+                        <div class="product-price">
+                            <span class="original-price">1.050.000₫</span>
+                            <span class="current-price">890.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 3 -->
+                <div class="product-card" data-id="203" data-price="2490000" data-category="shoes">
+                    <div class="product-image">
+                        <img src="./assets/accessories/giay-cao-got.jpg" alt="Giày Cao Gót Nữ">
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Giày Cao Gót Nữ</h3>
+                        <div class="product-price">
+                            <span class="current-price">2.490.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 4 -->
+                <div class="product-card" data-id="204" data-price="1790000" data-category="shoes">
+                    <div class="product-image">
+                        <img src="./assets/accessories/giay-sneaker.jpg" alt="Giày Sneaker Unisex">
+                        <span class="new-badge">Mới</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Giày Sneaker Unisex</h3>
+                        <div class="product-price">
+                            <span class="current-price">1.790.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.0)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 5 -->
+                <div class="product-card" data-id="205" data-price="3290000" data-category="jewelry">
+                    <div class="product-image">
+                        <img src="./assets/accessories/day-chuyen.jpg" alt="Dây Chuyền Bạc 925">
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Dây Chuyền Bạc 925</h3>
+                        <div class="product-price">
+                            <span class="current-price">3.290.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.7)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 6 -->
+                <div class="product-card" data-id="206" data-price="2190000" data-category="jewelry">
+                    <div class="product-image">
+                        <img src="./assets/accessories/vong-tay.jpg" alt="Vòng Tay Charm">
+                        <span class="sale-badge">-20%</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Vòng Tay Charm</h3>
+                        <div class="product-price">
+                            <span class="original-price">2.750.000₫</span>
+                            <span class="current-price">2.190.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.2)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 7 -->
+                <div class="product-card" data-id="207" data-price="4590000" data-category="watch">
+                    <div class="product-image">
+                        <img src="./assets/accessories/dong-ho-nam.jpg" alt="Đồng Hồ Nam Cao Cấp">
+                        <span class="new-badge">Mới</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Đồng Hồ Nam Cao Cấp</h3>
+                        <div class="product-price">
+                            <span class="current-price">4.590.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(5.0)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 8 -->
+                <div class="product-card" data-id="208" data-price="3790000" data-category="watch">
+                    <div class="product-image">
+                        <img src="./assets/accessories/dong-ho-nu.jpg" alt="Đồng Hồ Nữ Thời Trang">
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Đồng Hồ Nữ Thời Trang</h3>
+                        <div class="product-price">
+                            <span class="current-price">3.790.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(4.1)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sản phẩm 9 -->
+                <div class="product-card" data-id="209" data-price="890000" data-category="glasses">
+                    <div class="product-image">
+                        <img src="./assets/accessories/kinh-mat.jpg" alt="Kính Mát Thời Trang">
+                        <span class="sale-badge">-10%</span>
+                        <div class="product-overlay">
+                            <button title="Xem nhanh"><i class="fas fa-eye"></i></button>
+                            <button title="Thêm vào giỏ hàng"><i class="fas fa-shopping-cart"></i></button>
+                            <button title="Yêu thích"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Kính Mát Thời Trang</h3>
+                        <div class="product-price">
+                            <span class="original-price">990.000₫</span>
+                            <span class="current-price">890.000₫</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.6)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="brand">
+                    <img src="./assets/logo.png" alt="Chic Boutique Logo" class="footer-logo">
+                    <h3>Chic Boutique</h3>
+                </div>
+                <p>Thời trang cao cấp cho phong cách sống hiện đại</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Thông Tin</h4>
+                <ul>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Cửa hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Chính Sách</h4>
+                <ul>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin về ưu đãi và bộ sưu tập mới</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email của bạn">
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Chic Boutique. Tất cả quyền được bảo lưu.
+        </div>
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/category.js"></script>
+</body>
+</html>
+
