@@ -94,6 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const currentUser = {
             username: user.username,
             email: user.email,
+            phone: user.phone,
+            gender: user.gender,
+            birthday: user.birthday,
             isLoggedIn: true
           };
           

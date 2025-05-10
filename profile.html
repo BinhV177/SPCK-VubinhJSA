@@ -6,6 +6,9 @@
     <title>Thông tin cá nhân - Chic Boutique</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./styles/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -25,14 +28,19 @@
     <main class="profile-container">
         <div class="profile-sidebar">
             <div class="profile-header">
-                <div class="profile-avatar">
-                    <img src="./assets/default-avatar.png" alt="Avatar" id="userAvatar">
-                    <button class="change-avatar-btn">
-                        <i class="fas fa-camera"></i>
-                    </button>
+                <div class="profile-avatar-container">
+                    <div class="profile-avatar">
+                        <img src="./assets/default-avatar.png" alt="Avatar" id="userAvatar">
+                        <button class="change-avatar-btn">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                    </div>
                 </div>
-                <h2 class="profile-name" id="userName">Tên người dùng</h2>
-                <p class="profile-email" id="userEmail">email@example.com</p>
+                <h2 class="profile-name" id="userName">VuBinh2012</h2>
+                <p class="profile-email" id="userEmail">nguyengovubinh12@gmail.com</p>
+                <div class="profile-status">
+                    <span class="status-badge">Khách hàng VIP</span>
+                </div>
             </div>
             <nav class="profile-nav">
                 <a href="#personal-info" class="active">
@@ -54,53 +62,103 @@
             <div class="logout-container">
                 <button id="logoutBtn" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                        </button>
-                    </div>
-                        </div>
+                </button>
+            </div>
+        </div>
 
         <div class="profile-content">
             <!-- Account Summary Section -->
             <div class="account-info">
-                <h4>Tổng quan tài khoản</h4>
+                <div class="account-info-header">
+                    <h4>Tổng quan tài khoản</h4>
+                    <div class="account-info-actions">
+                        <span class="last-login">Đăng nhập gần nhất: <span id="lastLoginTime">Hôm nay, 10:45</span></span>
+                    </div>
+                </div>
                 <div class="account-details">
-                    <p><strong>Tên tài khoản:</strong> <span id="summaryName">-</span></p>
-                    <p><strong>Email:</strong> <span id="summaryEmail">-</span></p>
-                    <p><strong>Số điện thoại:</strong> <span id="summaryPhone">-</span></p>
-                    <p><strong>Ngày tạo tài khoản:</strong> <span id="summaryCreated">-</span></p>
+                    <div class="account-detail-item">
+                        <div class="detail-icon"><i class="fas fa-user"></i></div>
+                        <div class="detail-content">
+                            <span class="detail-label">Tên tài khoản</span>
+                            <span class="detail-value" id="summaryName">VuBinh2012</span>
                         </div>
                     </div>
+                    <div class="account-detail-item">
+                        <div class="detail-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="detail-content">
+                            <span class="detail-label">Email</span>
+                            <span class="detail-value" id="summaryEmail">nguyengovubinh12@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="account-detail-item">
+                        <div class="detail-icon"><i class="fas fa-phone"></i></div>
+                        <div class="detail-content">
+                            <span class="detail-label">Số điện thoại</span>
+                            <span class="detail-value" id="summaryPhone">090667988</span>
+                        </div>
+                    </div>
+                    <div class="account-detail-item">
+                        <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="detail-content">
+                            <span class="detail-label">Ngày tạo tài khoản</span>
+                            <span class="detail-value" id="summaryCreated">10/05/2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Personal Information Section -->
             <section id="personal-info" class="profile-section active">
-                <h3>Thông tin cá nhân</h3>
+                <div class="section-header">
+                    <h3>Thông tin cá nhân</h3>
+                    <p class="section-description">Cập nhật thông tin cá nhân của bạn để chúng tôi có thể phục vụ bạn tốt hơn</p>
+                </div>
                 <form class="profile-form" id="profileForm">
                     <div class="form-group">
                         <label>Họ và tên</label>
-                        <input type="text" id="fullName" placeholder="Nhập họ và tên">
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="fullName" placeholder="Nhập họ và tên" value="VuBinh2012">
                         </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label>Số điện thoại</label>
-                            <input type="tel" id="phone" placeholder="Nhập số điện thoại">
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="phone" placeholder="Nhập số điện thoại" value="090667988">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Ngày sinh</label>
                             <div class="birthday-inputs">
                                 <div class="custom-select">
                                     <select id="day" required>
-                                        <option value="" disabled selected>Ngày</option>
-                                </select>
+                                        <option value="" disabled>Ngày</option>
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <!-- Thêm các ngày khác -->
+                                    </select>
                                     <div class="select-arrow"><i class="fas fa-chevron-down"></i></div>
                                 </div>
                                 <div class="custom-select">
                                     <select id="month" required>
-                                        <option value="" disabled selected>Tháng</option>
+                                        <option value="" disabled>Tháng</option>
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <!-- Thêm các tháng khác -->
                                     </select>
                                     <div class="select-arrow"><i class="fas fa-chevron-down"></i></div>
-        </div>
+                                </div>
                                 <div class="custom-select">
                                     <select id="year" required>
-                                        <option value="" disabled selected>Năm</option>
+                                        <option value="" disabled>Năm</option>
+                                        <option value="2025" selected>2025</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2023">2023</option>
+                                        <!-- Thêm các năm khác -->
                                     </select>
                                     <div class="select-arrow"><i class="fas fa-chevron-down"></i></div>
                                 </div>
@@ -111,15 +169,18 @@
                         <label>Giới tính</label>
                         <div class="radio-group">
                             <label class="radio-label">
-                                <input type="radio" name="gender" value="male">
+                                <input type="radio" name="gender" value="male" checked>
+                                <span class="radio-custom"></span>
                                 <span>Nam</span>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="gender" value="female">
+                                <span class="radio-custom"></span>
                                 <span>Nữ</span>
                             </label>
                             <label class="radio-label">
                                 <input type="radio" name="gender" value="other">
+                                <span class="radio-custom"></span>
                                 <span>Khác</span>
                             </label>
                         </div>
@@ -127,41 +188,67 @@
                     <div class="form-actions">
                         <button type="submit" class="save-btn">
                             <i class="fas fa-save"></i> Lưu thay đổi
-                            </button>
-                        </div>
+                        </button>
+                    </div>
                 </form>
             </section>
 
             <!-- Change Password Section -->
             <section id="change-password" class="profile-section">
-                <h3>Đổi mật khẩu</h3>
+                <div class="section-header">
+                    <h3>Đổi mật khẩu</h3>
+                    <p class="section-description">Cập nhật mật khẩu của bạn thường xuyên để bảo vệ tài khoản</p>
+                </div>
                 <form class="profile-form" id="passwordForm">
                     <div class="form-group">
                         <label>Mật khẩu hiện tại</label>
                         <div class="password-input">
-                            <input type="password" id="currentPassword" placeholder="Nhập mật khẩu hiện tại">
-                            <button type="button" class="toggle-password">
-                                <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                    <div class="form-group">
-                        <label>Mật khẩu mới</label>
-                        <div class="password-input">
-                            <input type="password" id="newPassword" placeholder="Nhập mật khẩu mới">
-                            <button type="button" class="toggle-password">
-                                <i class="fas fa-eye"></i>
-                            </button>
-        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Xác nhận mật khẩu mới</label>
-                        <div class="password-input">
-                            <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu mới">
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="currentPassword" placeholder="Nhập mật khẩu hiện tại">
+                            </div>
                             <button type="button" class="toggle-password">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Mật khẩu mới</label>
+                        <div class="password-input">
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="newPassword" placeholder="Nhập mật khẩu mới">
+                            </div>
+                            <button type="button" class="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Xác nhận mật khẩu mới</label>
+                        <div class="password-input">
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="confirmPassword" placeholder="Nhập lại mật khẩu mới">
+                            </div>
+                            <button type="button" class="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="password-strength">
+                        <div class="strength-meter">
+                            <div class="strength-bar" id="strengthBar"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText">Độ mạnh mật khẩu</span>
+                    </div>
+                    <div class="password-tips">
+                        <p>Mật khẩu mạnh nên có:</p>
+                        <ul>
+                            <li>Ít nhất 8 ký tự</li>
+                            <li>Chữ hoa và chữ thường</li>
+                            <li>Số và ký tự đặc biệt</li>
+                        </ul>
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="save-btn">
@@ -173,31 +260,77 @@
 
             <!-- Orders Section -->
             <section id="orders" class="profile-section">
-                <h3>Đơn hàng của tôi</h3>
-                <div class="empty-state">
-                    <i class="fas fa-shopping-cart"></i>
-                    <p>Bạn chưa có đơn hàng nào</p>
-                    <a href="index.html" class="shop-now-btn">Mua sắm ngay</a>
+                <div class="section-header">
+                    <h3>Đơn hàng của tôi</h3>
+                    <p class="section-description">Theo dõi và quản lý các đơn hàng của bạn</p>
+                </div>
+                <div class="orders-filter">
+                    <div class="filter-group">
+                        <label>Lọc theo trạng thái:</label>
+                        <select class="filter-select">
+                            <option value="all">Tất cả đơn hàng</option>
+                            <option value="pending">Chờ xác nhận</option>
+                            <option value="processing">Đang xử lý</option>
+                            <option value="shipped">Đang giao hàng</option>
+                            <option value="delivered">Đã giao hàng</option>
+                            <option value="cancelled">Đã hủy</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sắp xếp theo:</label>
+                        <select class="filter-select">
+                            <option value="newest">Mới nhất</option>
+                            <option value="oldest">Cũ nhất</option>
+                            <option value="price-high">Giá cao nhất</option>
+                            <option value="price-low">Giá thấp nhất</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="empty-state elegant">
+                    <div class="empty-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h4>Chưa có đơn hàng nào</h4>
+                    <p>Bạn chưa có đơn hàng nào trong lịch sử mua sắm</p>
+                    <a href="index.html" class="shop-now-btn">
+                        <span>Mua sắm ngay</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </section>
 
             <!-- Wishlist Section -->
             <section id="wishlist" class="profile-section">
-                <h3>Sản phẩm yêu thích</h3>
-                <div class="empty-state">
-                    <i class="fas fa-heart"></i>
-                    <p>Chưa có sản phẩm nào trong danh sách yêu thích</p>
-                    <a href="index.html" class="shop-now-btn">Khám phá sản phẩm</a>
+                <div class="section-header">
+                    <h3>Sản phẩm yêu thích</h3>
+                    <p class="section-description">Danh sách các sản phẩm bạn đã đánh dấu yêu thích</p>
+                </div>
+                <div class="empty-state elegant">
+                    <div class="empty-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Danh sách yêu thích trống</h4>
+                    <p>Chưa có sản phẩm nào trong danh sách yêu thích của bạn</p>
+                    <a href="index.html" class="shop-now-btn">
+                        <span>Khám phá sản phẩm</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </section>
 
             <!-- Addresses Section -->
             <section id="addresses" class="profile-section">
-                <h3>Sổ địa chỉ</h3>
+                <div class="section-header">
+                    <h3>Sổ địa chỉ</h3>
+                    <p class="section-description">Quản lý địa chỉ giao hàng của bạn</p>
+                </div>
                 <div class="address-list">
-                    <div class="empty-state">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p>Bạn chưa có địa chỉ nào</p>
+                    <div class="empty-state elegant">
+                        <div class="empty-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Chưa có địa chỉ nào</h4>
+                        <p>Bạn chưa thêm địa chỉ giao hàng nào</p>
                         <button class="add-address-btn">
                             <i class="fas fa-plus"></i> Thêm địa chỉ mới
                         </button>

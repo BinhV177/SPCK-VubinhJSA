@@ -1,18 +1,28 @@
 import { Cart } from './cart.js';
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Khởi tạo giỏ hàng
     const cart = new Cart();
     
-    // Xử lý thêm sản phẩm vào giỏ hàng
-    const addToCartButtons = document.querySelectorAll('.product-overlay button[title="Thêm vào giỏ hàng"]');
-    
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const productCard = this.closest('.product-card');
-            const productId = productCard.dataset.id;
+    // Xử lý tất cả các nút thêm vào giỏ hàng (bao gồm cả nút biểu tượng)
+    document.addEventListener('click', function(e) {
+        // Kiểm tra nếu click vào nút giỏ hàng (cả nút text và nút icon)
+        const cartButton = e.target.closest('button[title="Thêm vào giỏ hàng"]') || 
+                          e.target.closest('.cart-icon-btn') ||
+                          (e.target.tagName === 'I' && e.target.classList.contains('fa-shopping-cart'));
+        
+        if (cartButton) {
+            e.preventDefault();
+            
+            // Tìm thẻ sản phẩm gần nhất
+            const productCard = cartButton.closest('.product-card');
+            if (!productCard) return;
+            
+            // Lấy thông tin sản phẩm
+            const productId = productCard.getAttribute('data-id');
             const productTitle = productCard.querySelector('.product-title').textContent;
-            const productPrice = parseFloat(productCard.dataset.price);
-            const productImage = productCard.querySelector('.product-image img').src;
+            const productPrice = parseFloat(productCard.getAttribute('data-price'));
+            const productImage = productCard.querySelector('img').src;
             
             // Thêm sản phẩm vào giỏ hàng
             const added = cart.addItem({
@@ -26,11 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (added) {
                 // Hiển thị thông báo thành công
                 showNotification('Đã thêm sản phẩm vào giỏ hàng!', 'success');
-            } else {
-                // Hiển thị thông báo đã có trong giỏ hàng
-                showNotification('Sản phẩm đã có trong giỏ hàng!', 'info');
+                
+                // Hiệu ứng bay vào giỏ hàng
+                createFlyToCartEffect(productCard);
             }
-        });
+        }
     });
     
     // Xử lý nút xem nhanh
@@ -71,21 +81,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Hàm hiển thị thông báo
-    function showNotification(message, type) {
-        const container = document.createElement('div');
-        container.className = 'notification-container';
-        document.body.appendChild(container);
+    function showNotification(message, type = 'info') {
+        // Tạo container thông báo nếu chưa có
+        let container = document.querySelector('.notification-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'notification-container';
+            document.body.appendChild(container);
+        }
         
+        // Tạo thông báo
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
         
+        // Thêm icon phù hợp
         let icon = '';
-        if (type === 'success') {
-            icon = '<i class="fas fa-check-circle"></i>';
-        } else if (type === 'error') {
-            icon = '<i class="fas fa-exclamation-circle"></i>';
-        } else if (type === 'info') {
-            icon = '<i class="fas fa-info-circle"></i>';
+        switch (type) {
+            case 'success':
+                icon = '<i class="fas fa-check-circle"></i>';
+                break;
+            case 'error':
+                icon = '<i class="fas fa-times-circle"></i>';
+                break;
+            case 'warning':
+                icon = '<i class="fas fa-exclamation-circle"></i>';
+                break;
+            default:
+                icon = '<i class="fas fa-info-circle"></i>';
         }
         
         notification.innerHTML = `${icon}<span>${message}</span>`;
@@ -356,3 +378,76 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Hiệu ứng bay vào giỏ hàng
+function createFlyToCartEffect(productElement) {
+    // Tạo phần tử ảnh bay
+    const flyingImg = document.createElement('img');
+    const productImg = productElement.querySelector('img');
+    
+    // Lấy vị trí của sản phẩm và giỏ hàng
+    const productRect = productImg.getBoundingClientRect();
+    const cartIcon = document.querySelector('.cart-icon') || document.querySelector('.icon-btn[title="Giỏ hàng"]');
+    
+    if (!cartIcon) return;
+    
+    const cartRect = cartIcon.getBoundingClientRect();
+    
+    // Thiết lập style cho ảnh bay
+    flyingImg.src = productImg.src;
+    flyingImg.style.position = 'fixed';
+    flyingImg.style.zIndex = '9999';
+    flyingImg.style.width = '50px';
+    flyingImg.style.height = '50px';
+    flyingImg.style.objectFit = 'cover';
+    flyingImg.style.borderRadius = '50%';
+    flyingImg.style.left = `${productRect.left + productRect.width / 2 - 25}px`;
+    flyingImg.style.top = `${productRect.top + productRect.height / 2 - 25}px`;
+    flyingImg.style.opacity = '0.8';
+    flyingImg.style.pointerEvents = 'none';
+    
+    // Thêm vào body
+    document.body.appendChild(flyingImg);
+    
+    // Tạo animation
+    const keyframes = [
+        { 
+            transform: 'scale(1)', 
+            left: `${productRect.left + productRect.width / 2 - 25}px`,
+            top: `${productRect.top + productRect.height / 2 - 25}px`,
+            opacity: 0.8
+        },
+        { 
+            transform: 'scale(0.8)', 
+            left: `${productRect.left + productRect.width / 2 - 20}px`,
+            top: `${productRect.top + productRect.height / 2 - 100}px`,
+            opacity: 0.9
+        },
+        { 
+            transform: 'scale(0.6)', 
+            left: `${cartRect.left + cartRect.width / 2 - 15}px`,
+            top: `${cartRect.top + cartRect.height / 2 - 15}px`,
+            opacity: 0.2
+        }
+    ];
+    
+    const options = {
+        duration: 800,
+        easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)'
+    };
+    
+    // Chạy animation
+    const animation = flyingImg.animate(keyframes, options);
+    
+    // Xóa phần tử sau khi animation kết thúc
+    animation.onfinish = () => {
+        flyingImg.remove();
+        
+        // Hiệu ứng nhấp nháy giỏ hàng
+        cartIcon.classList.add('cart-pulse');
+        setTimeout(() => {
+            cartIcon.classList.remove('cart-pulse');
+        }, 500);
+    };
+}
+
