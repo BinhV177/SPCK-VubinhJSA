@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết sản phẩm - Chic Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/product-detail.css">
+</head>
+<body>
+    <!-- Header giống index.html -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="brand">
+                <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
+                <span class="brand-name">Chic Boutique</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="products.html?type=women">Nữ</a></li>
+                <li><a href="products.html?type=men">Nam</a></li>
+                <li><a href="#">Bộ sưu tập</a></li>
+                <li><a href="#">Sale</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="nav-icons">
+                    <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                    <a href="profile.html" class="user-icon"><i class="fas fa-user"></i></a>
+                </div>
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="product-detail-container">
+        <div class="product-gallery" id="productGallery">
+            <!-- Hình ảnh sản phẩm sẽ được render bằng JS -->
+        </div>
+        
+        <div class="product-info">
+            <h1 id="productName"></h1>
+            <div class="product-price">
+                <span id="productPrice"></span>
+                <span id="productSalePrice" class="sale-price"></span>
+            </div>
+            
+            <div class="product-colors">
+                <h3>Màu sắc:</h3>
+                <div class="color-options" id="colorOptions">
+                    <!-- Màu sắc sẽ được render bằng JS -->
+                </div>
+            </div>
+            
+            <div class="product-sizes">
+                <h3>Kích thước:</h3>
+                <div class="size-options" id="sizeOptions">
+                    <!-- Kích thước sẽ được render bằng JS -->
+                </div>
+            </div>
+            
+            <div class="product-quantity">
+                <h3>Số lượng:</h3>
+                <div class="quantity-selector">
+                    <button onclick="updateQuantity(-1)">-</button>
+                    <input type="number" id="quantity" value="1" min="1" max="10">
+                    <button onclick="updateQuantity(1)">+</button>
+                </div>
+            </div>
+            
+            <div class="product-actions">
+                <button class="add-to-cart-btn" onclick="addToCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    Thêm vào giỏ hàng
+                </button>
+                <button class="buy-now-btn" onclick="buyNow()">
+                    Mua ngay
+                </button>
+            </div>
+            
+            <div class="product-description">
+                <h3>Mô tả sản phẩm:</h3>
+                <p id="productDescription"></p>
+            </div>
+            
+            <div class="product-details">
+                <h3>Thông tin chi tiết:</h3>
+                <ul>
+                    <li><strong>Chất liệu:</strong> <span id="productMaterial"></span></li>
+                    <li><strong>Hướng dẫn bảo quản:</strong> <span id="productCare"></span></li>
+                    <li><strong>Tình trạng:</strong> <span id="productStock"></span></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer giống index.html -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="brand">
+                    <img src="./assets/logo.png" alt="Chic Boutique Logo" class="footer-logo">
+                    <h3>Chic Boutique</h3>
+                </div>
+                <p>Thời trang cao cấp cho phong cách sống hiện đại</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Thông Tin</h4>
+                <ul>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Cửa hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Chính Sách</h4>
+                <ul>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin về ưu đãi và bộ sưu tập mới</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email của bạn">
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Chic Boutique. Tất cả quyền được bảo lưu.
+        </div>
+    </footer>
+
+    <script type="module">
+        import { getProductById, cartManager } from './scripts/products.js';
+
+        let currentProduct = null;
+        let selectedColor = null;
+        let selectedSize = null;
+        let quantity = 1;
+
+        // Lấy ID sản phẩm từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'));
+
+        // Hiển thị thông tin sản phẩm
+        function displayProduct(product) {
+            currentProduct = product;
+            
+            // Hiển thị tên sản phẩm
+            document.getElementById('productName').textContent = product.name;
+            
+            // Hiển thị giá
+            const priceElement = document.getElementById('productPrice');
+            const salePriceElement = document.getElementById('productSalePrice');
+            
+            if (product.salePrice) {
+                priceElement.textContent = `${product.price.toLocaleString()}đ`;
+                priceElement.classList.add('original-price');
+                salePriceElement.textContent = `${product.salePrice.toLocaleString()}đ`;
+                salePriceElement.style.display = 'inline';
+            } else {
+                priceElement.textContent = `${product.price.toLocaleString()}đ`;
+                priceElement.classList.remove('original-price');
+                salePriceElement.style.display = 'none';
+            }
+            
+            // Hiển thị hình ảnh
+            const gallery = document.getElementById('productGallery');
+            gallery.innerHTML = product.images.map((img, index) => `
+                <div class="gallery-item ${index === 0 ? 'active' : ''}" onclick="changeMainImage(${index})">
+                    <img src="${img}" alt="${product.name}">
+                </div>
+            `).join('');
+            
+            // Hiển thị màu sắc
+            const colorOptions = document.getElementById('colorOptions');
+            colorOptions.innerHTML = product.colors.map(color => `
+                <button class="color-option ${color === product.colors[0] ? 'selected' : ''}" 
+                        onclick="selectColor('${color}')"
+                        style="background-color: ${color}">
+                </button>
+            `).join('');
+            selectedColor = product.colors[0];
+            
+            // Hiển thị kích thước
+            const sizeOptions = document.getElementById('sizeOptions');
+            sizeOptions.innerHTML = product.sizes.map(size => `
+                <button class="size-option ${size === product.sizes[0] ? 'selected' : ''}"
+                        onclick="selectSize('${size}')">
+                    ${size}
+                </button>
+            `).join('');
+            selectedSize = product.sizes[0];
+            
+            // Hiển thị mô tả và thông tin chi tiết
+            document.getElementById('productDescription').textContent = product.description;
+            document.getElementById('productMaterial').textContent = product.material;
+            document.getElementById('productCare').textContent = product.care;
+            document.getElementById('productStock').textContent = `Còn ${product.stock} sản phẩm`;
+        }
+
+        // Cập nhật số lượng
+        window.updateQuantity = function(change) {
+            const input = document.getElementById('quantity');
+            const newValue = parseInt(input.value) + change;
+            if (newValue >= 1 && newValue <= currentProduct.stock) {
+                input.value = newValue;
+                quantity = newValue;
+            }
+        }
+
+        // Chọn màu sắc
+        window.selectColor = function(color) {
+            selectedColor = color;
+            document.querySelectorAll('.color-option').forEach(btn => {
+                btn.classList.toggle('selected', btn.style.backgroundColor === color);
+            });
+        }
+
+        // Chọn kích thước
+        window.selectSize = function(size) {
+            selectedSize = size;
+            document.querySelectorAll('.size-option').forEach(btn => {
+                btn.classList.toggle('selected', btn.textContent === size);
+            });
+        }
+
+        // Thay đổi hình ảnh chính
+        window.changeMainImage = function(index) {
+            document.querySelectorAll('.gallery-item').forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+        }
+
+        // Thêm vào giỏ hàng
+        window.addToCart = function() {
+            if (!selectedColor || !selectedSize) {
+                alert('Vui lòng chọn màu sắc và kích thước!');
+                return;
+            }
+            
+            if (cartManager.addToCart(productId, quantity)) {
+                alert('Đã thêm vào giỏ hàng!');
+            } else {
+                alert('Có lỗi xảy ra, vui lòng thử lại!');
+            }
+        }
+
+        // Mua ngay
+        window.buyNow = function() {
+            if (!selectedColor || !selectedSize) {
+                alert('Vui lòng chọn màu sắc và kích thước!');
+                return;
+            }
+            
+            if (cartManager.addToCart(productId, quantity)) {
+                window.location.href = 'checkout.html';
+            } else {
+                alert('Có lỗi xảy ra, vui lòng thử lại!');
+            }
+        }
+
+        // Khởi tạo trang
+        if (productId) {
+            const product = getProductById(productId);
+            if (product) {
+                displayProduct(product);
+            } else {
+                alert('Không tìm thấy sản phẩm!');
+                window.location.href = 'products.html';
+            }
+        } else {
+            window.location.href = 'products.html';
+        }
+
+        // Cập nhật badge giỏ hàng
+        cartManager.updateCartBadge();
+    </script>
+</body>
+</html> 

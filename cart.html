@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Chic Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/cart.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="brand">
+                <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
+                <span class="brand-name">Chic Boutique</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="products.html?type=women">Nữ</a></li>
+                <li><a href="products.html?type=men">Nam</a></li>
+                <li><a href="#">Bộ sưu tập</a></li>
+                <li><a href="#">Sale</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="nav-icons">
+                    <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                    <a href="profile.html" class="user-icon"><i class="fas fa-user"></i></a>
+                </div>
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main style="margin-top:90px; min-height:60vh;">
+        <h1 style="text-align:center; margin-bottom:20px;">Giỏ hàng của bạn</h1>
+        <div class="cart-container">
+            <div class="cart-content">
+                <div class="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+                <div class="cart-summary">
+                    <h2>Tổng đơn hàng</h2>
+                    <div class="summary-item">
+                        <span>Tạm tính:</span>
+                        <span class="subtotal">0đ</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Phí vận chuyển:</span>
+                        <span class="shipping">30.000đ</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Tổng cộng:</span>
+                        <span class="total-amount">0đ</span>
+                    </div>
+                    <button class="checkout-btn" disabled>Thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="brand">
+                    <img src="./assets/logo.png" alt="Chic Boutique Logo" class="footer-logo">
+                    <h3>Chic Boutique</h3>
+                </div>
+                <p>Thời trang cao cấp cho phong cách sống hiện đại</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Thông Tin</h4>
+                <ul>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Cửa hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Chính Sách</h4>
+                <ul>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin về ưu đãi và bộ sưu tập mới</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email của bạn">
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Chic Boutique. Tất cả quyền được bảo lưu.
+        </div>
+    </footer>
+
+    <script type="module">
+        import { cartManager } from './scripts/products.js';
+
+        // Hiển thị giỏ hàng
+        function displayCart() {
+            const cartItems = document.querySelector('.cart-items');
+            const cart = cartManager.getCart();
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart">Giỏ hàng của bạn đang trống</p>';
+                document.querySelector('.checkout-btn').disabled = true;
+                return;
+            }
+
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item" data-id="${item.id}">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h3>${item.name}</h3>
+                        <p class="item-price">${item.price.toLocaleString('vi-VN')}đ</p>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="${item.quantity}" min="1" max="10" class="quantity-input">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <div class="item-total">
+                        ${(item.price * item.quantity).toLocaleString('vi-VN')}đ
+                    </div>
+                    <button class="remove-item"><i class="fas fa-trash"></i></button>
+                </div>
+            `).join('');
+
+            updateSummary();
+            document.querySelector('.checkout-btn').disabled = false;
+        }
+
+        // Cập nhật tổng tiền
+        function updateSummary() {
+            const subtotal = cartManager.getTotal();
+            const shipping = 30000;
+            const total = subtotal + shipping;
+
+            document.querySelector('.subtotal').textContent = `${subtotal.toLocaleString('vi-VN')}đ`;
+            document.querySelector('.total-amount').textContent = `${total.toLocaleString('vi-VN')}đ`;
+        }
+
+        // Xử lý sự kiện tăng/giảm số lượng
+        document.querySelector('.cart-items').addEventListener('click', (e) => {
+            const item = e.target.closest('.cart-item');
+            if (!item) return;
+
+            const id = parseInt(item.dataset.id);
+            const input = item.querySelector('.quantity-input');
+            let quantity = parseInt(input.value);
+
+            if (e.target.classList.contains('minus')) {
+                if (quantity > 1) {
+                    quantity--;
+                    cartManager.updateQuantity(id, quantity);
+                    displayCart();
+                }
+            } else if (e.target.classList.contains('plus')) {
+                if (quantity < 10) {
+                    quantity++;
+                    cartManager.updateQuantity(id, quantity);
+                    displayCart();
+                }
+            } else if (e.target.closest('.remove-item')) {
+                cartManager.removeFromCart(id);
+                displayCart();
+            }
+        });
+
+        // Xử lý input số lượng
+        document.querySelector('.cart-items').addEventListener('change', (e) => {
+            if (e.target.classList.contains('quantity-input')) {
+                const item = e.target.closest('.cart-item');
+                const id = parseInt(item.dataset.id);
+                let quantity = parseInt(e.target.value);
+
+                if (quantity < 1) quantity = 1;
+                if (quantity > 10) quantity = 10;
+
+                cartManager.updateQuantity(id, quantity);
+                displayCart();
+            }
+        });
+
+        // Xử lý nút thanh toán
+        document.querySelector('.checkout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Hiển thị thông báo thành công
+            const success = document.createElement('div');
+            success.className = 'checkout-success';
+            success.textContent = '🎉 Thanh toán thành công! Cảm ơn bạn đã mua hàng.';
+            document.body.appendChild(success);
+            setTimeout(() => {
+                success.classList.add('show');
+            }, 100);
+            setTimeout(() => {
+                success.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(success);
+                }, 300);
+            }, 2500);
+
+            // Xóa giỏ hàng
+            cartManager.clearCart();
+            displayCart();
+            cartManager.updateCartBadge();
+        });
+
+        // Hiển thị giỏ hàng khi trang được tải
+        displayCart();
+        cartManager.updateCartBadge();
+    </script>
+</body>
+</html>
