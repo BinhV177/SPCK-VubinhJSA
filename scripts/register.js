@@ -59,54 +59,81 @@ document.addEventListener('DOMContentLoaded', () => {
       // Username validation
       if (!username) {
         showError(usernameError, 'Vui lòng nhập tên đăng nhập');
+        showNotification('Vui lòng nhập tên đăng nhập', 'error');
         isValid = false;
       } else if (username.length < 3) {
         showError(usernameError, 'Tên đăng nhập phải có ít nhất 3 ký tự');
+        showNotification('Tên đăng nhập phải có ít nhất 3 ký tự', 'error');
         isValid = false;
       }
       
       // Email validation
       if (!email) {
         showError(emailError, 'Vui lòng nhập email');
+        showNotification('Vui lòng nhập email', 'error');
         isValid = false;
       } else if (!isValidEmail(email)) {
         showError(emailError, 'Email không hợp lệ');
+        showNotification('Email không hợp lệ', 'error');
         isValid = false;
       }
       
       // Password validation
       if (!password) {
         showError(passwordError, 'Vui lòng nhập mật khẩu');
+        showNotification('Vui lòng nhập mật khẩu', 'error');
         isValid = false;
-      } else if (password.length < 6) {
-        showError(passwordError, 'Mật khẩu phải có ít nhất 6 ký tự');
+      } else if (password.length < 8) {
+        showError(passwordError, 'Mật khẩu phải có ít nhất 8 ký tự');
+        showNotification('Mật khẩu phải có ít nhất 8 ký tự', 'error');
         isValid = false;
       }
       
       // Phone validation
       if (!phone) {
         showError(phoneError, 'Vui lòng nhập số điện thoại');
+        showNotification('Vui lòng nhập số điện thoại', 'error');
         isValid = false;
-      } else if (!isValidPhone(phone)) {
-        showError(phoneError, 'Số điện thoại không hợp lệ');
+      } else if (!/^\d{10}$/.test(phone)) {
+        showError(phoneError, 'Số điện thoại phải đủ 10 số và chỉ chứa số');
+        showNotification('Số điện thoại phải đủ 10 số và chỉ chứa số', 'error');
         isValid = false;
       }
       
       // Gender validation
       if (!gender) {
         showError(document.getElementById('gender-error'), 'Vui lòng chọn giới tính');
+        showNotification('Vui lòng chọn giới tính', 'error');
         isValid = false;
       }
       
       // Birthday validation
       if (!day || !month || !year) {
         showError(birthdayError, 'Vui lòng nhập đầy đủ ngày sinh');
+        showNotification('Vui lòng nhập đầy đủ ngày sinh', 'error');
         isValid = false;
+      } else {
+        if (parseInt(day) < 1 || parseInt(day) > 31) {
+          showError(birthdayError, 'Ngày phải từ 1 đến 31');
+          showNotification('Ngày phải từ 1 đến 31', 'error');
+          isValid = false;
+        }
+        if (parseInt(month) < 1 || parseInt(month) > 12) {
+          showError(birthdayError, 'Tháng phải từ 1 đến 12');
+          showNotification('Tháng phải từ 1 đến 12', 'error');
+          isValid = false;
+        }
+        if (year.length > 5) {
+          showError(birthdayError, 'Năm không được quá 5 số');
+          showNotification('Năm không được quá 5 số', 'error');
+          isValid = false;
+        }
       }
       
       // Terms validation
       if (!termsAccepted) {
         showError(termsError, 'Bạn phải đồng ý với điều khoản sử dụng');
+        showNotification('Bạn phải đồng ý với điều khoản sử dụng', 'error');
         isValid = false;
       }
       
@@ -117,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (emailExists) {
           showError(emailError, 'Email này đã được đăng ký. Vui lòng sử dụng email khác.');
+          showNotification('Email này đã được đăng ký. Vui lòng sử dụng email khác.', 'error');
           return;
         }
         
@@ -201,9 +229,21 @@ function resetErrors() {
 
 // Function to show notification
 function showNotification(message, type) {
-  // Implement notification function
-  console.log(`${type}: ${message}`);
-  // Thêm code hiển thị thông báo trên UI
+  let notificationContainer = document.querySelector('.notification-container');
+  if (!notificationContainer) {
+    notificationContainer = document.createElement('div');
+    notificationContainer.className = 'notification-container';
+    document.body.appendChild(notificationContainer);
+  }
+  const notification = document.createElement('div');
+  notification.className = `notification ${type}`;
+  let icon = '';
+  if (type === 'success') icon = '<i class="fas fa-check-circle"></i>';
+  else if (type === 'error') icon = '<i class="fas fa-exclamation-circle"></i>';
+  else if (type === 'warning') icon = '<i class="fas fa-exclamation-triangle"></i>';
+  notification.innerHTML = `${icon}${message}`;
+  notificationContainer.appendChild(notification);
+  setTimeout(() => { notification.remove(); }, 3000);
 }
 
 // Thêm hàm đăng ký với Firebase (nếu bạn muốn sử dụng)

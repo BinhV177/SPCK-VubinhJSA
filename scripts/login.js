@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (isValid) {
         // Kiểm tra đăng nhập với localStorage
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => u.email === email && u.password === password);
         
         if (user) {
           // Save current user info
@@ -116,8 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'index.html';
           }, 1000);
         } else {
-          showError(emailError, 'Email hoặc mật khẩu không đúng');
-          showError(passwordError, 'Email hoặc mật khẩu không đúng');
+          showError(emailError, 'Tài khoản hoặc mật khẩu sai');
+          showError(passwordError, 'Tài khoản hoặc mật khẩu sai');
+          showNotification('Tài khoản hoặc mật khẩu sai!', 'error');
         }
       }
     });
@@ -182,4 +183,4 @@ function showNotification(message, type) {
   setTimeout(() => {
     notification.remove();
   }, 3000);
-  };
+};

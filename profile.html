@@ -337,6 +337,14 @@
                     </div>
                 </div>
             </section>
+
+            <div class="profile-info">
+                <p><strong>Tên đăng nhập:</strong> <span id="profile-username"></span></p>
+                <p><strong>Email:</strong> <span id="profile-email"></span></p>
+                <p><strong>Số điện thoại:</strong> <span id="profile-phone"></span></p>
+                <p><strong>Giới tính:</strong> <span id="profile-gender"></span></p>
+                <p><strong>Ngày sinh:</strong> <span id="profile-birthday"></span></p>
+            </div>
         </div>
     </main>
 
@@ -344,6 +352,51 @@
     <div class="notification-container" id="notificationContainer"></div>
 
     <script src="./scripts/profile.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#orders') {
+                const ordersTab = document.querySelector('a[href="#orders"]');
+                if (ordersTab) {
+                    document.querySelectorAll('.profile-nav a').forEach(tab => {
+                        tab.classList.remove('active');
+                    });
+                    ordersTab.classList.add('active');
+                    document.querySelectorAll('.profile-section').forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    const ordersSection = document.getElementById('orders');
+                    if (ordersSection) {
+                        ordersSection.style.display = 'block';
+                    }
+                }
+            }
+
+            // Ưu tiên lấy từ localStorage, nếu không có thì lấy từ sessionStorage
+            let user = localStorage.getItem('currentUser');
+            if (!user) user = sessionStorage.getItem('currentUser');
+            if (user) {
+                user = JSON.parse(user);
+                // Bên trái
+                document.getElementById('userName').textContent = user.username || '';
+                document.getElementById('userEmail').textContent = user.email || '';
+                // Bên phải (tổng quan tài khoản)
+                document.getElementById('summaryName').textContent = user.username || '';
+                document.getElementById('summaryEmail').textContent = user.email || '';
+                document.getElementById('summaryPhone').textContent = user.phone || '';
+                document.getElementById('summaryCreated').textContent = user.registeredAt
+                    ? new Date(user.registeredAt).toLocaleDateString('vi-VN')
+                    : '';
+                // Thông tin cá nhân phía dưới (nếu có)
+                document.getElementById('profile-username').textContent = user.username || '';
+                document.getElementById('profile-email').textContent = user.email || '';
+                document.getElementById('profile-phone').textContent = user.phone || '';
+                document.getElementById('profile-gender').textContent = user.gender === 'male' ? 'Nam' : (user.gender === 'female' ? 'Nữ' : '');
+                document.getElementById('profile-birthday').textContent = user.birthday || '';
+            } else {
+                document.querySelector('.profile-info').innerHTML = '<p>Bạn chưa đăng nhập!</p>';
+            }
+        });
+    </script>
 </body>
 </html>
 

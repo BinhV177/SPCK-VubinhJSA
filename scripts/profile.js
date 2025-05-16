@@ -21,74 +21,79 @@ document.addEventListener('DOMContentLoaded', function() {
     // Xử lý form đổi mật khẩu
     setupPasswordForm(currentUser);
     
+    // Hiển thị đơn hàng
+    displayOrders();
+    
     // Xử lý nút đăng xuất
     document.getElementById('logoutBtn').addEventListener('click', function() {
         logout();
     });
     
-    // Xử lý hiệu ứng hiển thị/ẩn mật khẩu
-    setupPasswordToggle();
-    
-    // Xử lý đánh giá độ mạnh mật khẩu
-    setupPasswordStrengthMeter();
+    // Kiểm tra nếu URL có hash #orders thì chuyển đến tab đơn hàng
+    if (window.location.hash === '#orders') {
+        // Chuyển đến tab đơn hàng
+        const ordersTab = document.querySelector('a[href="#orders"]');
+        if (ordersTab) {
+            // Xóa class active từ tất cả các tab
+            document.querySelectorAll('.profile-nav a').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Thêm class active cho tab đơn hàng
+            ordersTab.classList.add('active');
+            
+            // Ẩn tất cả các section
+            document.querySelectorAll('.profile-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Hiển thị section đơn hàng
+            document.getElementById('orders').style.display = 'block';
+        }
+    }
 });
 
 // Hiển thị thông tin người dùng
 function displayUserInfo(user) {
-    // Hiển thị thông tin trong sidebar
-    document.getElementById('userName').textContent = user.username || '';
-    document.getElementById('userEmail').textContent = user.email || '';
+    document.getElementById('userName').textContent = user.username || 'Người dùng';
+    document.getElementById('userEmail').textContent = user.email || 'email@example.com';
     
-    // Hiển thị thông tin trong phần tổng quan
-    document.getElementById('summaryName').textContent = user.username || '';
-    document.getElementById('summaryEmail').textContent = user.email || '';
-    document.getElementById('summaryPhone').textContent = user.phone || '';
-    document.getElementById('summaryCreated').textContent = user.registeredAt ? formatDate(user.registeredAt) : '';
-    
-    // Điền thông tin vào form
-    document.getElementById('fullName').value = user.username || '';
-    document.getElementById('phone').value = user.phone || '';
-    
-    // Xử lý ngày sinh
-    if (user.birthday) {
-        const birthdayParts = user.birthday.split('/');
-        if (birthdayParts.length === 3) {
-            document.getElementById('day').value = parseInt(birthdayParts[0]);
-            document.getElementById('month').value = parseInt(birthdayParts[1]);
-            document.getElementById('year').value = parseInt(birthdayParts[2]);
-        }
-    }
-    
-    // Xử lý giới tính
-    if (user.gender) {
-        const genderRadio = document.querySelector(`input[name="gender"][value="${user.gender}"]`);
-        if (genderRadio) {
-            genderRadio.checked = true;
-        }
+    // Hiển thị avatar nếu có
+    if (user.avatar) {
+        document.getElementById('userAvatar').src = user.avatar;
     }
 }
 
 // Thiết lập chuyển tab
 function setupTabNavigation() {
     const navLinks = document.querySelectorAll('.profile-nav a');
-    const sections = document.querySelectorAll('.profile-section');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Xóa active class từ tất cả links
-            navLinks.forEach(l => l.classList.remove('active'));
+            // Xóa class active từ tất cả các tab
+            navLinks.forEach(tab => tab.classList.remove('active'));
             
-            // Thêm active class cho link được click
+            // Thêm class active cho tab được click
             this.classList.add('active');
             
-            // Ẩn tất cả sections
-            sections.forEach(section => section.classList.remove('active'));
-            
-            // Hiển thị section tương ứng
+            // Lấy id của section cần hiển thị
             const targetId = this.getAttribute('href').substring(1);
-            document.getElementById(targetId).classList.add('active');
+            
+            // Ẩn tất cả các section
+            document.querySelectorAll('.profile-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Hiển thị section được chọn
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+            
+            // Cập nhật URL hash
+            window.location.hash = targetId;
         });
     });
 }
@@ -97,170 +102,505 @@ function setupTabNavigation() {
 function setupProfileForm(user) {
     const profileForm = document.getElementById('profileForm');
     
-    profileForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    if (profileForm) {
+        // Điền thông tin người dùng vào form
+        profileForm.elements['fullName'].value = user.fullName || '';
+        profileForm.elements['email'].value = user.email || '';
+        profileForm.elements['phone'].value = user.phone || '';
         
-        // Lấy giá trị từ form
-        const fullName = document.getElementById('fullName').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const day = document.getElementById('day').value;
-        const month = document.getElementById('month').value;
-        const year = document.getElementById('year').value;
-        const gender = document.querySelector('input[name="gender"]:checked').value;
-        
-        // Cập nhật thông tin người dùng
-        user.username = fullName;
-        user.phone = phone;
-        user.birthday = `${day}/${month}/${year}`;
-        user.gender = gender;
-        
-        // Lưu thông tin vào localStorage
-        saveUserInfo(user);
-        
-        // Cập nhật hiển thị
-        displayUserInfo(user);
-        
-        // Hiển thị thông báo thành công
-        showNotification('Cập nhật thông tin thành công!', 'success');
-    });
+        // Xử lý sự kiện submit form
+        profileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Lấy thông tin từ form
+            const fullName = this.elements['fullName'].value;
+            const email = this.elements['email'].value;
+            const phone = this.elements['phone'].value;
+            
+            // Cập nhật thông tin người dùng
+            user.fullName = fullName;
+            user.email = email;
+            user.phone = phone;
+            
+            // Lưu thông tin người dùng vào localStorage
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            
+            // Hiển thị thông báo thành công
+            showNotification('Cập nhật thông tin thành công!', 'success');
+            
+            // Cập nhật hiển thị
+            document.getElementById('userName').textContent = fullName || user.username;
+            document.getElementById('userEmail').textContent = email;
+        });
+    }
 }
 
 // Thiết lập form đổi mật khẩu
 function setupPasswordForm(user) {
     const passwordForm = document.getElementById('passwordForm');
     
-    passwordForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const currentPassword = document.getElementById('currentPassword').value;
-        const newPassword = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        
-        // Kiểm tra mật khẩu hiện tại
-        if (currentPassword !== user.password) {
-            showNotification('Mật khẩu hiện tại không đúng!', 'error');
-            return;
-        }
-        
-        // Kiểm tra mật khẩu mới và xác nhận
-        if (newPassword !== confirmPassword) {
-            showNotification('Mật khẩu mới và xác nhận không khớp!', 'error');
-            return;
-        }
-        
-        // Kiểm tra độ mạnh mật khẩu
-        if (newPassword.length < 8) {
-            showNotification('Mật khẩu mới phải có ít nhất 8 ký tự!', 'error');
-            return;
-        }
-        
-        // Cập nhật mật khẩu
-        user.password = newPassword;
-        
-        // Lưu thông tin vào localStorage
-        saveUserInfo(user);
-        
-        // Reset form
-        passwordForm.reset();
-        
-        // Hiển thị thông báo thành công
-        showNotification('Đổi mật khẩu thành công!', 'success');
-    });
-}
-
-// Thiết lập hiệu ứng hiển thị/ẩn mật khẩu
-function setupPasswordToggle() {
-    const toggleButtons = document.querySelectorAll('.toggle-password');
-    
-    toggleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const input = this.parentElement.querySelector('input');
-            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-            input.setAttribute('type', type);
+    if (passwordForm) {
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Thay đổi icon
-            const icon = this.querySelector('i');
-            if (type === 'text') {
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
+            // Lấy thông tin từ form
+            const currentPassword = this.elements['currentPassword'].value;
+            const newPassword = this.elements['newPassword'].value;
+            const confirmPassword = this.elements['confirmPassword'].value;
+            
+            // Kiểm tra mật khẩu hiện tại
+            if (currentPassword !== user.password) {
+                showNotification('Mật khẩu hiện tại không đúng!', 'error');
+                return;
             }
-        });
-    });
-}
-
-// Thiết lập đánh giá độ mạnh mật khẩu
-function setupPasswordStrengthMeter() {
-    const newPasswordInput = document.getElementById('newPassword');
-    const strengthBar = document.getElementById('strengthBar');
-    const strengthText = document.getElementById('strengthText');
-    
-    if (newPasswordInput) {
-        newPasswordInput.addEventListener('input', function() {
-            const password = this.value;
-            const strength = calculatePasswordStrength(password);
             
-            // Cập nhật thanh độ mạnh
-            strengthBar.style.width = `${strength}%`;
-            
-            // Cập nhật màu sắc và text
-            if (strength < 30) {
-                strengthBar.style.backgroundColor = '#f44336';
-                strengthText.textContent = 'Yếu';
-            } else if (strength < 60) {
-                strengthBar.style.backgroundColor = '#ff9800';
-                strengthText.textContent = 'Trung bình';
-            } else {
-                strengthBar.style.backgroundColor = '#4caf50';
-                strengthText.textContent = 'Mạnh';
+            // Kiểm tra mật khẩu mới và xác nhận mật khẩu
+            if (newPassword !== confirmPassword) {
+                showNotification('Mật khẩu mới và xác nhận mật khẩu không khớp!', 'error');
+                return;
             }
+            
+            // Cập nhật mật khẩu
+            user.password = newPassword;
+            
+            // Lưu thông tin người dùng vào localStorage
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            
+            // Hiển thị thông báo thành công
+            showNotification('Đổi mật khẩu thành công!', 'success');
+            
+            // Reset form
+            this.reset();
         });
     }
 }
 
-// Tính toán độ mạnh mật khẩu
-function calculatePasswordStrength(password) {
-    let strength = 0;
+// Hiển thị đơn hàng
+function displayOrders() {
+    const ordersSection = document.getElementById('orders');
     
-    if (password.length > 0) {
-        // Độ dài
-        strength += Math.min(password.length * 5, 30);
+    if (ordersSection) {
+        // Lấy danh sách đơn hàng từ localStorage
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
         
-        // Chữ hoa
-        if (/[A-Z]/.test(password)) strength += 15;
+        // Lấy danh sách sản phẩm trong giỏ hàng
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
         
-        // Chữ thường
-        if (/[a-z]/.test(password)) strength += 15;
+        // Kiểm tra nếu có sản phẩm trong giỏ hàng nhưng chưa có trong đơn hàng
+        if (cart.length > 0) {
+            // Tìm đơn hàng đang xử lý
+            let pendingOrder = orders.find(order => order.status === 'pending');
+            
+            if (!pendingOrder) {
+                // Tạo đơn hàng mới nếu chưa có
+                pendingOrder = {
+                    id: generateOrderId(),
+                    date: new Date().toISOString(),
+                    status: 'pending',
+                    items: cart,
+                    total: cart.reduce((total, item) => total + (item.price * item.quantity), 0)
+                };
+                orders.push(pendingOrder);
+                
+                // Lưu đơn hàng vào localStorage
+                localStorage.setItem('orders', JSON.stringify(orders));
+            } else {
+                // Cập nhật items từ giỏ hàng vào đơn hàng đang xử lý
+                pendingOrder.items = cart;
+                pendingOrder.total = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+                localStorage.setItem('orders', JSON.stringify(orders));
+            }
+        }
         
-        // Số
-        if (/[0-9]/.test(password)) strength += 15;
+        // Kiểm tra nếu không có đơn hàng
+        if (orders.length === 0) {
+            // Hiển thị thông báo không có đơn hàng
+            ordersSection.innerHTML = `
+                <div class="section-header">
+                    <h3>Đơn hàng của tôi</h3>
+                    <p class="section-description">Theo dõi và quản lý các đơn hàng của bạn</p>
+                </div>
+                <div class="empty-state elegant">
+                    <div class="empty-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h4>Chưa có đơn hàng nào</h4>
+                    <p>Bạn chưa có đơn hàng nào trong lịch sử mua sắm</p>
+                    <a href="index.html" class="shop-now-btn">
+                        <span>Mua sắm ngay</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            `;
+            return;
+        }
         
-        // Ký tự đặc biệt
-        if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+        // Hiển thị danh sách đơn hàng
+        let ordersHTML = `
+            <div class="section-header">
+                <h3>Đơn hàng của tôi</h3>
+                <p class="section-description">Theo dõi và quản lý các đơn hàng của bạn</p>
+            </div>
+            <div class="orders-filter">
+                <div class="filter-group">
+                    <label>Lọc theo trạng thái:</label>
+                    <select id="orderStatusFilter">
+                        <option value="all">Tất cả đơn hàng</option>
+                        <option value="pending">Đang xử lý</option>
+                        <option value="processing">Đang giao hàng</option>
+                        <option value="completed">Đã hoàn thành</option>
+                        <option value="cancelled">Đã hủy</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Sắp xếp theo:</label>
+                    <select id="orderSortFilter">
+                        <option value="newest">Mới nhất</option>
+                        <option value="oldest">Cũ nhất</option>
+                    </select>
+                </div>
+            </div>
+        `;
+        
+        // Hiển thị giỏ hàng hiện tại (đơn hàng đang xử lý)
+        const pendingOrder = orders.find(order => order.status === 'pending');
+        
+        if (pendingOrder && pendingOrder.items.length > 0) {
+            ordersHTML += `
+                <div class="order-card current-cart">
+                    <div class="order-header">
+                        <div class="order-info">
+                            <h4>Giỏ hàng hiện tại</h4>
+                            <div class="order-meta">
+                                <span class="order-id">Mã: ${pendingOrder.id}</span>
+                                <span class="order-date">Ngày: ${formatDate(pendingOrder.date)}</span>
+                                <span class="order-status pending">Đang xử lý</span>
+                            </div>
+                        </div>
+                        <div class="order-total">
+                            <span>Tổng tiền:</span>
+                            <strong>${formatCurrency(pendingOrder.total)}</strong>
+                        </div>
+                    </div>
+                    <div class="order-items">
+            `;
+            
+            // Hiển thị các sản phẩm trong giỏ hàng
+            pendingOrder.items.forEach(item => {
+                ordersHTML += `
+                    <div class="order-item">
+                        <div class="item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="item-details">
+                            <h5 class="item-name">${item.name}</h5>
+                            <div class="item-meta">
+                                <span class="item-price">${formatCurrency(item.price)}</span>
+                                <span class="item-quantity">x${item.quantity}</span>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <button class="remove-item-btn" onclick="removeCartItem('${item.id}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn minus-btn" onclick="updateCartItemQuantity('${item.id}', ${item.quantity - 1})">-</button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn plus-btn" onclick="updateCartItemQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            ordersHTML += `
+                    </div>
+                    <div class="order-actions">
+                        <button class="clear-cart-btn" onclick="clearCart()">Xóa giỏ hàng</button>
+                        <button class="checkout-btn" onclick="proceedToCheckout()">Thanh toán</button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Hiển thị các đơn hàng khác
+        const otherOrders = orders.filter(order => order.status !== 'pending');
+        
+        if (otherOrders.length > 0) {
+            ordersHTML += `<div class="orders-list">`;
+            
+            otherOrders.forEach(order => {
+                ordersHTML += `
+                    <div class="order-card" data-status="${order.status}">
+                        <div class="order-header">
+                            <div class="order-info">
+                                <h4>Đơn hàng #${order.id}</h4>
+                                <div class="order-meta">
+                                    <span class="order-date">Ngày: ${formatDate(order.date)}</span>
+                                    <span class="order-status ${order.status}">${getStatusText(order.status)}</span>
+                                </div>
+                            </div>
+                            <div class="order-total">
+                                <span>Tổng tiền:</span>
+                                <strong>${formatCurrency(order.total)}</strong>
+                            </div>
+                        </div>
+                        <div class="order-items collapsed">
+                `;
+                
+                // Hiển thị các sản phẩm trong đơn hàng
+                order.items.forEach(item => {
+                    ordersHTML += `
+                        <div class="order-item">
+                            <div class="item-image">
+                                <img src="${item.image}" alt="${item.name}">
+                            </div>
+                            <div class="item-details">
+                                <h5 class="item-name">${item.name}</h5>
+                                <div class="item-meta">
+                                    <span class="item-price">${formatCurrency(item.price)}</span>
+                                    <span class="item-quantity">x${item.quantity}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                ordersHTML += `
+                        </div>
+                        <div class="order-actions">
+                            <button class="toggle-items-btn" onclick="toggleOrderItems(this)">
+                                <span class="show-text">Xem chi tiết</span>
+                                <span class="hide-text">Ẩn chi tiết</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            ordersHTML += `</div>`;
+        }
+        
+        // Cập nhật nội dung
+        ordersSection.innerHTML = ordersHTML;
+        
+        // Xử lý lọc đơn hàng
+        const statusFilter = document.getElementById('orderStatusFilter');
+        const sortFilter = document.getElementById('orderSortFilter');
+        
+        if (statusFilter) {
+            statusFilter.addEventListener('change', filterOrders);
+        }
+        
+        if (sortFilter) {
+            sortFilter.addEventListener('change', filterOrders);
+        }
     }
-    
-    return Math.min(strength, 100);
 }
 
-// Lưu thông tin người dùng
-function saveUserInfo(user) {
-    // Lưu vào localStorage hoặc sessionStorage tùy theo lựa chọn "Ghi nhớ đăng nhập"
-    if (localStorage.getItem('currentUser')) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-    } else {
-        sessionStorage.setItem('currentUser', JSON.stringify(user));
-    }
+// Hàm lọc đơn hàng
+function filterOrders() {
+    const statusFilter = document.getElementById('orderStatusFilter').value;
+    const orderCards = document.querySelectorAll('.order-card:not(.current-cart)');
     
-    // Cập nhật trong danh sách users
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    const userIndex = users.findIndex(u => u.email === user.email);
+    orderCards.forEach(card => {
+        const status = card.getAttribute('data-status');
+        
+        if (statusFilter === 'all' || status === statusFilter) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Hàm hiển thị/ẩn chi tiết đơn hàng
+function toggleOrderItems(button) {
+    const orderCard = button.closest('.order-card');
+    const itemsContainer = orderCard.querySelector('.order-items');
     
-    if (userIndex !== -1) {
-        users[userIndex] = user;
-        localStorage.setItem('users', JSON.stringify(users));
+    itemsContainer.classList.toggle('collapsed');
+    orderCard.classList.toggle('expanded');
+}
+
+// Hàm xóa sản phẩm khỏi giỏ hàng
+function removeCartItem(productId) {
+    // Lấy giỏ hàng từ localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Xóa sản phẩm khỏi giỏ hàng
+    cart = cart.filter(item => item.id !== productId);
+    
+    // Lưu giỏ hàng vào localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Cập nhật đơn hàng
+    updatePendingOrder();
+    
+    // Cập nhật hiển thị
+    displayOrders();
+    
+    // Cập nhật số lượng hiển thị
+    updateCartCount();
+    
+    // Hiển thị thông báo
+    showNotification('Đã xóa sản phẩm khỏi giỏ hàng!', 'success');
+}
+
+// Hàm cập nhật số lượng sản phẩm
+function updateCartItemQuantity(productId, newQuantity) {
+    // Lấy giỏ hàng từ localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Tìm sản phẩm trong giỏ hàng
+    const itemIndex = cart.findIndex(item => item.id === productId);
+    
+    if (itemIndex !== -1) {
+        if (newQuantity <= 0) {
+            // Nếu số lượng <= 0, xóa sản phẩm
+            removeCartItem(productId);
+        } else {
+            // Cập nhật số lượng
+            cart[itemIndex].quantity = newQuantity;
+            
+            // Lưu giỏ hàng vào localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Cập nhật đơn hàng
+            updatePendingOrder();
+            
+            // Cập nhật hiển thị
+            displayOrders();
+            
+            // Cập nhật số lượng hiển thị
+            updateCartCount();
+        }
     }
+}
+
+// Hàm xóa giỏ hàng
+function clearCart() {
+    // Xóa giỏ hàng
+    localStorage.setItem('cart', JSON.stringify([]));
+    
+    // Xóa đơn hàng đang xử lý
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders = orders.filter(order => order.status !== 'pending');
+    localStorage.setItem('orders', JSON.stringify(orders));
+    
+    // Cập nhật hiển thị
+    displayOrders();
+    
+    // Cập nhật số lượng hiển thị
+    updateCartCount();
+    
+    // Hiển thị thông báo
+    showNotification('Đã xóa giỏ hàng!', 'success');
+}
+
+// Hàm thanh toán
+function proceedToCheckout() {
+    // Lấy đơn hàng đang xử lý
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const pendingOrderIndex = orders.findIndex(order => order.status === 'pending');
+    
+    if (pendingOrderIndex !== -1) {
+        // Cập nhật trạng thái đơn hàng
+        orders[pendingOrderIndex].status = 'processing';
+        orders[pendingOrderIndex].checkoutDate = new Date().toISOString();
+        
+        // Lưu đơn hàng vào localStorage
+        localStorage.setItem('orders', JSON.stringify(orders));
+        
+        // Xóa giỏ hàng
+        localStorage.setItem('cart', JSON.stringify([]));
+        
+        // Cập nhật hiển thị
+        displayOrders();
+        
+        // Cập nhật số lượng hiển thị
+        updateCartCount();
+        
+        // Hiển thị thông báo
+        showNotification('Đặt hàng thành công!', 'success');
+    }
+}
+
+// Hàm cập nhật đơn hàng đang xử lý
+function updatePendingOrder() {
+    // Lấy giỏ hàng từ localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Lấy danh sách đơn hàng
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    
+    // Tìm đơn hàng đang xử lý
+    const pendingOrderIndex = orders.findIndex(order => order.status === 'pending');
+    
+    if (pendingOrderIndex !== -1) {
+        if (cart.length === 0) {
+            // Nếu giỏ hàng trống, xóa đơn hàng đang xử lý
+            orders.splice(pendingOrderIndex, 1);
+        } else {
+            // Cập nhật đơn hàng
+            orders[pendingOrderIndex].items = cart;
+            orders[pendingOrderIndex].total = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        }
+        
+        // Lưu đơn hàng vào localStorage
+        localStorage.setItem('orders', JSON.stringify(orders));
+    }
+}
+
+// Hàm cập nhật số lượng hiển thị trên icon giỏ hàng
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    const cartBadges = document.querySelectorAll('.cart-badge');
+    cartBadges.forEach(badge => {
+        badge.textContent = count;
+    });
+}
+
+// Hàm format ngày tháng
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('vi-VN', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+}
+
+// Hàm format tiền tệ
+function formatCurrency(amount) {
+    return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(amount);
+}
+
+// Hàm lấy text trạng thái
+function getStatusText(status) {
+    switch (status) {
+        case 'pending':
+            return 'Đang xử lý';
+        case 'processing':
+            return 'Đang giao hàng';
+        case 'completed':
+            return 'Đã hoàn thành';
+        case 'cancelled':
+            return 'Đã hủy';
+        default:
+            return 'Không xác định';
+    }
+}
+
+// Tạo ID đơn hàng
+function generateOrderId() {
+    return 'ORD' + Date.now().toString().slice(-6);
 }
 
 // Đăng xuất
@@ -272,7 +612,13 @@ function logout() {
 
 // Hiển thị thông báo
 function showNotification(message, type = 'info') {
-    const container = document.getElementById('notificationContainer');
+    const container = document.getElementById('notificationContainer') || document.createElement('div');
+    
+    if (!document.getElementById('notificationContainer')) {
+        container.id = 'notificationContainer';
+        container.className = 'notification-container';
+        document.body.appendChild(container);
+    }
     
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -295,21 +641,13 @@ function showNotification(message, type = 'info') {
     notification.innerHTML = `${icon}<span>${message}</span>`;
     container.appendChild(notification);
     
-    // Tự động xóa thông báo sau 3 giây
     setTimeout(() => {
         notification.classList.add('fade-out');
         setTimeout(() => {
             notification.remove();
+            if (container.children.length === 0) {
+                container.remove();
+            }
         }, 300);
     }, 3000);
-}
-
-// Format date
-function formatDate(dateString) {
-    try {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('vi-VN');
-    } catch (e) {
-        return dateString;
-    }
 }
