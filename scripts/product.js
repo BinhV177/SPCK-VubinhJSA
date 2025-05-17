@@ -1,4 +1,4 @@
-import { Cart } from './cart.js';
+import { Cart, showNotification, createFlyToCartEffect } from './cart.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     // Khởi tạo giỏ hàng
@@ -450,4 +450,5 @@ function createFlyToCartEffect(productElement) {
         }, 500);
     };
 }
+
 

@@ -65,44 +65,29 @@
                     </a>
                 </div>
             </div>
-
+            
             <div class="cart-summary">
-                <div class="summary-header">
-                    <h2>Tổng đơn hàng</h2>
+                <h2>Tổng đơn hàng</h2>
+                <div class="summary-row">
+                    <span>Tạm tính:</span>
+                    <span id="cartTotal">0₫</span>
                 </div>
-                <div class="summary-content">
-                    <div class="summary-item">
-                        <span>Tạm tính:</span>
-                        <span class="subtotal">0đ</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Phí vận chuyển:</span>
-                        <span class="shipping">0đ</span>
-                    </div>
-                    <div class="summary-item discount">
-                        <span>Giảm giá:</span>
-                        <span class="discount-amount">0đ</span>
-                    </div>
-                    <div class="summary-item total">
-                        <span>Tổng cộng:</span>
-                        <span class="total-amount">0đ</span>
-                    </div>
+                <div class="summary-row">
+                    <span>Phí vận chuyển:</span>
+                    <span>Miễn phí</span>
                 </div>
-                <div class="coupon-section">
-                    <div class="coupon-input">
-                        <input type="text" placeholder="Nhập mã giảm giá">
-                        <button class="apply-coupon-btn">Áp dụng</button>
-                    </div>
+                <div class="summary-row total">
+                    <span>Tổng cộng:</span>
+                    <span id="cartTotal">0₫</span>
                 </div>
-                <button class="checkout-btn">
-                    <i class="fas fa-lock"></i>
-                    Thanh toán an toàn
-                </button>
-                <div class="payment-methods">
-                    <img src="./assets/visa.png" alt="Visa">
-                    <img src="./assets/mastercard.png" alt="Mastercard">
-                    <img src="./assets/momo.png" alt="Momo">
-                    <img src="./assets/zalopay.png" alt="ZaloPay">
+                
+                <div class="cart-actions">
+                    <button id="checkoutBtn" class="checkout-btn">Thanh toán</button>
+                    <button id="clearCartBtn" class="clear-cart-btn">Xóa giỏ hàng</button>
+                    <a href="index.html" class="continue-shopping-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Tiếp tục mua sắm
+                    </a>
                 </div>
             </div>
         </div>

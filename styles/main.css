@@ -1152,72 +1152,86 @@
     transform: rotate(90deg);
 }
 
+/* Header Icons */
 .header-icons {
-  display: flex !important;
-  align-items: center !important;
-  gap: 18px !important;
-  position: static !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: static;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .icon-btn {
-  background: none !important;
-  border: none !important;
-  border-radius: 0 !important;
-  color: var(--text-color) !important;
-  font-size: 18px !important;
-  padding: 0 8px !important;
-  margin: 0 !important;
-  box-shadow: none !important;
-  display: flex !important;
-  align-items: center !important;
-  height: auto !important;
-  width: auto !important;
-  transition: color 0.3s !important;
-  cursor: pointer !important;
-  font-family: 'Poppins', sans-serif !important;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 20px;
+  padding: 0 8px;
+  margin: 0;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  height: auto;
+  width: auto;
+  transition: color 0.3s;
+  cursor: pointer;
 }
 
 .icon-btn:hover,
 .icon-btn:focus {
-  color: var(--secondary-color) !important;
-  background: none !important;
-  text-decoration: none !important;
+  color: var(--secondary-color);
+  background: none;
+  text-decoration: none;
 }
 
+/* Cập nhật icon giỏ hàng */
+.cart-icon {
+  font-size: 22px;
+}
+
+/* Cập nhật icon người dùng */
+.user-icon {
+  font-size: 22px;
+}
+
+/* Cập nhật icon tìm kiếm */
+.search-icon {
+  font-size: 22px;
+}
+
+/* Ẩn tên người dùng trên mobile */
 .username {
-  display: none !important;
+  display: none;
 }
 
-.cart-badge {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  background: #e74c3c;
-  color: #fff;
-  font-size: 0.8rem;
-  padding: 2px 6px;
-  border-radius: 50%;
+/* Cập nhật logo NaN */
+.logo-text {
   font-weight: bold;
-  border: 2px solid #fff;
+  color: #6a1b9a;
+  font-size: 20px;
+  margin-right: 10px;
 }
 
+/* Cập nhật menu icon */
+.menu-icon {
+  font-size: 22px;
+}
+
+/* Cập nhật nút đăng xuất */
 .logout-btn {
-  background: #e74c3c !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: 6px !important;
-  padding: 4px 12px !important;
-  margin-left: 6px !important;
-  font-size: 1rem !important;
-  cursor: pointer !important;
-  transition: background 0.2s !important;
-  box-shadow: none !important;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .logout-btn:hover {
-  background: #c0392b !important;
+  background-color: #c0392b;
 }
 
 .header-search-form {
@@ -1577,85 +1591,71 @@
 .notification {
     display: flex;
     align-items: center;
+    gap: 10px;
     padding: 15px 20px;
-    border-radius: 4px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    background: white;
-    color: #333;
-    font-size: 14px;
-    max-width: 300px;
-    animation: slide-in 0.3s ease-out forwards;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    min-width: 280px;
+    max-width: 350px;
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification.hide {
+    transform: translateX(100%);
+    opacity: 0;
 }
 
 .notification i {
-    margin-right: 10px;
-    font-size: 18px;
+    font-size: 1.5rem;
 }
 
 .notification.success i {
-    color: #2ecc71;
+    color: #4CAF50;
 }
 
 .notification.error i {
-    color: #e74c3c;
-}
-
-.notification.warning i {
-    color: #f39c12;
+    color: #F44336;
 }
 
 .notification.info i {
-    color: #3498db;
+    color: #2196F3;
 }
 
-.notification.fade-out {
-    animation: fade-out 0.3s ease-in forwards;
+.notification span {
+    flex: 1;
+    font-size: 0.95rem;
 }
 
-@keyframes slide-in {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+/* Hiệu ứng nhấp nháy giỏ hàng */
+.cart-pulse {
+    animation: cart-pulse 0.5s ease;
 }
 
-@keyframes fade-out {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
+@keyframes cart-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
 
-/* CSS cho nút thêm vào giỏ hàng */
-.cart-icon-btn, .add-to-cart-btn {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.cart-icon-btn.adding::after, .add-to-cart-btn.adding::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.3);
-    animation: button-ripple 0.7s ease-out;
-}
-
-@keyframes button-ripple {
-    0% { transform: scale(0); opacity: 1; }
-    100% { transform: scale(4); opacity: 0; }
-}
-
-/* CSS cho badge giỏ hàng */
+/* Badge số lượng giỏ hàng */
 .cart-badge {
     position: absolute;
     top: -8px;
     right: -8px;
     background-color: #e74c3c;
     color: white;
-    font-size: 10px;
+    font-size: 0.7rem;
     font-weight: bold;
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2895,6 +2895,638 @@
     background-color: #c0392b;
 }
 
+.order-items.expanded .view
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
 .order-items.expanded .view-more-btn:hover {
     background-color: #c0392b;
 }
@@ -3643,162 +4275,84 @@
     background-color: #c0392b;
 }
 
-:root {
-  --primary-color: #2c3e50;
-  --secondary-color: #e74c3c;
-  --text-color: #333;
-  --light-gray: #f5f6fa;
-  --dark-gray: #2d3436;
-  --white: #ffffff;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-/* Header Styles */
-.header {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  background: var(--white);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 5%;
-  max-width: 1400px;
-  margin: 0 auto;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.logo-img {
-  height: 40px;
-  width: auto;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.brand-name {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--primary-color);
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.nav-links {
-  display: flex;
-  gap: 30px;
-  list-style: none;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  transition: color 0.3s;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--secondary-color);
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  position: relative;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.nav-actions a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #2c3e50;
-  background: none;
-  border: none;
-  font-size: 22px;
-  padding: 0 4px;
-  transition: color 0.2s, background 0.2s, transform 0.2s;
-  border-radius: 50%;
-  min-width: 36px;
-  min-height: 36px;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.nav-actions a:hover {
-  color: var(--accent-color, #3498db);
-  background: #f2f6fa;
-  transform: translateY(-2px) scale(1.08);
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.navbar-search {
-  display: none;
-  align-items: center;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
-  padding: 2px 10px 2px 15px;
-  width: 220px;
-  margin-left: 8px;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.navbar-search.active {
-  display: flex;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.navbar-search input {
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 15px;
-  width: 150px;
-  padding: 7px 0;
-  color: #2c3e50;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.navbar-search button {
-  background: none;
-  border: none;
-  color: var(--primary-color, #2c3e50);
-  font-size: 18px;
-  cursor: pointer;
-  margin-left: 5px;
-  transition: color 0.2s;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.navbar-search button:hover {
-  color: var(--accent-color, #3498db);
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.cart-btn {
-  position: relative;
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
 }
 
-.cart-count {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  background: #e74c3c;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
+.order-items.expanded .view-more-btn:hover {
+    background
   z-index: 1;
 }
 
@@ -11893,5 +12447,8 @@
 /* CSS cho nút xem thêm/xem ít khi expanded */
 .order-items.expanded .view-more-btn {
     background-color: #
+
+
+
 
 

@@ -5,291 +5,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh mục sản phẩm - Chic Boutique</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="./styles/main.css">
-    <link rel="stylesheet" href="./styles/products.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/products.css">
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-      <nav class="navbar">
-        <div class="brand">
-          <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
-          <span class="brand-name">Chic Boutique</span>
+        <nav class="navbar">
+            <div class="brand">
+                <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
+                <span class="brand-name">Chic Boutique</span>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="women.html">Nữ</a></li>
+                <li><a href="men.html">Nam</a></li>
+                <li><a href="accessories.html">Phụ kiện</a></li>
+                <li><a href="products.html" class="active">Danh mục sản phẩm</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="header-icons">
+                    <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+                    <form class="header-search-form" id="headerSearchForm">
+                        <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                    <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                    <a href="profile.html" class="icon-btn" title="Tài khoản" id="profileBtn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <button class="logout-btn">Đăng xuất</button>
+                </div>
+                <!-- Hamburger Menu Button -->
+                <div class="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li class="has-submenu">
+                    <a href="women.html">Nữ <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="women.html?category=ao">Áo</a></li>
+                        <li><a href="women.html?category=quan">Quần</a></li>
+                        <li><a href="women.html?category=vay">Váy</a></li>
+                        <li><a href="women.html?category=dam">Đầm</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="men.html">Nam <i class="fas fa-chevron-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="men.html?category=ao">Áo</a></li>
+                        <li><a href="men.html?category=quan">Quần</a></li>
+                        <li><a href="men.html?category=vest">Vest</a></li>
+                    </ul>
+                </li>
+                <li><a href="accessories.html">Phụ kiện</a></li>
+                <li><a href="products.html" class="active">Danh mục sản phẩm</a></li>
+            </ul>
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html">Trang chủ</a></li>
-          <li><a href="women.html">Nữ</a></li>
-          <li><a href="men.html">Nam</a></li>
-          <li><a href="accessories.html">Phụ kiện</a></li>
-          <li><a href="products.html?type=danhmucsanpham">Danh mục sản phẩm</a></li>
-        </ul>
-        <div class="nav-actions">
-          <div class="header-icons">
-            <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
-            <form class="header-search-form" id="headerSearchForm">
-              <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
-              <button type="submit"><i class="fas fa-search"></i></button>
-            </form>
-            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
-              <i class="fas fa-shopping-bag"></i>
-              <span class="cart-badge">0</span>
-            </a>
-            <a href="profile.html" class="icon-btn" title="Tài khoản" id="profileBtn">
-              <i class="fas fa-user"></i>
-            </a>
-            <button class="logout-btn">Đăng xuất</button>
-          </div>
-          <div class="hamburger-menu">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </div>
-        </div>
-      </nav>
     </header>
 
-    <main>
-      <div class="page-title">
-        <h1>Danh mục sản phẩm</h1>
-        <p>Khám phá bộ sưu tập thời trang đa dạng của chúng tôi</p>
-      </div>
-      
-      <!-- Bộ lọc sản phẩm -->
-      <div class="product-filter">
-        <select id="filterType">
-          <option value="">Tất cả loại</option>
-          <option value="women">Thời trang nữ</option>
-          <option value="men">Thời trang nam</option>
-          <option value="accessories">Phụ kiện</option>
-        </select>
-        <select id="filterCategory">
-          <option value="">Tất cả danh mục</option>
-          <option value="dress">Đầm</option>
-          <option value="shirt">Áo</option>
-          <option value="pants">Quần</option>
-          <option value="skirt">Chân váy</option>
-          <option value="blazer">Áo blazer</option>
-          <option value="suit">Vest</option>
-          <option value="jacket">Áo khoác</option>
-        </select>
-        <select id="filterColor">
-          <option value="">Tất cả màu</option>
-          <option value="trang">Trắng</option>
-          <option value="den">Đen</option>
-          <option value="do">Đỏ</option>
-          <option value="xanh">Xanh</option>
-          <option value="hong">Hồng</option>
-          <option value="be">Be</option>
-          <option value="xam">Xám</option>
-        </select>
-        <select id="sortPrice">
-          <option value="">Sắp xếp giá</option>
-          <option value="asc">Giá tăng dần</option>
-          <option value="desc">Giá giảm dần</option>
-        </select>
-        <input type="text" id="searchProduct" placeholder="Tìm theo tên...">
-      </div>
-      
-      <!-- Lưới sản phẩm -->
-      <div class="product-list" id="productList">
-        <!-- Sản phẩm sẽ được render bằng JS -->
-      </div>
-    </main>
+    <!-- Banner -->
+    <section class="category-banner products-banner">
+        <div class="banner-content">
+            <h1>Danh Mục Sản Phẩm</h1>
+            <p>Khám phá bộ sưu tập đa dạng của chúng tôi</p>
+        </div>
+    </section>
+
+    <!-- Danh mục sản phẩm -->
+    <section class="category-section">
+        <div class="container">
+            <h2 class="section-title">Danh Mục Sản Phẩm</h2>
+            
+            <!-- Bộ lọc và sắp xếp -->
+            <div class="filter-container">
+                <div class="filter-group">
+                    <select id="sortFilter" class="filter-select">
+                        <option value="newest">Mới nhất</option>
+                        <option value="price-asc">Giá: Thấp đến cao</option>
+                        <option value="price-desc">Giá: Cao đến thấp</option>
+                        <option value="bestseller">Bán chạy nhất</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Danh mục sản phẩm -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">Tất cả</button>
+                <button class="filter-btn" data-category="women">Nữ</button>
+                <button class="filter-btn" data-category="men">Nam</button>
+                <button class="filter-btn" data-category="accessories">Phụ kiện</button>
+                <button class="filter-btn" data-category="sale">Sale</button>
+                <button class="filter-btn" data-category="new">Mới</button>
+            </div>
+            
+            <!-- Lưới sản phẩm -->
+            <div class="product-grid" id="productGrid">
+                <!-- Sản phẩm sẽ được render bằng JavaScript -->
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-section">
-          <div class="brand">
-            <img src="./assets/logo.png" alt="Chic Boutique Logo" class="footer-logo">
-            <h3>Chic Boutique</h3>
-          </div>
-          <p>Thời trang cao cấp cho phong cách sống hiện đại</p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-          </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="brand">
+                    <img src="./assets/logo.png" alt="Chic Boutique Logo" class="footer-logo">
+                    <h3>Chic Boutique</h3>
+                </div>
+                <p>Thời trang cao cấp cho phong cách sống hiện đại</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Thông Tin</h4>
+                <ul>
+                    <li><a href="#">Về chúng tôi</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Cửa hàng</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Chính Sách</h4>
+                <ul>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Chính sách vận chuyển</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Đăng Ký Nhận Tin</h4>
+                <p>Nhận thông tin về ưu đãi và bộ sưu tập mới</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email của bạn">
+                    <button type="submit">Đăng ký</button>
+                </form>
+            </div>
         </div>
-        <div class="footer-section">
-          <h4>Thông Tin</h4>
-          <ul>
-            <li><a href="#">Về chúng tôi</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Cửa hàng</a></li>
-            <li><a href="#">Liên hệ</a></li>
-          </ul>
+        <div class="copyright">
+            © 2025 Chic Boutique. Tất cả quyền được bảo lưu.
         </div>
-        <div class="footer-section">
-          <h4>Chính Sách</h4>
-          <ul>
-            <li><a href="#">Chính sách đổi trả</a></li>
-            <li><a href="#">Chính sách vận chuyển</a></li>
-            <li><a href="#">Chính sách bảo mật</a></li>
-            <li><a href="#">Điều khoản dịch vụ</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Đăng Ký Nhận Tin</h4>
-          <p>Nhận thông tin về ưu đãi và bộ sưu tập mới</p>
-          <form class="newsletter-form">
-            <input type="email" placeholder="Email của bạn">
-            <button type="submit">Đăng ký</button>
-          </form>
-        </div>
-      </div>
-      <div class="copyright">
-        © 2025 Chic Boutique. Tất cả quyền được bảo lưu.
-      </div>
     </footer>
 
-    <!-- Script chức năng lọc, tìm kiếm, render sản phẩm -->
-    <script src="./scripts/cart.js"></script>
-    <script type="module">
-      import FashionAPI from './scripts/api.js';
+    <script src="scripts/products.js"></script>
+    <!-- Thêm script xử lý tìm kiếm và đăng xuất giống index.html -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchIcon = document.getElementById('searchIcon');
+            const searchForm = document.getElementById('headerSearchForm');
+            const searchInput = document.getElementById('headerSearchInput');
 
-      // Hiển thị sản phẩm
-      function renderProducts(list) {
-        const productList = document.getElementById('productList');
-        productList.innerHTML = '';
-        
-        if (list.length === 0) {
-          productList.innerHTML = `
-            <div class="no-products">
-              <i class="fas fa-search"></i>
-              <p>Không tìm thấy sản phẩm phù hợp.</p>
-              <button onclick="resetFilters()" class="btn">Xóa bộ lọc</button>
-            </div>
-          `;
-          return;
-        }
-        
-        list.forEach(p => {
-          const saleTag = p.salePrice ? `<span class="product-badge sale-badge">-${Math.round((1 - p.salePrice/p.price) * 100)}%</span>` : '';
-          const newTag = p.isNew ? `<span class="product-badge new-badge">Mới</span>` : '';
-          const originalPrice = p.salePrice ? `<span class="original-price">${(p.price || 0).toLocaleString('vi-VN')}đ</span>` : '';
-          
-          // Tạo đánh giá sao
-          const rating = Math.floor(Math.random() * 10) / 2 + 3; // Random từ 3-5 sao
-          const fullStars = Math.floor(rating);
-          const halfStar = rating % 1 >= 0.5;
-          let stars = '';
-          
-          for (let i = 0; i < 5; i++) {
-            if (i < fullStars) {
-              stars += '<i class="fas fa-star"></i>';
-            } else if (i === fullStars && halfStar) {
-              stars += '<i class="fas fa-star-half-alt"></i>';
-            } else {
-              stars += '<i class="far fa-star"></i>';
+            if (searchIcon && searchForm) {
+                searchIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    searchForm.classList.toggle('active');
+                    if (searchForm.classList.contains('active')) {
+                        searchInput.focus();
+                    }
+                });
             }
-          }
-          
-          productList.innerHTML += `
-            <div class="product-card" data-id="${p.id}" data-price="${p.price || 0}">
-              ${newTag}
-              ${saleTag}
-              <img src="${p.images[0]}" alt="${p.name}">
-              <h3>${p.name}</h3>
-              <div class="price">
-                ${originalPrice}
-                ${(p.salePrice || p.price || 0).toLocaleString('vi-VN')}đ
-              </div>
-              <div class="product-rating">
-                ${stars}
-                <span>(${rating.toFixed(1)})</span>
-              </div>
-              <div class="product-actions">
-                <a href="product-detail.html?id=${p.id}">Xem chi tiết</a>
-                <button class="add-to-cart-btn" data-id="${p.id}">Thêm vào giỏ</button>
-              </div>
-            </div>
-          `;
+
+            // Ẩn search khi bấm ra ngoài
+            document.addEventListener('mousedown', function(e) {
+                if (searchForm && searchForm.classList.contains('active')) {
+                    if (!searchForm.contains(e.target) && e.target !== searchIcon) {
+                        searchForm.classList.remove('active');
+                    }
+                }
+            });
+
+            // Ngăn reload trang khi submit
+            searchForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Tìm kiếm: ' + searchInput.value);
+                searchForm.classList.remove('active');
+            });
+
+            // Xử lý đăng xuất
+            const logoutBtn = document.querySelector('.logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('currentUser');
+                    sessionStorage.removeItem('currentUser');
+                    window.location.href = 'login.html';
+                });
+            }
+
+            // Kiểm tra đăng nhập
+            const currentUser = JSON.parse(localStorage.getItem('currentUser')) || 
+                              JSON.parse(sessionStorage.getItem('currentUser'));
+            
+            if (!currentUser) {
+                window.location.href = 'login.html';
+            }
         });
-      }
-
-      // Lọc sản phẩm
-      function filterProducts(products) {
-        let type = document.getElementById('filterType').value;
-        let category = document.getElementById('filterCategory').value;
-        let color = document.getElementById('filterColor').value;
-        let sort = document.getElementById('sortPrice').value;
-        let search = document.getElementById('searchProduct').value.toLowerCase();
-
-        let filtered = products.filter(p => 
-          (type === '' || p.category === type) &&
-          (category === '' || p.subCategory === category) &&
-          (color === '' || p.colors.includes(color)) &&
-          (search === '' || p.name.toLowerCase().includes(search))
-        );
-
-        if (sort === 'asc') filtered.sort((a,b) => (a.salePrice || a.price) - (b.salePrice || b.price));
-        if (sort === 'desc') filtered.sort((a,b) => (b.salePrice || b.price) - (a.salePrice || a.price));
-
-        renderProducts(filtered);
-      }
-
-      // Reset bộ lọc
-      window.resetFilters = function() {
-        document.getElementById('filterType').value = '';
-        document.getElementById('filterCategory').value = '';
-        document.getElementById('filterColor').value = '';
-        document.getElementById('sortPrice').value = '';
-        document.getElementById('searchProduct').value = '';
-        filterProducts(allProducts);
-      }
-
-      // Khởi tạo
-      let allProducts = [];
-      
-      // Lấy dữ liệu sản phẩm
-      FashionAPI.getAllProducts().then(products => {
-        allProducts = products;
-        
-        // Kiểm tra tham số URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const typeParam = urlParams.get('type');
-        
-        if (typeParam === 'sale') {
-          // Lọc sản phẩm đang sale
-          const saleProducts = products.filter(p => p.salePrice !== null);
-          renderProducts(saleProducts);
-        } else if (typeParam) {
-          document.getElementById('filterType').value = typeParam;
-          filterProducts(products);
-        } else {
-          renderProducts(products);
-        }
-
-        // Thêm sự kiện cho các bộ lọc
-        document.getElementById('filterType').addEventListener('change', () => filterProducts(allProducts));
-        document.getElementById('filterCategory').addEventListener('change', () => filterProducts(allProducts));
-        document.getElementById('filterColor').addEventListener('change', () => filterProducts(allProducts));
-        document.getElementById('sortPrice').addEventListener('change', () => filterProducts(allProducts));
-        document.getElementById('searchProduct').addEventListener('input', () => filterProducts(allProducts));
-      });
-
-      // Xử lý tìm kiếm header
-      document.getElementById('searchIcon').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.getElementById('headerSearchForm').classList.toggle('active');
-        document.getElementById('headerSearchInput').focus();
-      });
-      
-      document.getElementById('headerSearchForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        document.getElementById('searchProduct').value = document.getElementById('headerSearchInput').value;
-        filterProducts(allProducts);
-        this.classList.remove('active');
-      });
-      
-      document.addEventListener('mousedown', function(e) {
-        const form = document.getElementById('headerSearchForm');
-        if (form.classList.contains('active') && !form.contains(e.target) && e.target.id !== 'searchIcon') {
-          form.classList.remove('active');
-        }
-      });
     </script>
-    <script src="./scripts/main.js"></script>
 </body>
 </html>

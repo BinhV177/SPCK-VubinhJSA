@@ -1,391 +1,428 @@
-// Dữ liệu sản phẩm
-const products = {
-    women: [
+document.addEventListener('DOMContentLoaded', function() {
+    // Lấy sản phẩm từ 3 trang và hiển thị
+    const products = getAllProducts();
+    renderProducts(products);
+    
+    // Thiết lập bộ lọc
+    setupFilters();
+});
+
+// Lấy tất cả sản phẩm từ 3 trang
+function getAllProducts() {
+    // Sản phẩm nữ từ women.html
+    const womenProducts = [
         {
             id: 1,
-            name: "Váy liền thân công sở",
-            price: 450000,
-            salePrice: 350000,
+            name: "Áo Blazer Nữ Công Sở",
+            price: 1590000,
             category: "women",
-            colors: ["den", "trang", "xanh"],
-            sizes: ["S", "M", "L", "XL"],
-            images: [
-                "https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1612336307429-8a898d10e223?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Váy liền thân công sở thiết kế thanh lịch, phù hợp cho môi trường làm việc chuyên nghiệp. Chất liệu vải cao cấp, thoáng mát và không nhăn.",
-            material: "Polyester 65%, Cotton 35%",
-            care: "Giặt máy 30 độ, không là",
-            stock: 50
+            subCategory: "blazer",
+            isNew: true,
+            image: "./assets/blazernucongso.jpg"
         },
         {
             id: 2,
-            name: "Áo sơ mi nữ cổ trụ",
-            price: 320000,
+            name: "Váy Đầm Dự Tiệc",
+            price: 2190000,
+            salePrice: 1890000,
             category: "women",
-            colors: ["trang", "xanh"],
-            sizes: ["S", "M", "L"],
-            images: [
-                "https://images.unsplash.com/photo-1604575396136-79d175778d1d?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1604575396136-79d175778d1d?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Áo sơ mi nữ cổ trụ thiết kế đơn giản, thanh lịch. Chất liệu cotton mềm mại, thoáng mát.",
-            material: "Cotton 100%",
-            care: "Giặt máy 30 độ, là ở nhiệt độ trung bình",
-            stock: 35
+            subCategory: "dress",
+            isSale: true,
+            image: "./assets/vaydamdutiec.jpg"
         },
-        {
-            id: 5,
-            name: "Quần jean nữ ống rộng",
-            price: 420000,
-            salePrice: 350000,
-            category: "women",
-            colors: ["xanh", "den"],
-            sizes: ["S", "M", "L", "XL"],
-            images: [
-                "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Quần jean nữ ống rộng thiết kế hiện đại, phong cách. Chất liệu denim co giãn, thoải mái khi mặc.",
-            material: "Cotton 98%, Elastane 2%",
-            care: "Giặt máy 30 độ, không là",
-            stock: 40
-        },
-        {
-            id: 6,
-            name: "Áo len nữ cổ lọ",
-            price: 380000,
-            category: "women",
-            colors: ["den", "xanh", "do"],
-            sizes: ["S", "M", "L"],
-            images: [
-                "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Áo len nữ cổ lọ thiết kế đơn giản, ấm áp. Chất liệu len mềm mại, không gây ngứa.",
-            material: "Wool 70%, Acrylic 30%",
-            care: "Giặt tay, không là",
-            stock: 30
-        },
-        {
-            id: 7,
-            name: "Váy đầm dự tiệc",
-            price: 850000,
-            salePrice: 650000,
-            category: "women",
-            colors: ["den", "do"],
-            sizes: ["S", "M", "L"],
-            images: [
-                "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Váy đầm dự tiệc thiết kế sang trọng, quyến rũ. Chất liệu vải cao cấp, bóng bẩy.",
-            material: "Polyester 80%, Silk 20%",
-            care: "Giặt khô",
-            stock: 25
-        }
-    ],
-    men: [
         {
             id: 3,
-            name: "Áo sơ mi nam trắng",
-            price: 380000,
-            salePrice: 300000,
-            category: "men",
-            colors: ["trang", "xanh"],
-            sizes: ["M", "L", "XL", "XXL"],
-            images: [
-                "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Áo sơ mi nam trắng thiết kế cổ điển, phù hợp cho mọi dịp. Chất liệu cotton cao cấp, thoáng mát.",
-            material: "Cotton 100%",
-            care: "Giặt máy 30 độ, là ở nhiệt độ trung bình",
-            stock: 40
+            name: "Áo Sơ Mi Nữ Công Sở",
+            price: 590000,
+            category: "women",
+            subCategory: "shirt",
+            image: "./assets/aosominucongso.jpg"
         },
         {
             id: 4,
-            name: "Quần jean nam slim fit",
-            price: 550000,
-            category: "men",
-            colors: ["xanh", "den"],
-            sizes: ["28", "30", "32", "34"],
-            images: [
-                "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Quần jean nam slim fit thiết kế ôm sát, tôn dáng. Chất liệu denim cao cấp, co giãn tốt.",
-            material: "Cotton 98%, Elastane 2%",
-            care: "Giặt máy 30 độ, không là",
-            stock: 45
+            name: "Quần Âu Nữ",
+            price: 890000,
+            salePrice: 690000,
+            category: "women",
+            subCategory: "pants",
+            isSale: true,
+            image: "./assets/quanaunu.jpg"
         },
         {
-            id: 8,
-            name: "Áo khoác bomber nam",
+            id: 5,
+            name: "Chân Váy Xếp Ly",
+            price: 790000,
+            category: "women",
+            subCategory: "skirt",
+            image: "./assets/chanvayxeply.jpeg"
+        }
+    ];
+    
+    // Sản phẩm nam từ men.html
+    const menProducts = [
+        {
+            id: 101,
+            name: "Bộ Vest Nam Công Sở",
+            price: 1890000,
+            category: "men",
+            subCategory: "suit",
+            isNew: true,
+            image: "./assets/vest-nam-1.jpg"
+        },
+        {
+            id: 102,
+            name: "Áo Sơ Mi Nam",
+            price: 650000,
+            salePrice: 550000,
+            category: "men",
+            subCategory: "shirt",
+            isSale: true,
+            image: "./assets/ao-so-mi-nam-1.jpg"
+        },
+        {
+            id: 103,
+            name: "Quần Jeans Nam",
             price: 750000,
-            salePrice: 600000,
             category: "men",
-            colors: ["den", "xanh"],
-            sizes: ["M", "L", "XL"],
-            images: [
-                "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Áo khoác bomber nam thiết kế thể thao, năng động. Chất liệu vải bóng, chống nước nhẹ.",
-            material: "Polyester 100%",
-            care: "Giặt máy 30 độ, không là",
-            stock: 35
-        },
-        {
-            id: 9,
-            name: "Quần tây nam công sở",
-            price: 450000,
-            category: "men",
-            colors: ["den", "xam"],
-            sizes: ["28", "30", "32", "34", "36"],
-            images: [
-                "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Quần tây nam công sở thiết kế thanh lịch, chuyên nghiệp. Chất liệu vải cao cấp, không nhăn.",
-            material: "Polyester 65%, Cotton 35%",
-            care: "Giặt máy 30 độ, là ở nhiệt độ trung bình",
-            stock: 50
-        },
-        {
-            id: 10,
-            name: "Áo len nam cổ tròn",
-            price: 420000,
-            salePrice: 350000,
-            category: "men",
-            colors: ["den", "xam", "xanh"],
-            sizes: ["M", "L", "XL", "XXL"],
-            images: [
-                "https://images.unsplash.com/photo-1614975058789-41316d0e2cc9?w=500&auto=format&fit=crop&q=60",
-                "https://images.unsplash.com/photo-1614975058789-41316d0e2cc9?w=500&auto=format&fit=crop&q=60"
-            ],
-            description: "Áo len nam cổ tròn thiết kế đơn giản, ấm áp. Chất liệu len mềm mại, không gây ngứa.",
-            material: "Wool 70%, Acrylic 30%",
-            care: "Giặt tay, không là",
-            stock: 40
+            subCategory: "pants",
+            image: "./assets/quan-jean-nam-1.jpeg"
         }
-    ]
-};
-
-// Hàm lấy tất cả sản phẩm
-function getAllProducts() {
-    return [...products.women, ...products.men];
+    ];
+    
+    // Sản phẩm phụ kiện từ accessories.html
+    const accessoriesProducts = [
+        {
+            id: 201,
+            name: "Túi Xách Nữ Thời Trang",
+            price: 1290000,
+            category: "accessories",
+            subCategory: "bag",
+            isNew: true,
+            image: "./assets/tuixacnuthoitrang.webp"
+        },
+        {
+            id: 202,
+            name: "Đồng Hồ Nam Cao Cấp",
+            price: 2590000,
+            salePrice: 2190000,
+            category: "accessories",
+            subCategory: "watch",
+            isSale: true,
+            image: "./assets/donghonamcaocap.jpg"
+        }
+    ];
+    
+    return [...womenProducts, ...menProducts, ...accessoriesProducts];
 }
 
-// Hàm lấy sản phẩm theo ID
-function getProductById(id) {
-    const allProducts = getAllProducts();
-    return allProducts.find(product => product.id === id);
+// Hiển thị sản phẩm
+function renderProducts(products) {
+    const productGrid = document.getElementById('productGrid');
+    if (!productGrid) return;
+    
+    productGrid.innerHTML = '';
+    
+    products.forEach(product => {
+        const priceDisplay = product.salePrice ? 
+            `<span class="current-price">${formatPrice(product.salePrice)}₫</span>
+             <span class="original-price">${formatPrice(product.price)}₫</span>` :
+            `<span class="current-price">${formatPrice(product.price)}₫</span>`;
+        
+        const badge = product.isNew ? '<span class="new-badge">Mới</span>' : 
+                     (product.isSale ? '<span class="sale-badge">Sale</span>' : '');
+        
+        productGrid.innerHTML += `
+            <div class="product-card" data-id="${product.id}" data-price="${product.salePrice || product.price}" data-category="${product.category}">
+                <div class="product-image">
+                    <img src="${product.image}" alt="${product.name}">
+                    ${badge}
+                    <div class="product-overlay">
+                        <button title="Xem nhanh" class="quick-view-btn"><i class="fas fa-eye"></i></button>
+                        <button title="Thêm vào giỏ hàng" class="cart-icon-btn"><i class="fas fa-shopping-cart"></i></button>
+                        <button title="Yêu thích" class="wishlist-btn"><i class="far fa-heart"></i></button>
+                    </div>
+                </div>
+                <h3 class="product-title">${product.name}</h3>
+                <div class="product-price">
+                    ${priceDisplay}
+                </div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span>(4.0)</span>
+                </div>
+            </div>
+        `;
+    });
 }
 
-// Hàm lấy sản phẩm theo danh mục
-function getProductsByCategory(category) {
-    return products[category] || [];
+// Format giá tiền
+function formatPrice(price) {
+    return new Intl.NumberFormat('vi-VN').format(price);
 }
 
-// Hàm lọc sản phẩm
-function filterProducts(filters) {
-    let result = getAllProducts();
+// Thiết lập bộ lọc
+function setupFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const sortSelect = document.getElementById('sortFilter');
     
-    if (filters.category) {
-        result = result.filter(p => p.category === filters.category);
+    // Xử lý lọc theo danh mục
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const category = this.getAttribute('data-category');
+            const products = getAllProducts();
+            
+            let filteredProducts = products;
+            if (category !== 'all') {
+                if (category === 'sale') {
+                    filteredProducts = products.filter(p => p.isSale);
+                } else if (category === 'new') {
+                    filteredProducts = products.filter(p => p.isNew);
+                } else {
+                    filteredProducts = products.filter(p => p.category === category);
+                }
+            }
+            
+            renderProducts(filteredProducts);
+        });
+    });
+    
+    // Xử lý sắp xếp
+    if (sortSelect) {
+        sortSelect.addEventListener('change', function() {
+            const activeCategory = document.querySelector('.filter-btn.active').getAttribute('data-category');
+            const products = getAllProducts();
+            
+            let filteredProducts = products;
+            if (activeCategory !== 'all') {
+                if (activeCategory === 'sale') {
+                    filteredProducts = products.filter(p => p.isSale);
+                } else if (activeCategory === 'new') {
+                    filteredProducts = products.filter(p => p.isNew);
+                } else {
+                    filteredProducts = products.filter(p => p.category === activeCategory);
+                }
+            }
+            
+            // Sắp xếp
+            const sortValue = this.value;
+            if (sortValue === 'price-asc') {
+                filteredProducts.sort((a, b) => (a.salePrice || a.price) - (b.salePrice || b.price));
+            } else if (sortValue === 'price-desc') {
+                filteredProducts.sort((a, b) => (b.salePrice || b.price) - (a.salePrice || a.price));
+            }
+            
+            renderProducts(filteredProducts);
+        });
     }
+}
+
+// Xử lý menu mobile
+function setupMobileMenu() {
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const mobileMenu = document.querySelector('.mobile-menu');
     
-    if (filters.color) {
-        result = result.filter(p => p.colors.includes(filters.color));
-    }
-    
-    if (filters.search) {
-        const searchTerm = filters.search.toLowerCase();
-        result = result.filter(p => p.name.toLowerCase().includes(searchTerm));
-    }
-    
-    if (filters.sort) {
-        result.sort((a, b) => {
-            const priceA = a.salePrice || a.price;
-            const priceB = b.salePrice || b.price;
-            return filters.sort === 'asc' ? priceA - priceB : priceB - priceA;
+    if (hamburgerMenu && mobileMenu) {
+        hamburgerMenu.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            hamburgerMenu.classList.toggle('active');
         });
     }
     
-    return result;
+    // Xử lý submenu trên mobile
+    const hasSubmenuItems = document.querySelectorAll('.has-submenu');
+    
+    hasSubmenuItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A' || e.target.tagName === 'I') {
+                e.preventDefault();
+                this.classList.toggle('submenu-active');
+            }
+        });
+    });
 }
 
-// Hàm xử lý giỏ hàng
-const cartManager = {
-    getCart() {
-        return JSON.parse(localStorage.getItem('cart') || '[]');
-    },
+// Cập nhật số lượng giỏ hàng
+function updateCartCount() {
+    const cartBadge = document.querySelector('.cart-badge');
+    if (!cartBadge) return;
     
-    addToCart(productId, quantity = 1) {
-        const cart = this.getCart();
-        const product = getProductById(productId);
+    // Lấy giỏ hàng từ localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Cập nhật số lượng
+    cartBadge.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+}
+
+// Xử lý sự kiện click trên sản phẩm
+document.addEventListener('click', function(e) {
+    // Xử lý nút thêm vào giỏ hàng
+    if (e.target.closest('.cart-icon-btn') || e.target.closest('button[title="Thêm vào giỏ hàng"]')) {
+        const productCard = e.target.closest('.product-card');
+        const productId = parseInt(productCard.getAttribute('data-id'));
+        const productName = productCard.querySelector('.product-title').textContent;
+        const productPrice = productCard.querySelector('.current-price').textContent;
+        const productImage = productCard.querySelector('.product-image img').src;
         
-        if (!product) return false;
+        // Thêm sản phẩm vào giỏ hàng
+        addToCart({
+            id: productId,
+            name: productName,
+            price: parseFloat(productPrice.replace(/[^\d]/g, '')),
+            image: productImage,
+            quantity: 1
+        });
         
-        const existingItem = cart.find(item => item.id === productId);
+        // Hiển thị thông báo
+        showNotification('Đã thêm sản phẩm vào giỏ hàng!', 'success');
         
-        if (existingItem) {
-            existingItem.quantity = (existingItem.quantity || 0) + quantity;
+        // Cập nhật số lượng giỏ hàng
+        updateCartCount();
+    }
+    
+    // Xử lý nút yêu thích
+    if (e.target.closest('.wishlist-btn') || e.target.closest('button[title="Yêu thích"]')) {
+        const heartIcon = e.target.closest('button').querySelector('i');
+        
+        // Toggle trạng thái yêu thích
+        if (heartIcon.classList.contains('far')) {
+            heartIcon.classList.remove('far');
+            heartIcon.classList.add('fas');
+            heartIcon.style.color = '#e74c3c';
+            showNotification('Đã thêm vào danh sách yêu thích!', 'success');
         } else {
-            cart.push({
-                id: product.id,
-                name: product.name,
-                price: product.salePrice || product.price,
-                image: product.images[0],
-                quantity: quantity
-            });
+            heartIcon.classList.remove('fas');
+            heartIcon.classList.add('far');
+            heartIcon.style.color = '';
+            showNotification('Đã xóa khỏi danh sách yêu thích!', 'info');
         }
-        
-        localStorage.setItem('cart', JSON.stringify(cart));
-        this.updateCartBadge();
-        
-        // Hiển thị thông báo
-        this.showNotification('Đã thêm sản phẩm vào giỏ hàng');
-        return true;
-    },
-    
-    removeFromCart(productId) {
-        const cart = this.getCart();
-        const newCart = cart.filter(item => item.id !== productId);
-        localStorage.setItem('cart', JSON.stringify(newCart));
-        this.updateCartBadge();
-        this.showNotification('Đã xóa sản phẩm khỏi giỏ hàng');
-    },
-    
-    updateQuantity(productId, quantity) {
-        const cart = this.getCart();
-        const item = cart.find(item => item.id === productId);
-        
-        if (item) {
-            item.quantity = parseInt(quantity) || 1;
-            localStorage.setItem('cart', JSON.stringify(cart));
-            this.updateCartBadge();
-        }
-    },
-    
-    clearCart() {
-        localStorage.removeItem('cart');
-        this.updateCartBadge();
-    },
-    
-    updateCartBadge() {
-        const cart = this.getCart();
-        const totalItems = cart.reduce((sum, item) => {
-            const quantity = parseInt(item.quantity) || 0;
-            return sum + quantity;
-        }, 0);
-        
-        const badge = document.querySelector('.cart-badge');
-        if (badge) {
-            badge.textContent = totalItems || '0';
-        }
-    },
-    
-    getTotal() {
-        const cart = this.getCart();
-        return cart.reduce((sum, item) => {
-            const price = parseFloat(item.price) || 0;
-            const quantity = parseInt(item.quantity) || 0;
-            return sum + (price * quantity);
-        }, 0);
-    },
-
-    showNotification(message) {
-        // Tạo thông báo
-        const notification = document.createElement('div');
-        notification.className = 'cart-notification';
-        notification.textContent = message;
-        
-        // Thêm vào body
-        document.body.appendChild(notification);
-        
-        // Hiển thị thông báo
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-        
-        // Xóa thông báo sau 3 giây
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 3000);
     }
-};
-
-// Thêm vào yêu thích
-function toggleFavorite(id) {
-    let favorites = JSON.parse(localStorage.getItem('wishlist') || '[]');
-    const index = favorites.findIndex(item => item.id === id);
     
-    if (index === -1) {
-        // Thêm vào yêu thích
-        FashionAPI.getProductById(id).then(product => {
-            favorites.push(product);
-            localStorage.setItem('wishlist', JSON.stringify(favorites));
-            
-            // Hiển thị thông báo
-            showNotification(`Đã thêm "${product.name}" vào yêu thích!`, 'success');
-            
-            // Cập nhật trạng thái nút
-            updateFavoriteButton(id, true);
-        });
+    // Xử lý nút xem nhanh
+    if (e.target.closest('.quick-view-btn') || e.target.closest('button[title="Xem nhanh"]')) {
+        const productCard = e.target.closest('.product-card');
+        const productId = parseInt(productCard.getAttribute('data-id'));
+        
+        // Hiển thị modal xem nhanh (có thể thêm sau)
+        showNotification('Chức năng xem nhanh đang được phát triển!', 'info');
+    }
+});
+
+// Thêm sản phẩm vào giỏ hàng
+function addToCart(product) {
+    // Lấy giỏ hàng từ localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+    const existingProductIndex = cart.findIndex(item => item.id === product.id);
+    
+    if (existingProductIndex !== -1) {
+        // Nếu sản phẩm đã có trong giỏ hàng, tăng số lượng
+        cart[existingProductIndex].quantity += product.quantity;
     } else {
-        // Xóa khỏi yêu thích
-        const product = favorites[index];
-        favorites.splice(index, 1);
-        localStorage.setItem('wishlist', JSON.stringify(favorites));
-        
-        // Hiển thị thông báo
-        showNotification(`Đã xóa "${product.name}" khỏi yêu thích!`, 'info');
-        
-        // Cập nhật trạng thái nút
-        updateFavoriteButton(id, false);
+        // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới
+        cart.push(product);
     }
-}
-
-// Cập nhật trạng thái nút yêu thích
-function updateFavoriteButton(id, isFavorite) {
-    const btn = document.querySelector(`.favorite-btn[onclick="toggleFavorite(${id})"]`);
-    if (btn) {
-        if (isFavorite) {
-            btn.classList.add('active');
-            btn.innerHTML = '<i class="fas fa-heart"></i>';
-        } else {
-            btn.classList.remove('active');
-            btn.innerHTML = '<i class="far fa-heart"></i>';
-        }
-    }
+    
+    // Lưu giỏ hàng vào localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 // Hiển thị thông báo
 function showNotification(message, type = 'info') {
+    // Kiểm tra xem đã có container thông báo chưa
+    let notificationContainer = document.querySelector('.notification-container');
+    
+    if (!notificationContainer) {
+        // Nếu chưa có, tạo mới
+        notificationContainer = document.createElement('div');
+        notificationContainer.className = 'notification-container';
+        document.body.appendChild(notificationContainer);
+    }
+    
+    // Tạo thông báo
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
-    notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
-        <p>${message}</p>
-    `;
-    document.body.appendChild(notification);
     
+    // Icon cho thông báo
+    let icon = '';
+    switch (type) {
+        case 'success':
+            icon = '<i class="fas fa-check-circle"></i>';
+            break;
+        case 'error':
+            icon = '<i class="fas fa-exclamation-circle"></i>';
+            break;
+        case 'warning':
+            icon = '<i class="fas fa-exclamation-triangle"></i>';
+            break;
+        case 'info':
+        default:
+            icon = '<i class="fas fa-info-circle"></i>';
+            break;
+    }
+    
+    notification.innerHTML = `${icon}<span>${message}</span>`;
+    notificationContainer.appendChild(notification);
+    
+    // Tự động xóa thông báo sau 3 giây
     setTimeout(() => {
-        notification.remove();
+        notification.style.animation = 'slideOut 0.3s ease forwards';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 3000);
 }
 
-// Export các hàm và đối tượng cần thiết
-export {
-    getAllProducts,
-    getProductById,
-    getProductsByCategory,
-    filterProducts,
-    cartManager
-}; 
+// Tạo hiệu ứng bay vào giỏ hàng
+function createFlyToCartEffect(fromElement, toElement) {
+    if (!fromElement || !toElement) return;
+    
+    // Tạo phần tử bay
+    const flyingElement = document.createElement('div');
+    flyingElement.className = 'flying-item';
+    flyingElement.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+    document.body.appendChild(flyingElement);
+    
+    // Lấy vị trí
+    const fromRect = fromElement.getBoundingClientRect();
+    const toRect = toElement.getBoundingClientRect();
+    
+    // Thiết lập vị trí ban đầu
+    flyingElement.style.cssText = `
+        position: fixed;
+        z-index: 9999;
+        left: ${fromRect.left + fromRect.width / 2}px;
+        top: ${fromRect.top + fromRect.height / 2}px;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        color: #2196F3;
+        pointer-events: none;
+        transition: all 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    `;
+    
+    // Kích hoạt animation
+    setTimeout(() => {
+        flyingElement.style.cssText += `
+            left: ${toRect.left + toRect.width / 2}px;
+            top: ${toRect.top + toRect.height / 2}px;
+            font-size: 0;
+            opacity: 0;
+        `;
+        
+        // Làm nổi bật giỏ hàng
+        toElement.classList.add('cart-pulse');
+        
+        // Xóa phần tử bay và hiệu ứng nổi bật sau khi hoàn thành
+        setTimeout(() => {
+            flyingElement.remove();
+            toElement.classList.remove('cart-pulse');
+        }, 800);
+    }, 10);
+}

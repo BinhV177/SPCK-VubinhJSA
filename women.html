@@ -365,54 +365,12 @@
         </div>
     </footer>
 
-    <script src="./scripts/cart.js"></script>
-    <script src="./scripts/main.js"></script>
-    <script src="./scripts/category.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Xử lý nút thêm vào giỏ hàng
-        document.querySelectorAll('.cart-icon-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productCard = this.closest('.product-card');
-                const product = {
-                    id: productCard.dataset.id,
-                    name: productCard.querySelector('.product-title').textContent,
-                    price: parseFloat(productCard.dataset.price),
-                    image: productCard.querySelector('.product-image img').src
-                };
-                addToCart(product);
-            });
-        });
-
-        // Xử lý nút yêu thích
-        document.querySelectorAll('.wishlist-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productCard = this.closest('.product-card');
-                const product = {
-                    id: productCard.dataset.id,
-                    name: productCard.querySelector('.product-title').textContent,
-                    price: parseFloat(productCard.dataset.price),
-                    image: productCard.querySelector('.product-image img').src
-                };
-                toggleFavorite(product);
-                
-                // Thay đổi icon trái tim
-                const icon = this.querySelector('i');
-                if (icon.classList.contains('far')) {
-                    icon.classList.remove('far');
-                    icon.classList.add('fas');
-                } else {
-                    icon.classList.remove('fas');
-                    icon.classList.add('far');
-                }
-            });
-        });
-    });
-    </script>
+    <script type="module" src="./scripts/cart-manager.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+    <script type="module" src="./scripts/category.js"></script>
 </body>
 </html>
+
 
 
 

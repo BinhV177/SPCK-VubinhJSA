@@ -1,338 +1,273 @@
-// Dữ liệu sản phẩm thời trang
-const products = [
-    // Thời trang nữ
-    {
-        id: 1,
-        name: "Áo Blazer Nữ Công Sở",
-        category: "women",
-        subCategory: "blazer",
-        price: 1590000,
-        salePrice: null,
-        description: "Áo blazer nữ phong cách công sở thanh lịch",
-        images: ["./assets/women/blazer-nu-1.jpg"],
-        sizes: ["S", "M", "L", "XL"],
-        colors: ["den", "be", "xam"],
-        inStock: true,
-        isNew: true,
-        isSale: false
-    },
-    {
-        id: 2,
-        name: "Váy Đầm Dự Tiệc",
-        category: "women",
-        subCategory: "dress",
-        price: 2190000,
-        salePrice: 1890000,
-        description: "Váy đầm dự tiệc sang trọng, thiết kế hiện đại",
-        images: ["./assets/women/vay-dam-1.jpg"],
-        sizes: ["S", "M", "L"],
-        colors: ["do", "den", "trang"],
-        inStock: true,
-        isNew: true,
-        isSale: true
-    },
-    {
-        id: 3,
-        name: "Áo Sơ Mi Nữ Công Sở",
-        category: "women",
-        subCategory: "shirt",
-        price: 590000,
-        salePrice: null,
-        description: "Áo sơ mi nữ kiểu dáng thanh lịch, phù hợp môi trường công sở",
-        images: ["./assets/women/ao-so-mi-1.jpg"],
-        sizes: ["S", "M", "L", "XL"],
-        colors: ["trang", "xanh", "hong"],
-        inStock: true,
-        isNew: false,
-        isSale: false
-    },
-    {
-        id: 4,
-        name: "Quần Âu Nữ",
-        category: "women",
-        subCategory: "pants",
-        price: 890000,
-        salePrice: 690000,
-        description: "Quần âu nữ dáng suông, chất liệu cao cấp",
-        images: ["./assets/women/quan-au-1.jpg"],
-        sizes: ["S", "M", "L"],
-        colors: ["den", "xam", "xanh"],
-        inStock: true,
-        isNew: false,
-        isSale: true
-    },
-    {
-        id: 5,
-        name: "Chân Váy Xếp Ly",
-        category: "women",
-        subCategory: "skirt",
-        price: 790000,
-        salePrice: null,
-        description: "Chân váy xếp ly thanh lịch, dễ phối đồ",
-        images: ["./assets/women/chan-vay-1.jpg"],
-        sizes: ["S", "M", "L"],
-        colors: ["den", "xam", "be"],
-        inStock: true,
-        isNew: false,
-        isSale: false
-    },
-    {
-        id: 7,
-        name: "Áo Thun Nữ Basic",
-        category: "women",
-        subCategory: "shirt",
-        price: 590000,
-        salePrice: 490000,
-        description: "Áo thun nữ basic, chất liệu cotton thoáng mát",
-        images: ["./assets/women/ao-thun-1.jpg"],
-        sizes: ["S", "M", "L", "XL"],
-        colors: ["trang", "den", "xanh", "hong"],
-        inStock: true,
-        isNew: false,
-        isSale: true
-    },
-    // Thêm sản phẩm nữ mới
-    {
-        id: 11,
-        name: "Đầm Suông Thanh Lịch",
-        category: "women",
-        subCategory: "dress",
-        price: 1290000,
-        salePrice: null,
-        description: "Đầm suông thanh lịch, phù hợp cho nhiều dịp khác nhau",
-        images: ["./assets/women/vay-dam-3.jpg"],
-        sizes: ["S", "M", "L"],
-        colors: ["xanh", "be", "hong"],
-        inStock: true,
-        isNew: true,
-        isSale: false
-    },
-    {
-        id: 12,
-        name: "Áo Sơ Mi Nữ Cách Điệu",
-        category: "women",
-        subCategory: "shirt",
-        price: 740000,
-        salePrice: 590000,
-        description: "Áo sơ mi nữ cách điệu, thiết kế hiện đại",
-        images: ["./assets/women/ao-so-mi-2.jpg"],
-        sizes: ["S", "M", "L"],
-        colors: ["trang", "hong", "xanh"],
-        inStock: true,
-        isNew: false,
-        isSale: true
-    },
-    
-    // Thời trang nam
-    {
-        id: 101,
-        name: "Bộ Vest Nam Công Sở",
-        category: "men",
-        subCategory: "suit",
-        price: 1890000,
-        salePrice: null,
-        description: "Bộ vest nam công sở, thiết kế hiện đại, lịch lãm",
-        images: ["./assets/vest-nam-1.jpg"],
-        sizes: ["M", "L", "XL", "XXL"],
-        colors: ["den", "xam", "xanh"],
-        inStock: true,
-        isNew: true,
-        isSale: false
-    },
-    {
-        id: 103,
-        name: "Áo Sơ Mi Nam Công Sở",
-        category: "men",
-        subCategory: "shirt",
-        price: 650000,
-        salePrice: null,
-        description: "Áo sơ mi nam công sở, chất liệu cao cấp",
-        images: ["./assets/ao-so-mi-nam-1.jpg"],
-        sizes: ["M", "L", "XL", "XXL"],
-        colors: ["trang", "xanh", "den"],
-        inStock: true,
-        isNew: false,
-        isSale: false
-    },
-    {
-        id: 105,
-        name: "Áo Polo Nam Basic",
-        category: "men",
-        subCategory: "polo",
-        price: 500000,
-        salePrice: 450000,
-        description: "Áo polo nam basic, chất liệu cotton thoáng mát",
-        images: ["./assets/ao-polo-1.jpg"],
-        sizes: ["M", "L", "XL"],
-        colors: ["den", "trang", "xanh", "do"],
-        inStock: true,
-        isNew: false,
-        isSale: true
-    },
-    // Thêm sản phẩm nam mới
-    {
-        id: 111,
-        name: "Áo Thun Nam Họa Tiết",
-        category: "men",
-        subCategory: "tshirt",
-        price: 790000,
-        salePrice: null,
-        description: "Áo thun nam họa tiết hiện đại, trẻ trung",
-        images: ["./assets/men/ao-thun-1.jpg"],
-        sizes: ["M", "L", "XL"],
-        colors: ["den", "trang", "xanh"],
-        inStock: true,
-        isNew: true,
-        isSale: false
-    },
-    {
-        id: 112,
-        name: "Quần Kaki Nam Slim Fit",
-        category: "men",
-        subCategory: "pants",
-        price: 1190000,
-        salePrice: null,
-        description: "Quần kaki nam dáng slim fit, chất liệu cao cấp",
-        images: ["./assets/men/quan-kaki-1.jpg"],
-        sizes: ["29", "30", "31", "32", "33"],
-        colors: ["be", "xam", "den"],
-        inStock: true,
-        isNew: false,
-        isSale: false
-    },
-    {
-        id: 113,
-        name: "Bộ Vest Nam Cao Cấp",
-        category: "men",
-        subCategory: "suit",
-        price: 2790000,
-        salePrice: 2490000,
-        description: "Bộ vest nam cao cấp, thiết kế sang trọng, lịch lãm",
-        images: ["./assets/men/vest-nam-2.jpg"],
-        sizes: ["M", "L", "XL", "XXL"],
-        colors: ["den", "xanh", "xam"],
-        inStock: true,
-        isNew: false,
-        isSale: true
-    },
-    
-    // Phụ kiện
-    {
-        id: 201,
-        name: "Túi Xách Nữ Thời Trang",
-        category: "accessories",
-        subCategory: "bag",
-        price: 1290000,
-        salePrice: null,
-        description: "Túi xách nữ thời trang, thiết kế hiện đại",
-        images: ["./assets/accessories/tui-xach-1.jpg"],
-        sizes: ["One size"],
-        colors: ["den", "be", "do"],
-        inStock: true,
-        isNew: true,
-        isSale: false
-    },
-    // Thêm phụ kiện mới
-    {
-        id: 202,
-        name: "Ví Da Nam Cao Cấp",
-        category: "accessories",
-        subCategory: "wallet",
-        price: 890000,
-        salePrice: null,
-        description: "Ví da nam cao cấp, thiết kế sang trọng",
-        images: ["./assets/accessories/vi-da-1.jpg"],
-        sizes: ["One size"],
-        colors: ["den", "nau"],
-        inStock: true,
-        isNew: false,
-        isSale: false
-    },
-    {
-        id: 203,
-        name: "Thắt Lưng Da Nam",
-        category: "accessories",
-        subCategory: "belt",
-        price: 690000,
-        salePrice: 590000,
-        description: "Thắt lưng da nam cao cấp, thiết kế thanh lịch",
-        images: ["./assets/accessories/that-lung-1.jpg"],
-        sizes: ["One size"],
-        colors: ["den", "nau"],
-        inStock: true,
-        isNew: false,
-        isSale: true
-    },
-    {
-        id: 204,
-        name: "Đồng Hồ Nam Thời Trang",
-        category: "accessories",
-        subCategory: "watch",
-        price: 1290000,
-        salePrice: null,
-        description: "Đồng hồ nam thời trang, thiết kế sang trọng",
-        images: ["./assets/accessories/dong-ho-1.jpg"],
-        sizes: ["One size"],
-        colors: ["den", "bac"],
-        inStock: true,
-        isNew: true,
-        isSale: false
-    }
-];
-
-// API giả lập
+// Mô phỏng API cho trang web thời trang
 class FashionAPI {
     // Lấy tất cả sản phẩm
-    static getAllProducts() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve(products);
-            }, 500);
-        });
+    static async getAllProducts() {
+        // Kết hợp sản phẩm từ tất cả các danh mục
+        const womenProducts = await this.getWomenProducts();
+        const menProducts = await this.getMenProducts();
+        const accessoriesProducts = await this.getAccessoriesProducts();
+        
+        return [...womenProducts, ...menProducts, ...accessoriesProducts];
     }
     
     // Lấy sản phẩm theo ID
-    static getProductById(id) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const product = products.find(p => p.id === id);
-                if (product) {
-                    resolve(product);
-                } else {
-                    reject(new Error('Không tìm thấy sản phẩm'));
-                }
-            }, 300);
-        });
-    }
-    
-    // Lấy sản phẩm theo danh mục
-    static getProductsByCategory(category) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const filteredProducts = products.filter(p => p.category === category);
-                resolve(filteredProducts);
-            }, 300);
-        });
+    static async getProductById(id) {
+        const allProducts = await this.getAllProducts();
+        return allProducts.find(product => product.id === id) || null;
     }
     
     // Lấy sản phẩm mới
-    static getNewProducts(limit = 8) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const newProducts = products.filter(p => p.isNew).slice(0, limit);
-                resolve(newProducts);
-            }, 300);
-        });
+    static async getNewProducts() {
+        const allProducts = await this.getAllProducts();
+        return allProducts.filter(product => product.isNew);
     }
     
-    // Lấy sản phẩm đang sale
-    static getSaleProducts(limit = 8) {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                const saleProducts = products.filter(p => p.isSale).slice(0, limit);
-                resolve(saleProducts);
-            }, 300);
-        });
+    // Lấy sản phẩm giảm giá
+    static async getSaleProducts() {
+        const allProducts = await this.getAllProducts();
+        return allProducts.filter(product => product.salePrice);
+    }
+    
+    // Lấy sản phẩm nữ
+    static async getWomenProducts() {
+        return [
+            {
+                id: 1,
+                name: "Đầm Maxi Hoa",
+                price: 1290000,
+                salePrice: 990000,
+                category: "women",
+                subCategory: "dress",
+                isNew: true,
+                colors: ["đỏ", "xanh", "trắng"],
+                sizes: ["S", "M", "L", "XL"],
+                images: ["./assets/products/women/dress1.jpg"],
+                description: "Đầm maxi họa tiết hoa nhẹ nhàng, phù hợp cho mùa hè."
+            },
+            {
+                id: 2,
+                name: "Áo Sơ Mi Lụa",
+                price: 850000,
+                category: "women",
+                subCategory: "shirt",
+                isNew: true,
+                colors: ["trắng", "be", "hồng nhạt"],
+                sizes: ["S", "M", "L"],
+                images: ["./assets/products/women/shirt1.jpg"],
+                description: "Áo sơ mi lụa cao cấp, thiết kế thanh lịch phù hợp công sở."
+            },
+            {
+                id: 3,
+                name: "Quần Jeans Ống Rộng",
+                price: 950000,
+                salePrice: 750000,
+                category: "women",
+                subCategory: "jeans",
+                isNew: false,
+                colors: ["xanh đậm", "xanh nhạt", "đen"],
+                sizes: ["S", "M", "L", "XL"],
+                images: ["./assets/products/women/jeans1.jpg"],
+                description: "Quần jeans ống rộng thời trang, phong cách retro."
+            },
+            {
+                id: 4,
+                name: "Áo Khoác Denim",
+                price: 1450000,
+                category: "women",
+                subCategory: "jacket",
+                isNew: false,
+                colors: ["xanh", "đen"],
+                sizes: ["S", "M", "L"],
+                images: ["./assets/products/women/jacket1.jpg"],
+                description: "Áo khoác denim phong cách, dễ phối đồ."
+            },
+            {
+                id: 5,
+                name: "Chân Váy Xếp Ly",
+                price: 650000,
+                category: "women",
+                subCategory: "skirt",
+                isNew: true,
+                colors: ["đen", "be", "xanh navy"],
+                sizes: ["S", "M", "L"],
+                images: ["./assets/products/women/skirt1.jpg"],
+                description: "Chân váy xếp ly thanh lịch, phù hợp nhiều dịp."
+            },
+            {
+                id: 6,
+                name: "Áo Thun Basic",
+                price: 350000,
+                salePrice: 290000,
+                category: "women",
+                subCategory: "tshirt",
+                isNew: false,
+                colors: ["trắng", "đen", "xám", "hồng"],
+                sizes: ["S", "M", "L", "XL"],
+                images: ["./assets/products/women/tshirt1.jpg"],
+                description: "Áo thun basic chất liệu cotton cao cấp, thoáng mát."
+            }
+        ];
+    }
+    
+    // Lấy sản phẩm nam
+    static async getMenProducts() {
+        return [
+            {
+                id: 101,
+                name: "Áo Sơ Mi Kẻ Sọc",
+                price: 890000,
+                category: "men",
+                subCategory: "shirt",
+                isNew: true,
+                colors: ["xanh", "trắng", "xám"],
+                sizes: ["M", "L", "XL", "XXL"],
+                images: ["./assets/products/men/shirt1.jpg"],
+                description: "Áo sơ mi kẻ sọc thanh lịch, phù hợp công sở và các dịp quan trọng."
+            },
+            {
+                id: 102,
+                name: "Quần Kaki Slim Fit",
+                price: 750000,
+                salePrice: 650000,
+                category: "men",
+                subCategory: "pants",
+                isNew: false,
+                colors: ["be", "xanh navy", "đen"],
+                sizes: ["30", "31", "32", "33", "34"],
+                images: ["./assets/products/men/pants1.jpg"],
+                description: "Quần kaki slim fit thoải mái, dễ phối đồ."
+            },
+            {
+                id: 103,
+                name: "Áo Thun Polo",
+                price: 450000,
+                category: "men",
+                subCategory: "tshirt",
+                isNew: true,
+                colors: ["đen", "trắng", "xanh", "đỏ"],
+                sizes: ["M", "L", "XL", "XXL"],
+                images: ["./assets/products/men/tshirt1.jpg"],
+                description: "Áo thun polo chất liệu cotton cao cấp, thiết kế lịch lãm."
+            },
+            {
+                id: 104,
+                name: "Áo Khoác Bomber",
+                price: 1250000,
+                salePrice: 990000,
+                category: "men",
+                subCategory: "jacket",
+                isNew: false,
+                colors: ["đen", "xanh navy"],
+                sizes: ["M", "L", "XL"],
+                images: ["./assets/products/men/jacket1.jpg"],
+                description: "Áo khoác bomber phong cách, chống gió tốt."
+            },
+            {
+                id: 105,
+                name: "Quần Jeans Slim",
+                price: 850000,
+                category: "men",
+                subCategory: "jeans",
+                isNew: true,
+                colors: ["xanh đậm", "xanh nhạt", "đen"],
+                sizes: ["30", "31", "32", "33", "34"],
+                images: ["./assets/products/men/jeans1.jpg"],
+                description: "Quần jeans slim fit, tôn dáng người mặc."
+            },
+            {
+                id: 106,
+                name: "Áo Vest Công Sở",
+                price: 1950000,
+                category: "men",
+                subCategory: "blazer",
+                isNew: false,
+                colors: ["đen", "xanh navy", "xám"],
+                sizes: ["M", "L", "XL", "XXL"],
+                images: ["./assets/products/men/blazer1.jpg"],
+                description: "Áo vest công sở thiết kế hiện đại, lịch lãm."
+            }
+        ];
+    }
+    
+    // Lấy sản phẩm phụ kiện
+    static async getAccessoriesProducts() {
+        return [
+            {
+                id: 201,
+                name: "Túi Xách Tay Nữ",
+                price: 1290000,
+                salePrice: 990000,
+                category: "accessories",
+                subCategory: "bag",
+                isNew: true,
+                colors: ["đen", "be", "đỏ"],
+                sizes: [""],
+                images: ["./assets/products/accessories/bag1.jpg"],
+                description: "Túi xách tay nữ thiết kế thanh lịch, chất liệu da cao cấp."
+            },
+            {
+                id: 202,
+                name: "Dây Chuyền Bạc",
+                price: 750000,
+                category: "accessories",
+                subCategory: "jewelry",
+                isNew: false,
+                colors: ["bạc"],
+                sizes: [""],
+                images: ["./assets/products/accessories/necklace1.jpg"],
+                description: "Dây chuyền bạc 925 thiết kế tinh tế, sang trọng."
+            },
+            {
+                id: 203,
+                name: "Mũ Bucket",
+                price: 350000,
+                category: "accessories",
+                subCategory: "hat",
+                isNew: true,
+                colors: ["đen", "be", "trắng"],
+                sizes: ["free size"],
+                images: ["./assets/products/accessories/hat1.jpg"],
+                description: "Mũ bucket phong cách, dễ phối đồ."
+            },
+            {
+                id: 204,
+                name: "Thắt Lưng Da Nam",
+                price: 650000,
+                salePrice: 550000,
+                category: "accessories",
+                subCategory: "belt",
+                isNew: false,
+                colors: ["đen", "nâu"],
+                sizes: ["105cm", "110cm", "115cm"],
+                images: ["./assets/products/accessories/belt1.jpg"],
+                description: "Thắt lưng da bò thật, thiết kế lịch lãm."
+            },
+            {
+                id: 205,
+                name: "Kính Mát Thời Trang",
+                price: 550000,
+                category: "accessories",
+                subCategory: "glasses",
+                isNew: true,
+                colors: ["đen", "nâu", "xanh"],
+                sizes: ["free size"],
+                images: ["./assets/products/accessories/glasses1.jpg"],
+                description: "Kính mát thời trang, chống tia UV."
+            },
+            {
+                id: 206,
+                name: "Khăn Choàng Cổ",
+                price: 450000,
+                salePrice: 350000,
+                category: "accessories",
+                subCategory: "scarf",
+                isNew: false,
+                colors: ["xám", "be", "đen"],
+                sizes: ["free size"],
+                images: ["./assets/products/accessories/scarf1.jpg"],
+                description: "Khăn choàng cổ chất liệu len mềm mại, giữ ấm tốt."
+            }
+        ];
     }
 }
 
