@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Chic Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/cart.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="brand">
+                <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
+                <span class="brand-name">Chic Boutique</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Trang chủ</a></li>
+              <li><a href="women.html">Nữ</a></li>
+              <li><a href="men.html">Nam</a></li>
+              <li><a href="accessories.html">Phụ kiện</a></li>
+              <li><a href="products.html?type=danhmucsanpham">Danh mục sản phẩm</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="header-icons">
+                    <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+                    <form class="header-search-form" id="headerSearchForm">
+                        <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                    <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                    <a href="profile.html" class="icon-btn" title="Tài khoản">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="wishlist.html" class="icon-btn" title="Yêu thích">
+                        <i class="fas fa-heart"></i>
+                        <span class="favorite-badge">0</span>
+                    </a>
+                    <button class="logout-btn">Đăng xuất</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cart Content -->
+    <main class="cart-container">
+        <div class="cart-header">
+            <h1>Giỏ hàng của bạn</h1>
+            <p class="cart-subtitle">Kiểm tra và thanh toán đơn hàng của bạn</p>
+        </div>
+
+        <div class="cart-content">
+            <div class="cart-items">
+                <!-- Cart items will be dynamically added here -->
+                <div class="empty-cart">
+                    <div class="empty-cart-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3>Giỏ hàng trống</h3>
+                    <p>Bạn chưa có sản phẩm nào trong giỏ hàng</p>
+                    <a href="index.html" class="continue-shopping-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        Tiếp tục mua sắm
+                    </a>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-header">
+                    <h2>Tổng đơn hàng</h2>
+                </div>
+                <div class="summary-content">
+                    <div class="summary-item">
+                        <span>Tạm tính:</span>
+                        <span class="subtotal">0đ</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Phí vận chuyển:</span>
+                        <span class="shipping">0đ</span>
+                    </div>
+                    <div class="summary-item discount">
+                        <span>Giảm giá:</span>
+                        <span class="discount-amount">0đ</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Tổng cộng:</span>
+                        <span class="total-amount">0đ</span>
+                    </div>
+                </div>
+                <div class="coupon-section">
+                    <div class="coupon-input">
+                        <input type="text" placeholder="Nhập mã giảm giá">
+                        <button class="apply-coupon-btn">Áp dụng</button>
+                    </div>
+                </div>
+                <button class="checkout-btn">
+                    <i class="fas fa-lock"></i>
+                    Thanh toán an toàn
+                </button>
+                <div class="payment-methods">
+                    <img src="./assets/visa.png" alt="Visa">
+                    <img src="./assets/mastercard.png" alt="Mastercard">
+                    <img src="./assets/momo.png" alt="Momo">
+                    <img src="./assets/zalopay.png" alt="ZaloPay">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Footer content -->
+    </footer>
+
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/cart.js"></script>
+</body>
+</html> 

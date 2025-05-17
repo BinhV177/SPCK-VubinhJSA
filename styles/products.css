@@ -322,3 +322,20 @@ main {
     border-radius: 4px;
   }
 }
+
+.favorite-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.favorite-btn:hover {
+    color: #e44d26;
+}
+
+.favorite-btn.active {
+    color: #e44d26;
+}

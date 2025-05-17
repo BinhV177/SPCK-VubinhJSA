@@ -321,6 +321,66 @@ const cartManager = {
     }
 };
 
+// Thêm vào yêu thích
+function toggleFavorite(id) {
+    let favorites = JSON.parse(localStorage.getItem('wishlist') || '[]');
+    const index = favorites.findIndex(item => item.id === id);
+    
+    if (index === -1) {
+        // Thêm vào yêu thích
+        FashionAPI.getProductById(id).then(product => {
+            favorites.push(product);
+            localStorage.setItem('wishlist', JSON.stringify(favorites));
+            
+            // Hiển thị thông báo
+            showNotification(`Đã thêm "${product.name}" vào yêu thích!`, 'success');
+            
+            // Cập nhật trạng thái nút
+            updateFavoriteButton(id, true);
+        });
+    } else {
+        // Xóa khỏi yêu thích
+        const product = favorites[index];
+        favorites.splice(index, 1);
+        localStorage.setItem('wishlist', JSON.stringify(favorites));
+        
+        // Hiển thị thông báo
+        showNotification(`Đã xóa "${product.name}" khỏi yêu thích!`, 'info');
+        
+        // Cập nhật trạng thái nút
+        updateFavoriteButton(id, false);
+    }
+}
+
+// Cập nhật trạng thái nút yêu thích
+function updateFavoriteButton(id, isFavorite) {
+    const btn = document.querySelector(`.favorite-btn[onclick="toggleFavorite(${id})"]`);
+    if (btn) {
+        if (isFavorite) {
+            btn.classList.add('active');
+            btn.innerHTML = '<i class="fas fa-heart"></i>';
+        } else {
+            btn.classList.remove('active');
+            btn.innerHTML = '<i class="far fa-heart"></i>';
+        }
+    }
+}
+
+// Hiển thị thông báo
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+        <p>${message}</p>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
 // Export các hàm và đối tượng cần thiết
 export {
     getAllProducts,

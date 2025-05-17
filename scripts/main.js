@@ -44,6 +44,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    updateWishlistCount();
+    updateCartCount();
 });
 
 // Thêm sản phẩm vào giỏ hàng
@@ -339,4 +342,30 @@ function createFlyToCartEffect(productElement) {
             cartIcon.classList.remove('cart-pulse');
         }, 500);
     };
+}
+
+// Cập nhật số lượng sản phẩm yêu thích
+function updateWishlistCount() {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const wishlistBadge = document.querySelector('.wishlist-badge');
+    if (wishlistBadge) {
+        wishlistBadge.textContent = wishlist.length;
+    }
+}
+
+// Cập nhật trạng thái icon yêu thích
+function updateWishlistIcon(productId) {
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const isInWishlist = wishlist.some(item => item.id === productId);
+    const wishlistIcon = document.querySelector(`.wishlist-btn[data-product-id="${productId}"]`);
+    
+    if (wishlistIcon) {
+        if (isInWishlist) {
+            wishlistIcon.classList.add('active');
+            wishlistIcon.innerHTML = '<i class="fas fa-heart"></i>';
+        } else {
+            wishlistIcon.classList.remove('active');
+            wishlistIcon.innerHTML = '<i class="far fa-heart"></i>';
+        }
+    }
 }

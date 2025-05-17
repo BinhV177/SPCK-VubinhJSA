@@ -21,7 +21,7 @@
           <li><a href="women.html">Nữ</a></li>
           <li><a href="men.html">Nam</a></li>
           <li><a href="accessories.html">Phụ kiện</a></li>
-          <li><a href="products.html?type=sale" class="active">Sale</a></li>
+          <li><a href="products.html?type=danhmucsanpham">Danh mục sản phẩm</a></li>
         </ul>
         <div class="nav-actions">
           <div class="header-icons">
@@ -30,11 +30,15 @@
               <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
               <button type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <a href="profile.html#orders" class="icon-btn" title="Giỏ hàng">
+            <a href="cart.html" class="icon-btn" title="Giỏ hàng">
               <i class="fas fa-shopping-bag"></i>
               <span class="cart-badge">0</span>
             </a>
             <a href="profile.html" class="icon-btn" title="Tài khoản"><i class="fas fa-user"></i></a>
+            <a href="wishlist.html" class="icon-btn" title="Yêu thích">
+              <i class="fas fa-heart"></i>
+              <span class="favorite-badge">0</span>
+            </a>
             <button class="logout-btn">Đăng xuất</button>
           </div>
           <div class="hamburger-menu">
@@ -199,6 +203,9 @@
               <div class="product-actions">
                 <a href="product-detail.html?id=${p.id}">Xem chi tiết</a>
                 <button onclick="addToCart(${p.id})">Thêm vào giỏ</button>
+                <button onclick="toggleFavorite(${p.id})" class="favorite-btn">
+                    <i class="far fa-heart"></i>
+                </button>
               </div>
             </div>
           `;

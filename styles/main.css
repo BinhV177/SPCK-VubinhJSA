@@ -1443,77 +1443,39 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 1000;
+    z-index: 9999;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .notification {
-    background-color: white;
-    color: #333;
-    padding: 15px 20px;
-    border-radius: 5px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    background: #e8f5e9;
+    color: #388e3c;
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #0002;
     display: flex;
     align-items: center;
-    gap: 10px;
-    min-width: 300px;
-    max-width: 400px;
-    animation: slide-in 0.3s ease-out;
+    gap: 12px;
+    font-size: 1.1rem;
+    min-width: 280px;
+    animation: slide-in 0.3s;
 }
 
-.notification.success {
-    border-left: 4px solid #2ecc71;
-}
-
-.notification.success i {
-    color: #2ecc71;
-}
-
-.notification.error {
-    border-left: 4px solid #e74c3c;
-}
-
-.notification.error i {
-    color: #e74c3c;
-}
-
-.notification.warning {
-    border-left: 4px solid #f39c12;
-}
-
-.notification.warning i {
-    color: #f39c12;
-}
-
-.notification.info {
-    border-left: 4px solid #3498db;
-}
-
-.notification.info i {
-    color: #3498db;
-}
-
-.notification i {
-    font-size: 20px;
-}
-
-.notification.fade-out {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: opacity 0.3s, transform 0.3s;
-}
-
+.notification.error { background: #ffebee; color: #d32f2f; }
+.notification.info { background: #e3f2fd; color: #1976d2; }
+.notification i { font-size: 1.5rem; }
 @keyframes slide-in {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(100%);}
+    to { opacity: 1; transform: translateX(0);}
+}
+.notification.fade-out {
+    animation: fade-out 0.3s forwards;
+}
+@keyframes fade-out {
+    from { opacity: 1; transform: translateX(0);}
+    to { opacity: 0; transform: translateX(100%);}
 }
 
 /* Nút lọc sản phẩm cải tiến */
@@ -1641,224 +1603,6 @@
 }
 
 /* Thông báo */
-.notification-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.notification {
-    background-color: white;
-    color: #333;
-    padding: 15px 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 300px;
-    max-width: 400px;
-    animation: slideIn 0.3s ease-out;
-}
-
-.notification.success {
-    border-left: 4px solid #4caf50;
-}
-
-.notification.success i {
-    color: #4caf50;
-    font-size: 20px;
-}
-
-.notification.error {
-    border-left: 4px solid #f44336;
-}
-
-.notification.error i {
-    color: #f44336;
-    font-size: 20px;
-}
-
-.notification.warning {
-    border-left: 4px solid #ff9800;
-}
-
-.notification.warning i {
-    color: #ff9800;
-    font-size: 20px;
-}
-
-@keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-.notification.fade-out {
-    animation: fadeOut 0.3s ease-out forwards;
-}
-
-@keyframes fadeOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
-}
-
-/* Styles cho product card */
-.product-card {
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    position: relative;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
-}
-
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-.product-image {
-    position: relative;
-    height: 300px;
-    overflow: hidden;
-    margin-bottom: 15px;
-}
-
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.product-card:hover .product-image img {
-    transform: scale(1.05);
-}
-
-.product-title {
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-    margin: 0 15px 10px;
-    height: 40px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
-
-.product-price {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 10px;
-    margin: 0 15px 10px;
-}
-
-.current-price {
-    font-size: 18px;
-    font-weight: 700;
-    color: #e74c3c;
-}
-
-.original-price {
-    font-size: 14px;
-    color: #999;
-    text-decoration: line-through;
-}
-
-.product-rating {
-    display: flex;
-    align-items: center;
-    margin: 0 15px;
-    color: #ffc107;
-    font-size: 14px;
-}
-
-.product-rating span {
-    color: #777;
-    margin-left: 5px;
-}
-
-.sale-badge, .new-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 5px 10px;
-    border-radius: 20px;
-    color: white;
-    font-size: 12px;
-    font-weight: 600;
-    z-index: 2;
-}
-
-.sale-badge {
-    background-color: #e74c3c;
-}
-
-.new-badge {
-    background-color: #2ecc71;
-}
-
-.product-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.product-card:hover .product-overlay {
-    opacity: 1;
-}
-
-.product-overlay button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #333;
-}
-
-.product-overlay button:hover {
-    background-color: #e74c3c;
-    color: white;
-    transform: translateY(-3px);
-}
-
-/* Thêm CSS cho hiệu ứng bay vào giỏ hàng */
-.cart-pulse {
-    animation: cart-pulse 0.5s ease-in-out;
-}
-
-@keyframes cart-pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
-}
-
-/* CSS cho thông báo */
 .notification-container {
     position: fixed;
     top: 20px;
@@ -2556,6 +2300,5422 @@
 .logout-btn:hover {
     background-color: #ffebee;
 }
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
+    background-color: #e74c3c;
+}
+
+.order-items.expanded .view-more-btn:hover {
+    background-color: #c0392b;
+}
+
+/* CSS cho nút xem thêm/xem ít khi expanded */
+.order-items.expanded .view-more-btn {
     background-color: #e74c3c;
 }
 
