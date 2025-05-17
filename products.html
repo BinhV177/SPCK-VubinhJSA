@@ -34,10 +34,8 @@
               <i class="fas fa-shopping-bag"></i>
               <span class="cart-badge">0</span>
             </a>
-            <a href="profile.html" class="icon-btn" title="Tài khoản"><i class="fas fa-user"></i></a>
-            <a href="wishlist.html" class="icon-btn" title="Yêu thích">
-              <i class="fas fa-heart"></i>
-              <span class="favorite-badge">0</span>
+            <a href="profile.html" class="icon-btn" title="Tài khoản" id="profileBtn">
+              <i class="fas fa-user"></i>
             </a>
             <button class="logout-btn">Đăng xuất</button>
           </div>
@@ -146,6 +144,7 @@
     </footer>
 
     <!-- Script chức năng lọc, tìm kiếm, render sản phẩm -->
+    <script src="./scripts/cart.js"></script>
     <script type="module">
       import FashionAPI from './scripts/api.js';
 
@@ -168,7 +167,7 @@
         list.forEach(p => {
           const saleTag = p.salePrice ? `<span class="product-badge sale-badge">-${Math.round((1 - p.salePrice/p.price) * 100)}%</span>` : '';
           const newTag = p.isNew ? `<span class="product-badge new-badge">Mới</span>` : '';
-          const originalPrice = p.salePrice ? `<span class="original-price">${p.price.toLocaleString()}đ</span>` : '';
+          const originalPrice = p.salePrice ? `<span class="original-price">${(p.price || 0).toLocaleString('vi-VN')}đ</span>` : '';
           
           // Tạo đánh giá sao
           const rating = Math.floor(Math.random() * 10) / 2 + 3; // Random từ 3-5 sao
@@ -187,14 +186,14 @@
           }
           
           productList.innerHTML += `
-            <div class="product-card">
+            <div class="product-card" data-id="${p.id}" data-price="${p.price || 0}">
               ${newTag}
               ${saleTag}
               <img src="${p.images[0]}" alt="${p.name}">
               <h3>${p.name}</h3>
               <div class="price">
                 ${originalPrice}
-                ${(p.salePrice || p.price).toLocaleString()}đ
+                ${(p.salePrice || p.price || 0).toLocaleString('vi-VN')}đ
               </div>
               <div class="product-rating">
                 ${stars}
@@ -202,10 +201,7 @@
               </div>
               <div class="product-actions">
                 <a href="product-detail.html?id=${p.id}">Xem chi tiết</a>
-                <button onclick="addToCart(${p.id})">Thêm vào giỏ</button>
-                <button onclick="toggleFavorite(${p.id})" class="favorite-btn">
-                    <i class="far fa-heart"></i>
-                </button>
+                <button class="add-to-cart-btn" data-id="${p.id}">Thêm vào giỏ</button>
               </div>
             </div>
           `;
@@ -231,38 +227,6 @@
         if (sort === 'desc') filtered.sort((a,b) => (b.salePrice || b.price) - (a.salePrice || a.price));
 
         renderProducts(filtered);
-      }
-
-      // Thêm vào giỏ hàng
-      window.addToCart = function(id) {
-        FashionAPI.getProductById(id).then(product => {
-          let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-          let found = cart.find(item => item.id === id);
-          if (found) {
-            found.qty += 1;
-          } else {
-            cart.push({...product, qty: 1});
-          }
-          localStorage.setItem('cart', JSON.stringify(cart));
-          
-          // Hiển thị thông báo
-          const notification = document.createElement('div');
-          notification.className = 'notification success';
-          notification.innerHTML = `
-            <i class="fas fa-check-circle"></i>
-            <p>Đã thêm "${product.name}" vào giỏ hàng!</p>
-          `;
-          document.body.appendChild(notification);
-          
-          // Cập nhật số lượng giỏ hàng
-          document.querySelector('.cart-badge').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
-          
-          // Tự động ẩn thông báo sau 3 giây
-          setTimeout(() => {
-            notification.classList.add('fade-out');
-            setTimeout(() => notification.remove(), 300);
-          }, 3000);
-        });
       }
 
       // Reset bộ lọc
@@ -325,10 +289,7 @@
           form.classList.remove('active');
         }
       });
-      
-      // Cập nhật số lượng giỏ hàng khi tải trang
-      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-      document.querySelector('.cart-badge').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
     </script>
+    <script src="./scripts/main.js"></script>
 </body>
 </html>

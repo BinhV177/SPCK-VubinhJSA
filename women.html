@@ -29,16 +29,16 @@
             <div class="nav-actions">
                 <div class="header-icons">
                     <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+                    <form class="header-search-form" id="headerSearchForm">
+                        <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
                     <a href="cart.html" class="icon-btn" title="Giỏ hàng">
                         <i class="fas fa-shopping-bag"></i>
                         <span class="cart-badge">0</span>
                     </a>
-                    <a href="profile.html" class="icon-btn" title="Tài khoản">
+                    <a href="profile.html" class="icon-btn" title="Tài khoản" id="profileBtn">
                         <i class="fas fa-user"></i>
-                    </a>
-                    <a href="wishlist.html" class="icon-btn" title="Yêu thích">
-                        <i class="fas fa-heart"></i>
-                        <span class="favorite-badge">0</span>
                     </a>
                     <button class="logout-btn">Đăng xuất</button>
                 </div>
@@ -365,9 +365,9 @@
         </div>
     </footer>
 
+    <script src="./scripts/cart.js"></script>
     <script src="./scripts/main.js"></script>
     <script src="./scripts/category.js"></script>
-    <script src="./scripts/cart.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Xử lý nút thêm vào giỏ hàng
