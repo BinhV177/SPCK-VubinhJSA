@@ -279,9 +279,6 @@ document.addEventListener('click', function(e) {
             quantity: 1
         });
         
-        // Hiển thị thông báo
-        showNotification('Đã thêm sản phẩm vào giỏ hàng!', 'success');
-        
         // Cập nhật số lượng giỏ hàng
         updateCartCount();
     }
@@ -332,6 +329,11 @@ function addToCart(product) {
     
     // Lưu giỏ hàng vào localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Cập nhật số lượng giỏ hàng
+    updateCartCount();
+    
+    return true;
 }
 
 // Hiển thị thông báo

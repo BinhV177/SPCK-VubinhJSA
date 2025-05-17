@@ -7,53 +7,193 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/card/2.5.0/card.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/card/2.5.0/card.min.js"></script>
+    <!-- Thêm CSS cho thông báo -->
+    <style>
+        .notification-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .notification {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background: white;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            min-width: 280px;
+            max-width: 350px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .notification i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .notification.success i {
+            color: #4CAF50;
+        }
+        
+        .notification.error i {
+            color: #F44336;
+        }
+        
+        .notification.info i {
+            color: #2196F3;
+        }
+        
+        .notification span {
+            flex: 1;
+            font-size: 0.95rem;
+        }
+        
+        .close-notification {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #999;
+            margin-left: 10px;
+        }
+        
+        .close-notification:hover {
+            color: #333;
+        }
+        
+        /* Hiệu ứng bay vào giỏ hàng */
+        .flying-item {
+            position: fixed;
+            z-index: 9999;
+            width: 50px;
+            height: 50px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hiệu ứng nhấp nháy giỏ hàng */
+        .cart-pulse {
+            animation: cart-pulse 0.5s ease;
+        }
+        
+        @keyframes cart-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Sửa lỗi hiển thị giỏ hàng */
+        .cart-items {
+            display: block;
+            width: 100%;
+        }
+        
+        .empty-cart {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 0;
+            text-align: center;
+        }
+        
+        .empty-cart i {
+            font-size: 60px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .empty-cart p {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+        
+        .cart-summary {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <nav class="navbar">
-            <div class="brand">
-                <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
-                <span class="brand-name">Chic Boutique</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Trang chủ</a></li>
+      <nav class="navbar">
+          <div class="brand">
+              <img src="./assets/logo.png" alt="Chic Boutique Logo" class="logo-img">
+              <span class="brand-name">Chic Boutique</span>
+          </div>
+  
+          <!-- Desktop Navigation -->
+          <ul class="nav-links">
+              <li><a href="index.html">Trang chủ</a></li>
               <li><a href="women.html">Nữ</a></li>
               <li><a href="men.html">Nam</a></li>
               <li><a href="accessories.html">Phụ kiện</a></li>
               <li><a href="products.html?type=danhmucsanpham">Danh mục sản phẩm</a></li>
-            </ul>
-            <div class="nav-actions">
-                <div class="header-icons">
-                    <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
-                    <form class="header-search-form" id="headerSearchForm">
-                        <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </form>
-                    <a href="cart.html" class="icon-btn" title="Giỏ hàng">
-                        <i class="fas fa-shopping-bag"></i>
-                        <span class="cart-badge">0</span>
-                    </a>
-                    <a href="profile.html" class="icon-btn" title="Tài khoản">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <button class="logout-btn">Đăng xuất</button>
-                </div>
-            </div>
-        </nav>
+          </ul>
+  
+          <div class="nav-actions">
+              <div class="header-icons">
+                <a href="#" class="icon-btn" id="searchIcon" title="Tìm kiếm"><i class="fas fa-search"></i></a>
+                <form class="header-search-form" id="headerSearchForm">
+                  <input type="text" id="headerSearchInput" placeholder="Tìm kiếm...">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <a href="cart.html" class="icon-btn" title="Giỏ hàng">
+                  <i class="fas fa-shopping-bag"></i>
+                  <span class="cart-badge">0</span>
+                </a>
+                <a href="profile.html" class="icon-btn" title="Tài khoản" id="profileBtn">
+                  <i class="fas fa-user"></i>
+                </a>
+                <button class="logout-btn">Đăng xuất</button>
+              </div>
+              <!-- Hamburger Menu Button -->
+              <div class="hamburger-menu">
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+                  <div class="bar"></div>
+              </div>
+          </div>
+      </nav>
     </header>
 
-    <!-- Cart Content -->
-    <main class="cart-container">
-        <div class="cart-header">
-            <h1>Giỏ hàng của bạn</h1>
-            <p class="cart-subtitle">Kiểm tra và thanh toán đơn hàng của bạn</p>
-        </div>
-
-        <div class="cart-content">
-            <div class="cart-items">
-                <!-- Cart items will be dynamically added here -->
-                <div class="empty-cart">
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">Giỏ hàng của bạn</h1>
+            
+            <div class="cart-container">
+                <!-- Danh sách sản phẩm trong giỏ hàng -->
+                <div class="cart-items">
+                    <!-- Sẽ được điền bởi JavaScript -->
+                </div>
+                
+                <!-- Thông báo giỏ hàng trống -->
+                <div class="empty-cart" style="display: none;">
                     <div class="empty-cart-icon">
                         <i class="fas fa-shopping-bag"></i>
                     </div>
@@ -64,30 +204,286 @@
                         Tiếp tục mua sắm
                     </a>
                 </div>
-            </div>
-            
-            <div class="cart-summary">
-                <h2>Tổng đơn hàng</h2>
-                <div class="summary-row">
-                    <span>Tạm tính:</span>
-                    <span id="cartTotal">0₫</span>
-                </div>
-                <div class="summary-row">
-                    <span>Phí vận chuyển:</span>
-                    <span>Miễn phí</span>
-                </div>
-                <div class="summary-row total">
-                    <span>Tổng cộng:</span>
-                    <span id="cartTotal">0₫</span>
-                </div>
                 
-                <div class="cart-actions">
-                    <button id="checkoutBtn" class="checkout-btn">Thanh toán</button>
-                    <button id="clearCartBtn" class="clear-cart-btn">Xóa giỏ hàng</button>
-                    <a href="index.html" class="continue-shopping-btn">
-                        <i class="fas fa-arrow-left"></i>
-                        Tiếp tục mua sắm
-                    </a>
+                <!-- Tổng tiền -->
+                <div class="cart-summary">
+                    <div class="cart-summary-header">
+                        <h2>Tổng đơn hàng</h2>
+                        <button id="clearCartBtn" class="clear-cart-btn">
+                            <i class="fas fa-trash"></i>
+                            Xóa tất cả
+                        </button>
+                    </div>
+                    
+                    <div class="cart-summary-content">
+                        <div class="coupon-section">
+                            <h3>Mã giảm giá</h3>
+                            <div class="coupon-form">
+                                <input type="text" id="couponCode" placeholder="Nhập mã giảm giá">
+                                <button id="applyCouponBtn">Áp dụng</button>
+                            </div>
+                            <p id="couponMessage" class="coupon-message"></p>
+                        </div>
+                        
+                        <div class="order-totals">
+                            <div class="order-total-row">
+                                <span>Tạm tính:</span>
+                                <span id="subtotal">0₫</span>
+                            </div>
+                            <div class="order-total-row">
+                                <span>Giảm giá:</span>
+                                <span id="discount">0₫</span>
+                            </div>
+                            <div class="order-total-row total">
+                                <span>Tổng cộng:</span>
+                                <span id="total">0₫</span>
+                            </div>
+                        </div>
+                        
+                        <div class="order-actions">
+                            <button class="clear-cart-btn" onclick="clearCart()">
+                                <i class="fas fa-trash-alt"></i>
+                                Xóa giỏ hàng
+                            </button>
+                            <button class="checkout-btn" id="checkoutBtn">
+                                <i class="fas fa-shopping-bag"></i>
+                                Thanh toán
+                            </button>
+                        </div>
+                        
+                        <a href="index.html" class="continue-shopping-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Tiếp tục mua sắm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal Thanh Toán -->
+        <div id="checkoutModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Thanh toán đơn hàng</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="checkout-container">
+                        <!-- Bên trái: Form thông tin -->
+                        <div class="checkout-form">
+                            <div class="form-section">
+                                <h3><span class="step-number">1</span> Thông tin giao hàng</h3>
+                                <div class="form-group">
+                                    <label for="fullName">Họ tên</label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Nhập họ tên của bạn" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Số điện thoại</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="0xxxxxxxxx" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Địa chỉ</label>
+                                    <input type="text" id="address" name="address" placeholder="Số nhà, tên đường" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="city">Tỉnh/Thành phố</label>
+                                        <select id="city" name="city" required>
+                                            <option value="">Chọn tỉnh/thành phố</option>
+                                            <option value="Hà Nội">Hà Nội</option>
+                                            <option value="TP.HCM">TP.HCM</option>
+                                            <option value="Đà Nẵng">Đà Nẵng</option>
+                                            <option value="Hải Phòng">Hải Phòng</option>
+                                            <option value="Cần Thơ">Cần Thơ</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="district">Quận/Huyện</label>
+                                        <select id="district" name="district" required>
+                                            <option value="">Chọn quận/huyện</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-section">
+                                <h3><span class="step-number">2</span> Phương thức thanh toán</h3>
+                                <div class="payment-methods">
+                                    <div class="payment-method">
+                                        <input type="radio" id="cod" name="paymentMethod" value="cod" checked>
+                                        <label for="cod">
+                                            <div class="payment-icon">
+                                                <i class="fas fa-money-bill-wave"></i>
+                                            </div>
+                                            <div class="payment-info">
+                                                <span class="payment-name">Thanh toán khi nhận hàng (COD)</span>
+                                                <span class="payment-desc">Thanh toán bằng tiền mặt khi nhận hàng</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="payment-method">
+                                        <input type="radio" id="creditCard" name="paymentMethod" value="creditCard">
+                                        <label for="creditCard">
+                                            <div class="payment-icon">
+                                                <i class="fas fa-credit-card"></i>
+                                            </div>
+                                            <div class="payment-info">
+                                                <span class="payment-name">Thanh toán bằng thẻ</span>
+                                                <span class="payment-desc">Hỗ trợ Visa, Mastercard, JCB</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="payment-method">
+                                        <input type="radio" id="bankTransfer" name="paymentMethod" value="bankTransfer">
+                                        <label for="bankTransfer">
+                                            <div class="payment-icon">
+                                                <i class="fas fa-university"></i>
+                                            </div>
+                                            <div class="payment-info">
+                                                <span class="payment-name">Chuyển khoản ngân hàng</span>
+                                                <span class="payment-desc">Chuyển khoản qua tài khoản ngân hàng</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Chi tiết thanh toán thẻ -->
+                                <div id="creditCardDetails" class="payment-details" style="display: none;">
+                                    <div class="card-wrapper"></div>
+                                    <div class="form-group">
+                                        <label for="cardNumber">Số thẻ</label>
+                                        <input type="text" id="cardNumber" name="cardNumber" placeholder="XXXX XXXX XXXX XXXX">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardName">Tên chủ thẻ</label>
+                                        <input type="text" id="cardName" name="cardName" placeholder="Tên trên thẻ">
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="expiryDate">Ngày hết hạn</label>
+                                            <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv">CVV</label>
+                                            <input type="text" id="cvv" name="cvv" placeholder="XXX">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Chi tiết chuyển khoản -->
+                                <div id="bankTransferDetails" class="payment-details" style="display: none;">
+                                    <div class="bank-info">
+                                        <div class="bank-qr">
+                                            <img src="./assets/qr-code.png" alt="QR Code" class="qr-code">
+                                            <p>Quét mã QR để thanh toán</p>
+                                        </div>
+                                        <div class="bank-details">
+                                            <p><strong>Ngân hàng:</strong> Vietcombank</p>
+                                            <p><strong>Số tài khoản:</strong> 1234567890</p>
+                                            <p><strong>Chủ tài khoản:</strong> CÔNG TY TNHH CHIC BOUTIQUE</p>
+                                            <p><strong>Nội dung chuyển khoản:</strong> <span id="transferCode">CB-[Mã đơn hàng]</span></p>
+                                        </div>
+                                    </div>
+                                    <p class="note">Lưu ý: Đơn hàng sẽ được xử lý sau khi chúng tôi nhận được thanh toán.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="orderNote">Ghi chú</label>
+                                <textarea id="orderNote" name="orderNote" rows="3" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay địa điểm giao hàng chi tiết"></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Bên phải: Thông tin đơn hàng -->
+                        <div class="checkout-summary">
+                            <div class="summary-header">
+                                <h3>Thông tin đơn hàng</h3>
+                                <span class="item-count">(<span id="itemCount">0</span> sản phẩm)</span>
+                            </div>
+                            
+                            <div id="orderItems" class="order-items">
+                                <!-- Sẽ được điền bởi JavaScript -->
+                            </div>
+                            
+                            <div class="coupon-section">
+                                <div class="coupon-form">
+                                    <input type="text" id="checkoutCouponCode" placeholder="Nhập mã giảm giá">
+                                    <button id="checkoutApplyCouponBtn">Áp dụng</button>
+                                </div>
+                                <p id="checkoutCouponMessage" class="coupon-message"></p>
+                            </div>
+                            
+                            <div class="order-summary">
+                                <div class="order-summary-row">
+                                    <span>Tạm tính:</span>
+                                    <span id="orderSubtotal">0₫</span>
+                                </div>
+                                <div class="order-summary-row">
+                                    <span>Giảm giá:</span>
+                                    <span id="orderDiscount">0₫</span>
+                                </div>
+                                <div class="order-summary-row">
+                                    <span>Phí vận chuyển:</span>
+                                    <span id="orderShipping">0₫</span>
+                                </div>
+                                <div class="order-summary-row total">
+                                    <span>Tổng cộng:</span>
+                                    <span id="orderTotal">0₫</span>
+                                </div>
+                            </div>
+                            
+                            <div class="checkout-actions">
+                                <button type="button" id="cancelOrderBtn" class="cancel-btn">Quay lại</button>
+                                <button type="button" id="placeOrderBtn" class="place-order-btn">Đặt hàng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal Đặt hàng thành công -->
+        <div id="successModal" class="modal">
+            <div class="modal-content success-modal">
+                <div class="modal-header">
+                    <h2>Đặt hàng thành công!</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Cảm ơn bạn đã đặt hàng!</h3>
+                    <p>Đơn hàng của bạn đã được tiếp nhận và đang được xử lý.</p>
+                    <div class="order-info">
+                        <div class="order-info-item">
+                            <span class="info-label">Mã đơn hàng:</span>
+                            <span id="orderIdDisplay" class="info-value"></span>
+                        </div>
+                        <div class="order-info-item">
+                            <span class="info-label">Ngày đặt hàng:</span>
+                            <span id="orderDateDisplay" class="info-value"></span>
+                        </div>
+                        <div class="order-info-item">
+                            <span class="info-label">Phương thức thanh toán:</span>
+                            <span id="orderPaymentDisplay" class="info-value"></span>
+                        </div>
+                        <div class="order-info-item">
+                            <span class="info-label">Tổng tiền:</span>
+                            <span id="orderTotalDisplay" class="info-value"></span>
+                        </div>
+                    </div>
+                    <p class="success-message">Chúng tôi sẽ gửi email xác nhận đơn hàng đến <span id="orderEmailDisplay"></span></p>
+                    <div class="success-actions">
+                        <button id="viewOrderBtn" class="view-order-btn">Xem đơn hàng</button>
+                        <button id="continueShopping" class="continue-btn">Tiếp tục mua sắm</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,10 +491,92 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <!-- Footer content -->
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Về Chic Boutique</h4>
+                    <p>Chic Boutique là thương hiệu thời trang cao cấp với sứ mệnh mang đến phong cách thời thượng và sự tự tin cho khách hàng.</p>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Đường Thời Trang, Quận 1, TP.HCM</p>
+                        <p><i class="fas fa-phone"></i> 1900 1234</p>
+                        <p><i class="fas fa-envelope"></i> support@chicboutique.com</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Danh Mục</h4>
+                    <ul class="footer-links">
+                        <li><a href="women.html">Thời trang nữ</a></li>
+                        <li><a href="men.html">Thời trang nam</a></li>
+                        <li><a href="accessories.html">Phụ kiện</a></li>
+                        <li><a href="sale.html">Khuyến mãi</a></li>
+                        <li><a href="new-arrivals.html">Hàng mới về</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Hỗ Trợ</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Đăng Ký Nhận Tin</h4>
+                    <p>Đăng ký để nhận thông tin về sản phẩm mới và ưu đãi đặc biệt.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email của bạn">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Chic Boutique. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="./scripts/main.js"></script>
+    <!-- Scripts -->
     <script src="./scripts/cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkoutTriggers = document.querySelectorAll('.checkout-trigger');
+            checkoutTriggers.forEach(trigger => {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const modal = document.getElementById('checkoutModal');
+                    if (modal) {
+                        displayOrderItems();
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        // Xóa nút "Thêm sản phẩm mẫu" khi trang tải xong
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tìm và xóa nút "Thêm sản phẩm mẫu" nếu có
+            const sampleButtons = document.querySelectorAll('button');
+            sampleButtons.forEach(button => {
+                if (button.textContent === 'Thêm sản phẩm mẫu') {
+                    button.remove();
+                }
+            });
+            
+            // Xóa nút theo style (nếu không tìm thấy theo text)
+            const allButtons = document.querySelectorAll('button');
+            allButtons.forEach(button => {
+                const computedStyle = window.getComputedStyle(button);
+                if (computedStyle.position === 'fixed' && 
+                    computedStyle.bottom === '20px' && 
+                    computedStyle.right === '20px' &&
+                    computedStyle.backgroundColor.includes('3498db')) {
+                    button.remove();
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

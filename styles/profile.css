@@ -3535,7 +3535,3 @@ body {
   border-color: #4a6baf;
   box-shadow: 0 0 0 2px rgba(74, 107, 175, 0.2);
 }
-
-/* Điều chỉnh input number để bỏ mũi tên lên xuống */
-.birthday-input-group input[type="number"] {
-}
